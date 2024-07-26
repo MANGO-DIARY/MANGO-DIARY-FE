@@ -1,5 +1,12 @@
 body {
   margin: 0;
-  font-family: 'Ownglyph_ryurue-Rg';
+  font-family: 'Ownglyph_ryurue-Rg', sans-serif !important;
   background-image: url('../../public/assets/img/img-background.png');
+}
+
+@font-face {
+  font-family: 'Ownglyph_ryurue-Rg';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/Ownglyph_ryurue-Rg.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
