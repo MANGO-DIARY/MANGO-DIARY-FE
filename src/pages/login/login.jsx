@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { LoginWrap } from './styles.js';
-import InputForm from '../../component/InputForm/inputForm.jsx';
-import FormProvider from '../../component/formProvider/FormProvider.jsx';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Images } from '../../styles/images.js';
+import { LoginWrap } from './styles';
+import InputForm from '../../component/InputForm/inputForm';
+import FormProvider from '../../component/formProvider/FormProvider';
+
+import { Images } from '../../styles/images';
 
 const signupSchema = Yup.object().shape({
   userEmail: Yup.string()
@@ -54,7 +55,7 @@ function Login() {
   return (
     <LoginWrap>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit, onInvalid)}>
-        <InputForm name="email" IconSrc={Images.email} placeholder={'이메일을 입력해주세요.'} />
+        <InputForm name="email" IconSrc={Images.email} placeholder="이메일을 입력해주세요." />
       </FormProvider>
     </LoginWrap>
   );
