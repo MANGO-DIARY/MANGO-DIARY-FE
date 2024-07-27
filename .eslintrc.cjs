@@ -46,5 +46,7 @@ module.exports = {
     'no-alert': 'off',
     'no-console': 'off',
     'react/button-has-type': 'off',
+    'import/prefer-default-export': 'off',
+    'object-shorthand': 'off'
   },
 };

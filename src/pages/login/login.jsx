@@ -3,7 +3,7 @@ import { Box, Avatar, Button, TextField, Link, Grid, Typography, Container, Inpu
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-function SignIn() {
+function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClick = () => {
@@ -78,4 +78,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default Login;

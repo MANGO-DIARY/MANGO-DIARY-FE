@@ -18,9 +18,9 @@ import { ButtonContent } from './styles';
 function Button({ className = '', customStyle = css``, label = '버튼', icon, prevIcon, variant = 'primary', size = 'medium', onClick = () => {} }) {
   return (
     <ButtonContent className={className} customStyle={customStyle} variant={variant} size={size} onClick={onClick} icon={icon} prevIcon={prevIcon}>
-      {prevIcon && <img src={prevIcon} />}
+      {prevIcon && <img src={prevIcon} alt="아이콘" />}
       {label}
-      {icon && <img src={icon} />}
+      {icon && <img src={icon} alt="아이콘" />}
     </ButtonContent>
   );
 }
