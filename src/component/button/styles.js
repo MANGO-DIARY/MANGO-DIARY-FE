@@ -96,7 +96,7 @@ export const ButtonSizes = {
   `,
   kakao: css`
     ${fontGenerator('16px', '500', '16px', '-0.3px')}
-    padding: 13px 10px;
+    padding: 15px 10px;
     width: 100%;
   `,
   refresh: css`
