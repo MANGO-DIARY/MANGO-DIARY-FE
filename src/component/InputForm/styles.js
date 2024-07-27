@@ -4,6 +4,4 @@ import { Colors } from '../../styles/colors';
 
 export const LoginWrap = styled.main`
   width: 100%;
-  
-  
 `;
