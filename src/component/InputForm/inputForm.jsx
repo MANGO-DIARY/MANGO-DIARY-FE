@@ -43,8 +43,8 @@ export default function InputForm({ placeholder, IconSrc, name, readonly = false
       <img src={IconSrc} className="SearchIcon" alt="SearchIcon" />
       <input placeholder={placeholder} style={isError ? { border: `1px solid rgb(255, 43, 43)` } : {}} {...register(name, { required })} {...other} />
       {inputValue && (
-        <div onClick={handleClear}>
-          <img src={Images.close} alt="CloseIcon" className="CloseIcon" />
+        <div onClick={handleClear} className="CloseIcon">
+          <img src={Images.close} alt="CloseIcon" />
         </div>
       )}
 

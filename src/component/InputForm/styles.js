@@ -19,11 +19,9 @@ export const InputWrap = styled.main`
     background-color: unset;
     font-family: 'Ownglyph_ryurue-Rg', sans-serif !important;
     ${fontGenerator('19px', 'Regular', '100%', '4%')};
+    width: 100%;
   }
   & > .CloseIcon {
-    position: absolute;
-    right: 10px;
-    top: 8px;
     cursor: pointer;
   }
 `;
