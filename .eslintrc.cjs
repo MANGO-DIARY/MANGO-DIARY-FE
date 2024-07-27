@@ -48,5 +48,9 @@ module.exports = {
     'react/button-has-type': 'off',
     'import/prefer-default-export': 'off',
     'object-shorthand': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'react/no-children-prop': 'off',
   },
 };
