@@ -7,10 +7,12 @@
 // splash
 import splash from '../../public/assets/img/img-splash-head.svg';
 import background from '../../public/assets/img/img-background.png';
+import kakao from '../../public/assets/icon/ico-kakao.svg';
 
 // prettier-ignore
 export const Images = {
   // icon
+  kakao: kakao,
   // img
   splash: splash,
   background: background,

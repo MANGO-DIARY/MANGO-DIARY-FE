@@ -1,8 +1,12 @@
 import React from 'react';
 import { SplashWrap } from './style';
 import { Images } from '../../styles/images';
+import Button from '../../component/button/button';
 
 function Splash() {
+  const handleKakaoLogin = () => {
+    console.log('kakao login');
+  };
   return (
     <SplashWrap>
       <img src={Images.splash} alt="splash" />
@@ -14,6 +18,7 @@ function Splash() {
         </div>
         <div className="subtitle">ai가 분석해주는 감정 일기</div>
       </div>
+      <Button label="카카오로 계속하기" variant="kakao" size="kakao" prevIcon={Images.kakao} onClick={handleKakaoLogin} />
     </SplashWrap>
   );
 }
