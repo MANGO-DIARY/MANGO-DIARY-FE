@@ -4,7 +4,7 @@ import { Images } from '../../styles/images.js';
 import { InputWrap } from './styles.js';
 // ----------------------------------------------------------------------
 
-export default function InputForm({ IconSrc, name, readonly = false, required = false, loading = false, unit, ...other }) {
+export default function InputForm({ placeholder, IconSrc, name, readonly = false, required = false, loading = false, unit, ...other }) {
   const {
     register,
     setValue,
@@ -41,7 +41,7 @@ export default function InputForm({ IconSrc, name, readonly = false, required = 
   return (
     <InputWrap>
       <img src={IconSrc} className="SearchIcon" alt="SearchIcon" />
-      <input style={isError ? { border: `1px solid rgb(255, 43, 43)` } : {}} {...register(name, { required })} {...other} />
+      <input placeholder={placeholder} style={isError ? { border: `1px solid rgb(255, 43, 43)` } : {}} {...register(name, { required })} {...other} />
       {inputValue && <img src={Images.close} alt="CloseIcon" className="CloseIcon" onClick={handleClear} />}
 
       {isError && <p className="RHFHelperText">{errorMessage}</p>}

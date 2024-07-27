@@ -5,6 +5,7 @@ import FormProvider from '../../component/formProvider/FormProvider.jsx';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Images } from '../../styles/images.js';
 
 const signupSchema = Yup.object().shape({
   userEmail: Yup.string()
@@ -53,7 +54,7 @@ function Login() {
   return (
     <LoginWrap>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit, onInvalid)}>
-        <InputForm name="email" />
+        <InputForm name="email" IconSrc={Images.email} placeholder={'이메일을 입력해주세요.'} />
       </FormProvider>
     </LoginWrap>
   );
