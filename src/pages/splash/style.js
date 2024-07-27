@@ -33,7 +33,19 @@ export const SplashWrap = styled.main`
       color : ${Colors.Gray05};
     }
   }
-  br {
-    margin-bottom: 7px;
+  & > .bottom {
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    padding: 0 20px;
+    text-align: center;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    & > .email {
+      ${fontGenerator('19px', 'Regular', '30px')}
+      text-align: center;
+      color: ${Colors.Gray01};
+    }
   }
 `;

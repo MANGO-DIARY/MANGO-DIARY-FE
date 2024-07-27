@@ -18,7 +18,12 @@ function Splash() {
         </div>
         <div className="subtitle">ai가 분석해주는 감정 일기</div>
       </div>
-      <Button label="카카오로 계속하기" variant="kakao" size="kakao" prevIcon={Images.kakao} onClick={handleKakaoLogin} />
+      <div className="bottom">
+        <Button label="카카오로 계속하기" variant="kakao" size="kakao" prevIcon={Images.kakao} onClick={handleKakaoLogin} />
+        <a href="/login" className="email">
+          이메일로 로그인
+        </a>
+      </div>
     </SplashWrap>
   );
 }
