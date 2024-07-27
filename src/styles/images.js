@@ -4,15 +4,19 @@
  */
 // const BASE_URL = process.env.BASE_URL;
 
-// splash
+// icon
+import kakao from '../../public/assets/icon/ico-kakao.svg';
+import close from '../../public/assets/icon/ico-close.svg';
+
+// img
 import splash from '../../public/assets/img/img-splash-head.svg';
 import background from '../../public/assets/img/img-background.png';
-import kakao from '../../public/assets/icon/ico-kakao.svg';
 
 // prettier-ignore
 export const Images = {
   // icon
   kakao: kakao,
+  close: close,
   // img
   splash: splash,
   background: background,

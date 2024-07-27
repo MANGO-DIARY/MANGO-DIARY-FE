@@ -1,39 +1,60 @@
 import React, { useState } from 'react';
 import { LoginWrap } from './styles.js';
+import InputForm from '../../component/InputForm/inputForm.jsx';
+import FormProvider from '../../component/formProvider/FormProvider.jsx';
+import { useForm } from 'react-hook-form';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+const signupSchema = Yup.object().shape({
+  userEmail: Yup.string()
+    .required('이메일을 입력해주세요.')
+    .matches(/^[a-zA-Z0-9+-_.]+@[a-z]+\.[a-z]{2,3}/i, '이메일 형식이 아닙니다.'),
+  password: Yup.string()
+    .required('비밀번호를 입력해주세요.')
+    .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+]).{8,}$/, '비밀번호는 특수문자, 숫자를 포함하여 8자리 이상이어야 합니다.'),
+});
+
+const defaultValues = {
+  userEmail: '',
+  password: '',
+};
 
 function Login() {
-  const [showPassword, setShowPassword] = useState(false);
+  // const signInMutation = useSignIn();
 
-  const handleClick = () => {
-    setShowPassword((prev) => !prev);
+  const methods = useForm({
+    defaultValues,
+    resolver: yupResolver(signupSchema),
+  });
+
+  const {
+    handleSubmit,
+    formState: { isValid },
+  } = methods;
+
+  const onSubmit = (data) => {
+    // const { userEmail, password } = data;
+    // signInMutation.mutate({
+    //   userEmail,
+    //   password: sha256(password),
+    // });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  const onInvalid = (error) => {
+    if (error.userEmail) {
+      console.log('error');
+    }
+    if (error.password) {
+      console.log('error');
+    }
   };
 
   return (
     <LoginWrap>
-      <InputForm />
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input name="email" type="email" required />
-        </label>
-        <label>
-          Password
-          <input name="password" type={showPassword ? 'text' : 'password'} required />
-        </label>
-        <button type="submit">Submit</button>
-        <button type="button" onClick={handleClick}>
-          {showPassword ? 'Hide' : 'Show'} Password
-        </button>
-      </form>
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit, onInvalid)}>
+        <InputForm name="email" />
+      </FormProvider>
     </LoginWrap>
   );
 }

@@ -52,5 +52,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/no-children-prop': 'off',
+    'jsx-a11y/anchor-is-valid': 'off',
+    'jsx-a11y/control-has-associated-label': 'off',
   },
 };

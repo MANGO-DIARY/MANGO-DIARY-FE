@@ -1,11 +1,10 @@
 import { useFormContext } from 'react-hook-form';
-import './style.scss';
-import { px } from 'src/utils/styles';
-import Skeleton from '../skeleton';
-import { IconClose } from '../../assets/icons';
+// import Skeleton from '../skeleton/index.js';
+import { Images } from '../../styles/images.js';
+import { InputWrap } from './styles.js';
 // ----------------------------------------------------------------------
 
-export default function RHFInput({ name, readonly = false, required = false, loading = false, unit, ...other }) {
+export default function InputForm({ IconSrc, name, readonly = false, required = false, loading = false, unit, ...other }) {
   const {
     register,
     setValue,
@@ -23,13 +22,13 @@ export default function RHFInput({ name, readonly = false, required = false, loa
     setValue(name, '');
   };
 
-  if (loading) {
-    return (
-      <div className="RHFInput">
-        <Skeleton />
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="RHFInput">
+  //       <Skeleton />
+  //     </div>
+  //   );
+  // }
 
   if (readonly) {
     return (
@@ -40,11 +39,12 @@ export default function RHFInput({ name, readonly = false, required = false, loa
   }
 
   return (
-    <div className="RHFInput">
-      <input style={isError ? { border: `${px(1)} solid rgb(255, 43, 43)` } : {}} {...register(name, { required })} {...other} />
-      {inputValue && <IconClose className="RHFCloseIcon" onClick={handleClear} />}
+    <InputWrap>
+      <img src={IconSrc} className="SearchIcon" alt="SearchIcon" />
+      <input style={isError ? { border: `1px solid rgb(255, 43, 43)` } : {}} {...register(name, { required })} {...other} />
+      {inputValue && <img src={Images.close} alt="CloseIcon" className="CloseIcon" onClick={handleClear} />}
 
       {isError && <p className="RHFHelperText">{errorMessage}</p>}
-    </div>
+    </InputWrap>
   );
 }
