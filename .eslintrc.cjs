@@ -47,6 +47,6 @@ module.exports = {
     'no-console': 'off',
     'react/button-has-type': 'off',
     'import/prefer-default-export': 'off',
-    'object-shorthand': 'off'
+    'object-shorthand': 'off',
   },
 };

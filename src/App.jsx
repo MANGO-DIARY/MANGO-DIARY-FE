@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/splash" element={<Splash />} />
+          <Route path="/" element={<Splash />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           {/* notFound : 일치하는 라우트 없는 경우 처리 */}
