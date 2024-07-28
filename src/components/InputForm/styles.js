@@ -22,6 +22,9 @@ export const InputWrap = styled.main`
       ${fontGenerator('19px', 'Regular', '100%', '4%')};
       width: 100%;
     }
+    & > input:focus {
+      outline: none;
+    }
     & > .CloseIcon {
       cursor: pointer;
     }
