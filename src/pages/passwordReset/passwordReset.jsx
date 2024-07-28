@@ -12,6 +12,9 @@ import Header from '../../components/header/Header.jsx';
 import Button from '../../components/button/button.jsx';
 
 const signUpSchema = Yup.object().shape({
+  userEmail: Yup.string()
+    .required('이메일을 입력해주세요.')
+    .matches(/^[a-zA-Z0-9+-_.]+@[a-z]+\.[a-z]{2,3}/i, '이메일 형식이 아닙니다.'),
   password: Yup.string()
     .required('비밀번호를 입력해주세요.')
     .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+]).{8,}$/, '비밀번호는 특수문자, 숫자를 포함하여 8자리 이상이어야 합니다.'),
@@ -21,22 +24,17 @@ const signUpSchema = Yup.object().shape({
 });
 
 const defaultValues = {
+  userEmail: '',
   password: '',
   passwordConfirm: '',
 };
 
 function PasswordReset() {
-  // 설정 -> 비밀번호 재설정 이니까 기존 유저 정보가 있어야함.
-  // const { userEmail } = useEmailAuthStore((state) => state);
   const navigate = useNavigate();
-
-  // 만약에 없다면
-  // useEffect(() => {
-  //   if (!userEmail) {
-  //   }
-  // }, [userEmail, navigate]);
+  const [showVerificationInput, setShowVerificationInput] = useState(false);
 
   // const resetPwMutation = usePasswordInit();
+  // const sendEmailMutation = useSendEmail();
 
   const methods = useForm({
     defaultValues,
@@ -58,6 +56,30 @@ function PasswordReset() {
     // });
   };
 
+  const sendEmail = () => {
+    // if (endAt && new Date() < new Date(endAt)) {
+    //   setIsOtpModalOpen(true);
+    //   return;
+    // }
+    //
+    // sendEmailMutation.mutate(
+    //   {
+    //     userEmail: watch('userEmail'),
+    //     purpose: EmailVerifyPurpose.RESET_PASSWORD,
+    //   },
+    //   {
+    //     onSuccess: () => {//
+    //       setEndAt(Date.now() + 1000 * 60 * 3);
+    //     },
+    //   }
+    // );
+  };
+
+  const handleSendVerification = () => {
+    console.log('인증번호 발송 버튼 클릭');
+    setShowVerificationInput(true); // 인증번호 입력 필드를 표시합니다.
+  };
+
   return (
     <PasswordResetWrap>
       <Header title="비밀번호 재설정" iconSrc={Images.left} />
@@ -66,6 +88,30 @@ function PasswordReset() {
       </div>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <div className="input">
+          <InputForm
+            name="userEmail"
+            IconSrc={Images.email}
+            placeholder="이메일을 입력해주세요."
+            purpose={{
+              isUsed: true,
+              label: '인증번호 발송',
+              onClick: () => {
+                handleSendVerification();
+              },
+            }}
+          />
+          {showVerificationInput && (
+            <InputForm
+              name="verificationCode"
+              IconSrc={Images.verify}
+              placeholder="인증번호를 입력해주세요."
+              purpose={{
+                isUsed: true,
+                label: '확인',
+                onClick: () => console.log('확인 버튼 클릭'),
+              }}
+            />
+          )}
           <InputForm name="passwordOld" IconSrc={Images.passKey} placeholder="기존 비밀번호를 입력해주세요." />
           <InputForm name="password" IconSrc={Images.passward} placeholder="새 비밀번호를 입력해주세요." />
           <InputForm name="passwordConfirm" IconSrc={Images.passwardReset} placeholder="비밀번호를 재입력해주세요." />
