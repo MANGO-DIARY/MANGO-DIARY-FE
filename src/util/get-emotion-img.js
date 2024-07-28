@@ -1,13 +1,13 @@
-import emotion1 from "./../assets/angry.svg";
-import emotion2 from "./../assets/Anxiety.svg";
-import emotion3 from "./../assets/depression.svg";
-import emotion4 from "./../assets/excited.svg";
-import emotion5 from "./../assets/happy.svg";
-import emotion6 from "./../assets/joy.svg";
-import emotion7 from "./../assets/peace.svg";
-import emotion8 from "./../assets/sad.svg";
+import emotion1 from '../assets/angry.svg';
+import emotion2 from '../assets/Anxiety.svg';
+import emotion3 from '../assets/depression.svg';
+import emotion4 from '../assets/excited.svg';
+import emotion5 from '../assets/happy.svg';
+import emotion6 from '../assets/joy.svg';
+import emotion7 from '../assets/peace.svg';
+import emotion8 from '../assets/sad.svg';
 
-export function getEmotionImage(emotionId) {
+function getEmotionImage(emotionId) {
   switch (emotionId) {
     case 1:
       return emotion1;
@@ -29,3 +29,5 @@ export function getEmotionImage(emotionId) {
       return null;
   }
 }
+
+export default getEmotionImage;
