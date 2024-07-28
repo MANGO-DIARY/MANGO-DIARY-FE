@@ -1,8 +1,8 @@
 import React from 'react';
 import { css } from '@emotion/react';
 
-import { ButtonContent } from './styles.js';
-import Loading from '../loading/Loading.js';
+import { ButtonContent } from './styles';
+import Loading from '../loading/Loading';
 
 /**
  * @description 버튼
@@ -16,9 +16,9 @@ import Loading from '../loading/Loading.js';
  * @returns {JSX.Element}
  */
 
-function Button({ className = '', customStyle = css``, loading = false, label = '버튼', icon, prevIcon, variant = 'primary', size = 'medium', onClick = () => {} }) {
+function Button({ className = '', type, customStyle = css``, loading = false, label = '버튼', icon, prevIcon, variant = 'primary', size = 'medium', onClick = () => {} }) {
   return (
-    <ButtonContent className={className} customStyle={customStyle} variant={variant} size={size} onClick={onClick} icon={icon} prevIcon={prevIcon}>
+    <ButtonContent className={className} customStyle={customStyle} type={type} variant={variant} size={size} onClick={onClick} icon={icon} prevIcon={prevIcon}>
       {prevIcon && <img src={prevIcon} alt="아이콘" />}
       {loading ? <Loading /> : label}
       {icon && <img src={icon} alt="아이콘" />}
