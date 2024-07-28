@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "gen-pwa": "pwa-assets-generator --preset minimal public/logo.svg",
     "dev": "vite",
     "build": "vite build",
     "format": "prettier --cache --write .",
@@ -26,6 +27,7 @@
   "devDependencies": {
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@vite-pwa/assets-generator": "^0.2.4",
     "@vitejs/plugin-react": "^4.3.1",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -37,6 +39,7 @@
     "eslint-plugin-react-refresh": "^0.4.7",
     "husky": "^9.0.11",
     "prettier": "^3.3.2",
-    "vite": "^5.3.1"
+    "vite": "^5.3.1",
+    "vite-plugin-pwa": "^0.20.0"
   }
 }
