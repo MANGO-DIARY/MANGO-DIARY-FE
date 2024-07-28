@@ -9,7 +9,7 @@ export const LoginWrap = styled.main`
     display: flex;
     flex-direction: column;
     gap: 15px;
-    padding: 5rem 35px;
+    padding: 9vh 30px;
     text-align: center;
     & > img {
       height: 104px;
@@ -20,12 +20,16 @@ export const LoginWrap = styled.main`
   }
 
   .input {
-    padding: 0 20px;
-
+    padding: 20px 30px;
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
-    padding:;
+  }
+  .bottom {
+    padding: 0 30px;
+    position: absolute;
+    width: 100%;
+    bottom: 52px;
   }
 `;

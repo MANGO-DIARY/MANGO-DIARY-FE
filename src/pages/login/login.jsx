@@ -9,6 +9,7 @@ import FormProvider from '../../components/formProvider/FormProvider';
 import { Images } from '../../styles/images';
 import Header from '../../components/header/Header.jsx';
 import Button from '../../components/button/button.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const signupSchema = Yup.object().shape({
   userEmail: Yup.string()
@@ -26,6 +27,7 @@ const defaultValues = {
 
 function Login() {
   // const signInMutation = useSignIn();
+  const navigate = useNavigate();
 
   const methods = useForm({
     defaultValues,
@@ -70,7 +72,7 @@ function Login() {
         <div className="input">
           <InputForm name="email" IconSrc={Images.email} placeholder="이메일을 입력해주세요." />
           <InputForm name="password" IconSrc={Images.passward} placeholder="비밀번호를 입력해주세요." />
-          <Button label="회원가입 하러가기" variant="OutlineBlack" size="xsmall" disabled={!isValid} />
+          <Button label="회원가입 하러가기" variant="OutlineBlack" size="xsmall" disabled={!isValid} onClick={navigate('/signup')} />
         </div>
         <div className="bottom">
           <Button type="submit" label="다음" variant="BlackFull" size="medium" disabled={!isValid} />
