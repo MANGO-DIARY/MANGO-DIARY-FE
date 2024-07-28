@@ -2,9 +2,11 @@ import { useFormContext } from 'react-hook-form';
 // import Skeleton from '../skeleton/index.js';
 import { Images } from '../../styles/images.js';
 import { InputWrap } from './styles.js';
+import React from 'react';
+import Button from '../button/button.jsx';
 // ----------------------------------------------------------------------
 
-export default function InputForm({ placeholder, IconSrc, name, readonly = false, required = false, loading = false, unit, ...other }) {
+export default function InputForm({ placeholder, IconSrc, name, readonly = false, purpose = false, required = false, loading = false, unit, ...other }) {
   const {
     register,
     setValue,
@@ -48,6 +50,7 @@ export default function InputForm({ placeholder, IconSrc, name, readonly = false
             <img src={Images.close} alt="CloseIcon" />
           </div>
         )}
+        {purpose && <Button label="인증번호 발송" variant="BlackFull" size="xsmall" />}
       </div>
 
       {isError && <div className="RHFHelperText">{errorMessage}</div>}

@@ -12,6 +12,7 @@ import Loading from '../loading/Loading';
  * @param {IconDetailType | undefined} icon
  * @param {string | undefined} variant
  * @param {string | undefined} iconSize
+ * @param {Boolean | undefined} loading - 로딩중이냐
  * @param {((event: React.MouseEvent<HTMLButtonElement>) => void) | undefined} onClick
  * @returns {JSX.Element}
  */
