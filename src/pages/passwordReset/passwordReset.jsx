@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -11,71 +11,67 @@ import { Images } from '../../styles/images';
 import Header from '../../components/header/Header.jsx';
 import Button from '../../components/button/button.jsx';
 
-const signupSchema = Yup.object().shape({
-  userEmail: Yup.string()
-    .required('이메일을 입력해주세요.')
-    .matches(/^[a-zA-Z0-9+-_.]+@[a-z]+\.[a-z]{2,3}/i, '이메일 형식이 아닙니다.'),
+const signUpSchema = Yup.object().shape({
   password: Yup.string()
     .required('비밀번호를 입력해주세요.')
     .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+]).{8,}$/, '비밀번호는 특수문자, 숫자를 포함하여 8자리 이상이어야 합니다.'),
+  passwordConfirm: Yup.string()
+    .required('비밀번호 확인을 입력해주세요.')
+    .oneOf([Yup.ref('password'), ''], '비밀번호를 다시 입력해주세요.'),
 });
 
 const defaultValues = {
-  userEmail: '',
   password: '',
+  passwordConfirm: '',
 };
 
 function PasswordReset() {
-  // const signInMutation = useSignIn();
+  // 설정 -> 비밀번호 재설정 이니까 기존 유저 정보가 있어야함.
+  // const { userEmail } = useEmailAuthStore((state) => state);
   const navigate = useNavigate();
+
+  // 만약에 없다면
+  // useEffect(() => {
+  //   if (!userEmail) {
+  //   }
+  // }, [userEmail, navigate]);
+
+  // const resetPwMutation = usePasswordInit();
 
   const methods = useForm({
     defaultValues,
-    resolver: yupResolver(signupSchema),
+    resolver: yupResolver(signUpSchema),
+    mode: 'onChange',
   });
 
   const {
     handleSubmit,
-    formState: { isValid },
+    formState: { isValid, errors },
   } = methods;
 
   const onSubmit = (data) => {
-    // const { userEmail, password } = data;
-    // signInMutation.mutate({
+    // const { password } = data;
+    //
+    // resetPwMutation.mutate({
     //   userEmail,
     //   password: sha256(password),
     // });
   };
 
-  const onInvalid = (error) => {
-    if (error.userEmail) {
-      console.log('error');
-    }
-    if (error.password) {
-      console.log('error');
-    }
-  };
-
   return (
     <PasswordResetWrap>
-      <Header title="이메일로 로그인" iconSrc={Images.left} />
+      <Header title="비밀번호 재설정" iconSrc={Images.left} />
       <div className="top">
         <img src={Images.joy} alt="기쁨이 이미지" />
-        <div className="comment">
-          오늘 하루를 들려주세요.
-          <br />
-          AI 로 감정을 분석해줄게요.
-          <br /> 최근 내 기분이 어땠는지 확인해보세요!
-        </div>
       </div>
-      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit, onInvalid)}>
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <div className="input">
-          <InputForm name="email" IconSrc={Images.email} placeholder="이메일을 입력해주세요." />
-          <InputForm name="password" IconSrc={Images.passward} placeholder="비밀번호를 입력해주세요." />
-          <Button label="회원가입 하러가기" variant="OutlineBlack" size="small" disabled={!isValid} onClick={navigate('/signup')} />
+          <InputForm name="passwordOld" IconSrc={Images.passKey} placeholder="기존 비밀번호를 입력해주세요." />
+          <InputForm name="passwordNew" IconSrc={Images.passward} placeholder="새 비밀번호를 입력해주세요." />
+          <InputForm name="passwordAgain" IconSrc={Images.passwardReset} placeholder="비밀번호를 재입력해주세요." />
         </div>
         <div className="bottom">
-          <Button type="submit" label="다음" variant="BlackFull" size="medium" disabled={!isValid} />
+          <Button type="submit" label="비밀번호 재설정하기" variant="BlackFull" size="medium" disabled={!isValid} />
         </div>
       </FormProvider>
     </PasswordResetWrap>
