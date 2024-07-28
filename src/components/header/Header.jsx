@@ -26,11 +26,11 @@ const Title = styled.div`
   color: #333d4b;
 `;
 
-function Header({ title, iconSrc }) {
+function Header({ title, iconSrc, onClick }) {
   return (
     <HeaderContainer>
       <Button>
-        <img src={iconSrc} alt="Icon" />
+        <img src={iconSrc} alt="Icon" onClick={onClick} />
       </Button>
       <Title>{title}</Title>
     </HeaderContainer>
