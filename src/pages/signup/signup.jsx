@@ -1,110 +1,116 @@
 import React, { useState } from 'react';
-import { Box, Avatar, Button, TextField, Link, Grid, Typography, Container, InputAdornment, IconButton } from '@mui/material';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { useForm } from 'react-hook-form';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigate } from 'react-router-dom';
+import { LoginWrap } from './styles';
+import InputForm from '../../components/InputForm/inputForm';
+import FormProvider from '../../components/formProvider/FormProvider';
 
-function SignUp() {
-  const [showPassword, setShowPassword] = useState(false);
+import { Images } from '../../styles/images';
+import Header from '../../components/header/Header.jsx';
+import Button from '../../components/button/button.jsx';
 
-  const handleClick = () => {
-    setShowPassword((prev) => !prev);
+const signUpSchema = Yup.object().shape({
+  userName: Yup.string().required('이름을 입력해주세요.').max(12, '이름은 12자 이하여야 합니다.'),
+  userEmail: Yup.string()
+    .required('이메일을 입력해주세요.')
+    .matches(/^[a-zA-Z0-9+-_.]+@[a-z]+\.[a-z]{2,3}/i, '이메일 형식이 아닙니다.'),
+  password: Yup.string()
+    .required('비밀번호를 입력해주세요.')
+    .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+]).{8,}$/, '비밀번호는 특수문자, 숫자를 포함하여 8자리 이상이어야 합니다.'),
+  passwordConfirm: Yup.string()
+    .required('비밀번호 확인을 입력해주세요.')
+    .oneOf([Yup.ref('password'), ''], '비밀번호가 일치하지 않습니다.'),
+});
+
+const defaultValues = {
+  name: '',
+  userEmail: '',
+  password: '',
+  passwordConfirm: '',
+};
+
+function Signup() {
+  // const signInMutation = useSignIn();
+  const navigate = useNavigate();
+
+  // const { endAt, isAuthenticated, setEndAt, setIsAuthenticated } =
+  //   useEmailAuthStore((state) => state);
+
+  // const signUpMutation = useSignUp<Omit<IFormValues, 'passwordConfirm'>>();
+
+  const methods = useForm({
+    defaultValues,
+    resolver: yupResolver(signUpSchema),
+    mode: 'onChange',
+  });
+
+  const {
+    handleSubmit,
+    formState: { isValid, errors },
+    watch,
+  } = methods;
+
+  const onSubmit = (data) => {
+    // const { userName, userEmail, password } = data;
+    // signUpMutation.mutate(
+    //   {
+    //     userName,
+    //     userEmail,
+    //     password: sha256(password),
+    //   },
+    //   {
+    //     onSuccess: () => setIsAuthenticated(false),
+    //   }
+    // );
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const submitData = {
-      name: data.get('name'),
-      email: data.get('email'),
-      password: data.get('password'),
-      password2: data.get('password2'),
-    };
+  // const sendEmailMutation = useSendEmail();
 
-    if (submitData.password !== submitData.password2) alert('비밀번호가 일치하지 않습니다.');
-    else console.log(submitData);
+  const sendEmail = () => {
+    // if (endAt && new Date() < new Date(endAt)) {
+    //   setIsOtpModalOpen(true);
+    //   return;
+    // }
+    //
+    // sendEmailMutation.mutate(
+    //   {
+    //     userEmail: watch('userEmail'),
+    //     purpose: EmailVerifyPurpose.SIGN_UP,
+    //   },
+    //   {
+    //     onSuccess: () => {
+    //       setIsOtpModalOpen(true);
+    //       enqueueSnackbar('이메일로 인증번호가 전송되었습니다.', {
+    //         variant: 'success',
+    //       });
+    //       setEndAt(Date.now() + 1000 * 60 * 3);
+    //     },
+    //   }
+    // );
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={12}>
-              <TextField autoComplete="name" name="name" required fullWidth id="name" label="Name" autoFocus />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField required fullWidth id="email" label="Email Address" name="email" autoComplete="email" />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton onClick={handleClick} edge="end">
-                        {showPassword ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type={showPassword ? 'text' : 'password'}
-                id="password"
-                autoComplete="new-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton onClick={handleClick} edge="end">
-                        {showPassword ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                type={showPassword ? 'text' : 'password'}
-                required
-                fullWidth
-                name="password2"
-                label="Password check"
-                id="password2"
-              />
-            </Grid>
-            {/* <Grid item xs={12}>
-              <FormControlLabel control={<Checkbox value="allowExtraEmails" color="primary" />} label="I want to receive inspiration, marketing promotions and updates via email." />
-            </Grid> */}
-          </Grid>
-          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-            Sign Up
-          </Button>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Link href="/login" variant="body2">
-                Already have an account? Sign in
-              </Link>
-            </Grid>
-          </Grid>
-        </Box>
-      </Box>
-    </Container>
+    <LoginWrap>
+      <Header title="회원가입" iconSrc={Images.left} />
+      <div className="top">
+        <img src={Images.joy} alt="기쁨이 이미지" />
+      </div>
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <div className="input">
+          <InputForm name="userName" IconSrc={Images.passward} placeholder="닉네임을 입력해주세요." />
+          <InputForm name="userEmail" IconSrc={Images.email} placeholder="이메일을 입력해주세요." />
+          <InputForm name="purpose" IconSrc={Images.verify} placeholder="인증번호를 입력해주세요." />
+          <InputForm name="password" IconSrc={Images.passward} placeholder="비밀번호를 입력해주세요." />
+          <Button label="로그인 하러가기" variant="OutlineBlack" size="xsmall" disabled={!isValid} onClick={() => navigate('/login')} />
+        </div>
+        <div className="bottom">
+          <Button type="submit" label="다음" variant="BlackFull" size="medium" disabled={!isValid} />
+        </div>
+      </FormProvider>
+    </LoginWrap>
   );
 }
 
-export default SignUp;
+export default Signup;
