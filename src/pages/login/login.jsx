@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigate } from 'react-router-dom';
 import { LoginWrap } from './styles';
 import InputForm from '../../components/InputForm/inputForm';
 import FormProvider from '../../components/formProvider/FormProvider';
@@ -9,7 +10,6 @@ import FormProvider from '../../components/formProvider/FormProvider';
 import { Images } from '../../styles/images';
 import Header from '../../components/header/Header.jsx';
 import Button from '../../components/button/button.jsx';
-import { useNavigate } from 'react-router-dom';
 
 const signupSchema = Yup.object().shape({
   userEmail: Yup.string()
