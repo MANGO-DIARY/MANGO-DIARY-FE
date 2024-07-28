@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { Colors } from '../../styles/colors';
-import { fontGenerator } from '../../styles/styles';
+import { Colors } from '../../styles/colors.js';
+import { fontGenerator } from '../../styles/styles.js';
 
 export const ButtonStyles = {
   default: css`

@@ -3,8 +3,8 @@ import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoginWrap } from './styles';
-import InputForm from '../../component/InputForm/inputForm';
-import FormProvider from '../../component/formProvider/FormProvider';
+import InputForm from '../../components/InputForm/inputForm';
+import FormProvider from '../../components/formProvider/FormProvider';
 
 import { Images } from '../../styles/images';
 

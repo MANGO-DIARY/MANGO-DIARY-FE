@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { fontGenerator } from '../../styles/styles';
-import { Colors } from '../../styles/colors';
+import { fontGenerator } from '../../styles/styles.js';
+import { Colors } from '../../styles/colors.js';
 
 export const InputWrap = styled.main`
   height: 32px;

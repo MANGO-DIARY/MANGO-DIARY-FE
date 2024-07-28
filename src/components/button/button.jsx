@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 
-import { ButtonContent } from './styles';
+import { ButtonContent } from './styles.js';
 
 /**
  * @description 버튼

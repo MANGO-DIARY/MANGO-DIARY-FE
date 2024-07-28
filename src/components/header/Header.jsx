@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 import styled from '@emotion/styled';
-import left from './icon-left.svg';
-import menu from './icon-menu.svg';
+import left from '../../../public/assets/icon/icon-left.svg';
+import menu from '../../../public/assets/icon/icon-menu.svg';
 
 const HeaderContainer = styled.div`
   width: 100%;
