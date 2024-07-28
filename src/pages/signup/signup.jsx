@@ -101,7 +101,18 @@ function Signup() {
         <div className="input">
           <InputForm name="userName" IconSrc={Images.person} placeholder="닉네임을 입력해주세요." />
           <InputForm name="userEmail" IconSrc={Images.email} placeholder="이메일을 입력해주세요." />
-          <InputForm name="purpose" IconSrc={Images.verify} placeholder="인증번호를 입력해주세요." purpose={true} />
+          <InputForm
+            name="purpose"
+            IconSrc={Images.verify}
+            placeholder="인증번호를 입력해주세요."
+            purpose={{
+              isUsed: true,
+              label: '인증번호 발송',
+              onClick: () => {
+                console.log('인증번호 발송 버튼 클릭');
+              },
+            }}
+          />
           <InputForm name="password" IconSrc={Images.passward} placeholder="비밀번호를 입력해주세요." />
           <Button label="로그인 하러가기" variant="OutlineBlack" size="small" disabled={!isValid} onClick={() => navigate('/login')} />
         </div>

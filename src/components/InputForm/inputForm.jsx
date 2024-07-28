@@ -6,7 +6,17 @@ import React from 'react';
 import Button from '../button/button.jsx';
 // ----------------------------------------------------------------------
 
-export default function InputForm({ placeholder, IconSrc, name, readonly = false, purpose = false, required = false, loading = false, unit, ...other }) {
+export default function InputForm({
+  placeholder,
+  IconSrc,
+  name,
+  readonly = false,
+  purpose = { isUsed: false, label: '인증번호 발송', onClick: function () {} },
+  required = false,
+  loading = false,
+  unit,
+  ...other
+}) {
   const {
     register,
     setValue,
@@ -50,7 +60,7 @@ export default function InputForm({ placeholder, IconSrc, name, readonly = false
             <img src={Images.close} alt="CloseIcon" />
           </div>
         )}
-        {purpose && <Button label="인증번호 발송" variant="BlackFull" size="xsmall" />}
+        {purpose.isUsed && <Button label={purpose.label} variant="BlackFull" size="xsmall" onClick={purpose.onClick()} />}
       </div>
 
       {isError && <div className="RHFHelperText">{errorMessage}</div>}
