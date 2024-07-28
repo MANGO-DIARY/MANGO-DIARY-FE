@@ -89,6 +89,7 @@ export const ButtonSizes = {
   xsmall: css`
     width: 150px;
     margin: -2px;
+    font-size: 18px;
   `,
   kakao: css`
     ${fontGenerator('16px', '500', '16px', '-0.3px')}

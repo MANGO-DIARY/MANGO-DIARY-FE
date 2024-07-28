@@ -100,16 +100,27 @@ function Signup() {
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <div className="input">
           <InputForm name="userName" IconSrc={Images.person} placeholder="닉네임을 입력해주세요." />
-          <InputForm name="userEmail" IconSrc={Images.email} placeholder="이메일을 입력해주세요." />
+          <InputForm
+            name="userEmail"
+            IconSrc={Images.email}
+            placeholder="이메일을 입력해주세요."
+            purpose={{
+              isUsed: true,
+              label: '인증번호 발송',
+              onClick: () => {
+                console.log('인증번호 발송 버튼 클릭');
+              },
+            }}
+          />
           <InputForm
             name="purpose"
             IconSrc={Images.verify}
             placeholder="인증번호를 입력해주세요."
             purpose={{
               isUsed: true,
-              label: '인증번호 발송',
+              label: '확인',
               onClick: () => {
-                console.log('인증번호 발송 버튼 클릭');
+                console.log('확인버튼');
               },
             }}
           />
