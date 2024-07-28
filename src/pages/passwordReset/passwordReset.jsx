@@ -67,8 +67,8 @@ function PasswordReset() {
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <div className="input">
           <InputForm name="passwordOld" IconSrc={Images.passKey} placeholder="기존 비밀번호를 입력해주세요." />
-          <InputForm name="passwordNew" IconSrc={Images.passward} placeholder="새 비밀번호를 입력해주세요." />
-          <InputForm name="passwordAgain" IconSrc={Images.passwardReset} placeholder="비밀번호를 재입력해주세요." />
+          <InputForm name="password" IconSrc={Images.passward} placeholder="새 비밀번호를 입력해주세요." />
+          <InputForm name="passwordConfirm" IconSrc={Images.passwardReset} placeholder="비밀번호를 재입력해주세요." />
         </div>
         <div className="bottom">
           <Button type="submit" label="비밀번호 재설정하기" variant="BlackFull" size="medium" disabled={!isValid} />
