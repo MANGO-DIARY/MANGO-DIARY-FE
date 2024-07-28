@@ -4,6 +4,8 @@ import styled from '@emotion/styled';
 
 const HeaderContainer = styled.div`
   width: 100%;
+  height: 54px;
+  padding: 0 15px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -15,7 +17,7 @@ const Button = styled.button`
   width: 24px;
   height: 24px;
   position: absolute;
-  left: 0%;
+  left: 15px;
   cursor: pointer;
   border: none;
   background: none;

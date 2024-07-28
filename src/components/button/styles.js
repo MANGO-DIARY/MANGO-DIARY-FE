@@ -8,12 +8,12 @@ export const ButtonStyles = {
     display: flex;
     align-items: center;
     justify-content: center;
-
     border-radius: 12px;
     border: none;
     cursor: pointer;
     background-color: ${Colors.Primary};
     color: ${Colors.White};
+    font-family: 'Ownglyph_ryurue-Rg', sans-serif !important;
   `,
   Primary: css`
     background-color: ${Colors.Primary};
@@ -31,17 +31,20 @@ export const ButtonStyles = {
       background-color: ${Colors.PrimaryDark};
     }
   `,
-  OutlineWhite: css`
-    border: 1px solid ${Colors.Gray02};
+  OutlineBlack: css`
+    border: 1px solid ${Colors.Gray01};
     background-color: ${Colors.White};
     color: ${Colors.Black};
+    border-radius: unset;
     &:hover {
-      background-color: ${Colors.Gray03};
+      background-color: ${Colors.Gray10};
     }
+    transition: 0.5s;
+    ${fontGenerator('16px', 'Regular', '140%', '4%')};
   `,
   Disabled: css`
     background-color: ${Colors.Gray01};
-    color: ${Colors.Gray500};
+    color: ${Colors.Gray05};
   `,
   kakao: css`
     background-color: ${Colors.Kakao};
@@ -51,7 +54,15 @@ export const ButtonStyles = {
     }
     gap: 0.9rem;
   `,
-  UnSelect: css``,
+  BlackFull: css`
+    background-color: ${Colors.Gray01};
+    color: ${Colors.White};
+    border-radius: unset;
+    &:hover {
+      background-color: ${Colors.Black};
+    }
+    ${fontGenerator('20px', 'Regular', '110%', '4%')};
+  `,
 };
 
 export const ButtonSizes = {
@@ -63,25 +74,14 @@ export const ButtonSizes = {
     height: 56px;
   `,
   large: css`
-    ${fontGenerator('1rem', '600', '1rem', '-0.3px')}
     padding: 0 1.2rem;
     width: 100%;
-    //max-width: 343px;
     height: 56px;
   `,
   medium: css`
     padding: 0 1rem;
     width: 100%;
-    max-width: 120px;
-    height: 34px;
-    ${fontGenerator('14px', '500', '1rem', '-0.3px')}
-  `,
-  modal: css`
-    padding: 0 1rem;
-    width: 100%;
-    max-width: 160px;
-    height: 56px;
-    ${fontGenerator('16px', '600', '1rem', '-0.3px')}
+    height: 43px;
   `,
   small: css`
     padding: 0 1rem;
@@ -91,8 +91,7 @@ export const ButtonSizes = {
     ${fontGenerator('1rem', '400')}
   `,
   xsmall: css`
-    ${fontGenerator('14px', '500', '16.71px')}
-    border-radius: 100px;
+    width: fit-content;
   `,
   kakao: css`
     ${fontGenerator('16px', '500', '16px', '-0.3px')}

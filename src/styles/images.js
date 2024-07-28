@@ -19,6 +19,7 @@ import menu from '../../public/assets/icon/icon-menu.svg';
 // img
 import splash from '../../public/assets/img/img-splash-head.svg';
 import background from '../../public/assets/img/img-background.png';
+import joy from '../../public/assets/img/img-joy.svg';
 
 // prettier-ignore
 export const Images = {
@@ -36,4 +37,8 @@ export const Images = {
   // img
   splash: splash,
   background: background,
+
+
+  // 기분들
+  joy: joy,
 };
