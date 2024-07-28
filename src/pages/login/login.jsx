@@ -7,6 +7,7 @@ import InputForm from '../../components/InputForm/inputForm';
 import FormProvider from '../../components/formProvider/FormProvider';
 
 import { Images } from '../../styles/images';
+import Header from '../../components/header/Header.jsx';
 
 const signupSchema = Yup.object().shape({
   userEmail: Yup.string()
@@ -54,6 +55,7 @@ function Login() {
 
   return (
     <LoginWrap>
+      <Header title="이메일로 로그인" iconSrc={Images.left} />
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit, onInvalid)}>
         <InputForm name="email" IconSrc={Images.email} placeholder="이메일을 입력해주세요." />
       </FormProvider>

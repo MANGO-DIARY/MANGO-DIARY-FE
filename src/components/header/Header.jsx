@@ -1,8 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 import styled from '@emotion/styled';
-import left from '../../../public/assets/icon/icon-left.svg';
-import menu from '../../../public/assets/icon/icon-menu.svg';
 
 const HeaderContainer = styled.div`
   width: 100%;
@@ -28,11 +26,11 @@ const Title = styled.div`
   color: #333d4b;
 `;
 
-function Header({ title, useIconOne }) {
+function Header({ title, iconSrc }) {
   return (
     <HeaderContainer>
       <Button>
-        <img src={useIconOne ? left : menu} alt="Icon" />
+        <img src={iconSrc} alt="Icon" />
       </Button>
       <Title>{title}</Title>
     </HeaderContainer>

@@ -13,6 +13,8 @@ import passwardReset from '../../public/assets/icon/ico-Lockreset.svg';
 import passKey from '../../public/assets/icon/ico-Passkey.svg';
 import person from '../../public/assets/icon/ico-Person.svg';
 import verify from '../../public/assets/icon/ico-verify.svg';
+import left from '../../public/assets/icon/icon-left.svg';
+import menu from '../../public/assets/icon/icon-menu.svg';
 
 // img
 import splash from '../../public/assets/img/img-splash-head.svg';
@@ -29,6 +31,8 @@ export const Images = {
   passKey: passKey,
   person: person,
   verify: verify,
+  left: left,
+  menu:menu,
   // img
   splash: splash,
   background: background,
