@@ -11,6 +11,7 @@ export default function InputForm({
   IconSrc,
   name,
   readonly = false,
+  // eslint-disable-next-line func-names
   purpose = { isUsed: false, label: '인증번호 발송', onClick: function () {} },
   required = false,
   loading = false,
