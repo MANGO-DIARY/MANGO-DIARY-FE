@@ -85,11 +85,7 @@ function Signup() {
     //     purpose: EmailVerifyPurpose.SIGN_UP,
     //   },
     //   {
-    //     onSuccess: () => {
-    //       setIsOtpModalOpen(true);
-    //       enqueueSnackbar('이메일로 인증번호가 전송되었습니다.', {
-    //         variant: 'success',
-    //       });
+    //     onSuccess: () => {//
     //       setEndAt(Date.now() + 1000 * 60 * 3);
     //     },
     //   }
