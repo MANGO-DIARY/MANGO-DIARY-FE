@@ -40,15 +40,17 @@ export default function InputForm({ placeholder, IconSrc, name, readonly = false
 
   return (
     <InputWrap>
-      <img src={IconSrc} className="SearchIcon" alt="SearchIcon" />
-      <input placeholder={placeholder} style={isError ? { border: `1px solid rgb(255, 43, 43)` } : {}} {...register(name, { required })} {...other} />
-      {inputValue && (
-        <div onClick={handleClear} className="CloseIcon">
-          <img src={Images.close} alt="CloseIcon" />
-        </div>
-      )}
+      <div className="main" style={isError ? { borderBottom: `1px solid rgb(255, 43, 43)` } : {}}>
+        <img src={IconSrc} className="SearchIcon" alt="SearchIcon" />
+        <input placeholder={placeholder} {...register(name, { required })} {...other} />
+        {inputValue && (
+          <div onClick={handleClear} className="CloseIcon">
+            <img src={Images.close} alt="CloseIcon" />
+          </div>
+        )}
+      </div>
 
-      {isError && <p className="RHFHelperText">{errorMessage}</p>}
+      {isError && <div className="RHFHelperText">{errorMessage}</div>}
     </InputWrap>
   );
 }
