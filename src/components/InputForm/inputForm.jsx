@@ -22,6 +22,7 @@ export default function InputForm({
     setValue,
     watch,
     formState: { errors },
+    trigger,
   } = useFormContext();
 
   const isError = !!errors[name];
@@ -60,7 +61,20 @@ export default function InputForm({
             <img src={Images.close} alt="CloseIcon" />
           </div>
         )}
-        {purpose.isUsed && <Button label={purpose.label} variant="BlackFull" size="xsmall" onClick={purpose.onClick()} />}
+        {purpose.isUsed && (
+          <Button
+            label={purpose.label}
+            variant="BlackFull"
+            size="xsmall"
+            type="button"
+            onClick={() => {
+              trigger(name).then((isValid) => {
+                if (isValid) purpose.onClick();
+                else console.log('Invalid email');
+              });
+            }}
+          />
+        )}
       </div>
 
       {isError && <div className="RHFHelperText">{errorMessage}</div>}

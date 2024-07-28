@@ -34,7 +34,12 @@ const defaultValues = {
 function Signup() {
   // const signInMutation = useSignIn();
   const navigate = useNavigate();
+  const [showVerificationInput, setShowVerificationInput] = useState(false);
 
+  const handleSendVerification = () => {
+    console.log('인증번호 발송 버튼 클릭');
+    setShowVerificationInput(true); // 인증번호 입력 필드를 표시합니다.
+  };
   // const { endAt, isAuthenticated, setEndAt, setIsAuthenticated } =
   //   useEmailAuthStore((state) => state);
 
@@ -108,22 +113,22 @@ function Signup() {
               isUsed: true,
               label: '인증번호 발송',
               onClick: () => {
-                console.log('인증번호 발송 버튼 클릭');
+                handleSendVerification();
               },
             }}
           />
-          <InputForm
-            name="purpose"
-            IconSrc={Images.verify}
-            placeholder="인증번호를 입력해주세요."
-            purpose={{
-              isUsed: true,
-              label: '확인',
-              onClick: () => {
-                console.log('확인버튼');
-              },
-            }}
-          />
+          {showVerificationInput && (
+            <InputForm
+              name="verificationCode"
+              IconSrc={Images.verify}
+              placeholder="인증번호를 입력해주세요."
+              purpose={{
+                isUsed: true,
+                label: '확인',
+                onClick: () => console.log('확인 버튼 클릭'),
+              }}
+            />
+          )}
           <InputForm name="password" IconSrc={Images.passward} placeholder="비밀번호를 입력해주세요." />
           <Button label="로그인 하러가기" variant="OutlineBlack" size="small" disabled={!isValid} onClick={() => navigate('/login')} />
         </div>

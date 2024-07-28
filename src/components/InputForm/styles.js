@@ -4,6 +4,7 @@ import { Colors } from '../../styles/colors.js';
 
 export const InputWrap = styled.main`
   width: 100%;
+  transition: 1s;
   & > .main {
     height: 32px;
     display: flex;
