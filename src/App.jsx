@@ -1,15 +1,15 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { SignIn, NotFound, SignUp, Splash } from './pages';
+import { Login, NotFound, SignUp, Splash } from './pages';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/splash" element={<Splash />} />
+          <Route path="/" element={<Splash />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/signin" element={<SignIn />} />
+          <Route path="/login" element={<Login />} />
           {/* notFound : 일치하는 라우트 없는 경우 처리 */}
           <Route path="*" element={<NotFound />} />
         </Routes>

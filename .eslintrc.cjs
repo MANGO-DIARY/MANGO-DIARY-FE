@@ -29,16 +29,7 @@ module.exports = {
   plugins: ['react', 'react-refresh'],
   rules: {
     // existing rules
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        js: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never',
-      },
-    ],
+    'import/extensions': 'off',
     'react/jsx-no-target-blank': 'off',
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'react/prop-types': 'off',
@@ -46,5 +37,17 @@ module.exports = {
     'no-alert': 'off',
     'no-console': 'off',
     'react/button-has-type': 'off',
+    'import/prefer-default-export': 'off',
+    'object-shorthand': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'react/no-children-prop': 'off',
+    'jsx-a11y/anchor-is-valid': 'off',
+    'jsx-a11y/control-has-associated-label': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'no-unused-vars': 'off',
+    // '': 'off',
   },
 };

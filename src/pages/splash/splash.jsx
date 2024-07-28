@@ -1,5 +1,5 @@
 import React from 'react';
-import { SplashWrap } from './style';
+import { SplashWrap } from './styles';
 import { Images } from '../../styles/images';
 import Button from '../../component/button/button';
 
