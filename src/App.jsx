@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { Login, NotFound, PasswordReset, SignUp, Splash } from './pages';
+import { Login, NickNameReset, NotFound, PasswordReset, SignUp, Splash } from './pages';
 
 function App() {
   return (
@@ -11,6 +11,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/password-reset" element={<PasswordReset />} />
+          <Route path="/nickname-reset" element={<NickNameReset />} />
           {/* notFound : 일치하는 라우트 없는 경우 처리 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
