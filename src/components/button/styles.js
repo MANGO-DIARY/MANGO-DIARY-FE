@@ -84,14 +84,12 @@ export const ButtonSizes = {
     height: 43px;
   `,
   small: css`
-    padding: 0 1rem;
-    width: 100%;
-    max-width: 16rem;
-    height: 2.5rem;
-    ${fontGenerator('1rem', '400')}
+    width: fit-content;
   `,
   xsmall: css`
-    width: fit-content;
+    width: 150px;
+    margin: -2px;
+    font-size: 18px;
   `,
   kakao: css`
     ${fontGenerator('16px', '500', '16px', '-0.3px')}
