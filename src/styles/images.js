@@ -20,6 +20,7 @@ import menu from '../../public/assets/icon/icon-menu.svg';
 import splash from '../../public/assets/img/img-splash-head.svg';
 import background from '../../public/assets/img/img-background.png';
 import joy from '../../public/assets/img/img-joy.svg';
+import happy from '../../public/assets/img/img-happy.svg';
 
 // prettier-ignore
 export const Images = {
@@ -41,4 +42,5 @@ export const Images = {
 
   // 기분들
   joy: joy,
+  happy: happy,
 };
