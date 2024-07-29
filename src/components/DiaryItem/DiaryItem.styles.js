@@ -14,12 +14,13 @@ export const DiaryItemWrapper = styled.div`
 `;
 
 export const ImgSection = styled.div`
-  width: 70px;
-  height: 70px;
+  width: 60%;
+  height: 60%;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 20px 0;
+  padding-top: 20px;
+  font-size: 20px;
 
   &.img_section_1 {
     color: #f21717;
@@ -55,12 +56,11 @@ export const CreatedDate = styled.div`
 
 export const Content = styled.div`
   max-width: 200px;
-  max-height: 80px;
-  padding-top: 10px;
+  font-size: 20px;
   word-wrap: break-word;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   position: relative;
 `;
