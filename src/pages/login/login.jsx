@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigate } from 'react-router-dom';
 import { LoginWrap } from './styles';
-import InputForm from '../../component/InputForm/inputForm';
-import FormProvider from '../../component/formProvider/FormProvider';
+import InputForm from '../../components/InputForm/inputForm';
+import FormProvider from '../../components/formProvider/FormProvider';
 
 import { Images } from '../../styles/images';
+import Header from '../../components/header/Header.jsx';
+import Button from '../../components/button/button.jsx';
 
 const signupSchema = Yup.object().shape({
   userEmail: Yup.string()
@@ -24,6 +27,7 @@ const defaultValues = {
 
 function Login() {
   // const signInMutation = useSignIn();
+  const navigate = useNavigate();
 
   const methods = useForm({
     defaultValues,
@@ -54,8 +58,25 @@ function Login() {
 
   return (
     <LoginWrap>
+      <Header title="이메일로 로그인" iconSrc={Images.left} />
+      <div className="top">
+        <img src={Images.joy} alt="기쁨이 이미지" />
+        <div className="comment">
+          오늘 하루를 들려주세요.
+          <br />
+          AI 로 감정을 분석해줄게요.
+          <br /> 최근 내 기분이 어땠는지 확인해보세요!
+        </div>
+      </div>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit, onInvalid)}>
-        <InputForm name="email" IconSrc={Images.email} placeholder="이메일을 입력해주세요." />
+        <div className="input">
+          <InputForm name="email" IconSrc={Images.email} placeholder="이메일을 입력해주세요." />
+          <InputForm name="password" IconSrc={Images.passward} placeholder="비밀번호를 입력해주세요." />
+          <Button label="회원가입 하러가기" variant="OutlineBlack" size="xsmall" disabled={!isValid} onClick={navigate('/signup')} />
+        </div>
+        <div className="bottom">
+          <Button type="submit" label="다음" variant="BlackFull" size="medium" disabled={!isValid} />
+        </div>
       </FormProvider>
     </LoginWrap>
   );

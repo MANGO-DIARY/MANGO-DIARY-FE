@@ -13,10 +13,13 @@ import passwardReset from '../../public/assets/icon/ico-Lockreset.svg';
 import passKey from '../../public/assets/icon/ico-Passkey.svg';
 import person from '../../public/assets/icon/ico-Person.svg';
 import verify from '../../public/assets/icon/ico-verify.svg';
+import left from '../../public/assets/icon/icon-left.svg';
+import menu from '../../public/assets/icon/icon-menu.svg';
 
 // img
 import splash from '../../public/assets/img/img-splash-head.svg';
 import background from '../../public/assets/img/img-background.png';
+import joy from '../../public/assets/img/img-joy.svg';
 
 // prettier-ignore
 export const Images = {
@@ -29,7 +32,13 @@ export const Images = {
   passKey: passKey,
   person: person,
   verify: verify,
+  left: left,
+  menu:menu,
   // img
   splash: splash,
   background: background,
+
+
+  // 기분들
+  joy: joy,
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { SplashWrap } from './styles';
 import { Images } from '../../styles/images';
-import Button from '../../component/button/button';
+import Button from '../../components/button/button';
 
 function Splash() {
   const handleKakaoLogin = () => {

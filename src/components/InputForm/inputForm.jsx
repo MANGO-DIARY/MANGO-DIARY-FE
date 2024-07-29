@@ -1,7 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 // import Skeleton from '../skeleton/index.js';
-import { Images } from '../../styles/images';
-import { InputWrap } from './styles';
+import { Images } from '../../styles/images.js';
+import { InputWrap } from './styles.js';
 // ----------------------------------------------------------------------
 
 export default function InputForm({ placeholder, IconSrc, name, readonly = false, required = false, loading = false, unit, ...other }) {
