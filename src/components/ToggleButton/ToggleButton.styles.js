@@ -16,7 +16,7 @@ export const Switch = styled.div`
     border-radius: 15px;
     background-color: #505050;
     margin: 0 1px;
-    transition: all 0.6s ease-in-out;
+    // transition: all 0.6s ease-in-out;
     z-index: 1;
     transform: ${({ value }) => (value === 'Diary' ? 'translateX(0px)' : 'translateX(69px)')};
   }
