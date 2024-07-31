@@ -59,16 +59,16 @@ function Signup() {
 
   const onSubmit = (data) => {
     const { userName, userEmail, password } = data;
-    mutate(
-      {
-        userName,
-        userEmail,
-        password: password,
-      },
-      {
-        onSuccess: () => setIsAuthenticated(false),
-      }
-    );
+    // mutate(
+    //   {
+    //     userName,
+    //     userEmail,
+    //     password: password,
+    //   },
+    //   {
+    //     onSuccess: () => setIsAuthenticated(false),
+    //   }
+    // );
   };
 
   // const sendEmailMutation = useSendEmail();
