@@ -122,7 +122,7 @@ function Signup() {
         },
         onError: (error) => {
           console.log(error.message);
-          setErrorMessage(error.message);
+          setErrorMessage('이메일 인증을 실패하였습니다. 새로고침으로 다시 진행해주세요.');
           setSuccessMessage('');
         },
       }
