@@ -3,7 +3,6 @@ import { DoneContain } from './styles';
 import { Images } from '../../styles/images.js';
 
 function DoneComponent({ type }) {
-  // eslint-disable-next-line consistent-return
   const rendering = () => {
     if (type === 'password') {
       return (
