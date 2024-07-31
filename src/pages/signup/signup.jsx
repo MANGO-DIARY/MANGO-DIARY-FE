@@ -95,12 +95,9 @@ function Signup() {
           setSuccessMessage(data);
         },
         onError: (error) => {
-          console.log(error);
-          setErrorMessage(error);
-
           if (error.response?.status === 409) {
           } else {
-            setErrorMessage(error);
+            setErrorMessage(error?.message);
           }
         },
       }
