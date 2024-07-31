@@ -1,6 +1,6 @@
+import React from 'react';
 import { DoneContain } from './styles';
 import { Images } from '../../styles/images.js';
-import React from 'react';
 
 function DoneComponent({ type }) {
   // eslint-disable-next-line consistent-return
@@ -22,7 +22,8 @@ function DoneComponent({ type }) {
           <div className="comment">다시 로그인 페이지로 가볼까요?</div>
         </div>
       );
-    } else if (type === 'signup') {
+    }
+    if (type === 'signup') {
       return (
         <div className="top">
           <img src={Images.happy} alt="기쁨이 이미지" />

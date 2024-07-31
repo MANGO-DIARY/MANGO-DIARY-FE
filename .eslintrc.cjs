@@ -49,6 +49,6 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 'off',
     'no-unused-vars': 'off',
     'react/jsx-filename-extension': 'off',
-    // '': 'off',
+    'react/self-closing-comp': 'off',
   },
 };
