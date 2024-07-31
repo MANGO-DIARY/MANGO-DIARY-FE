@@ -7,6 +7,7 @@ import EmotionButton from '../../components/EmotionButton/EmotionButton';
 import emotionList from '../../util/constants';
 import DiaryItem from '../../components/DiaryItem/DiaryItem';
 import { Images } from '../../styles/images';
+import ToggleButton from '../../components/ToggleButton/ToggleButton';
 
 const mocData = [
   {
