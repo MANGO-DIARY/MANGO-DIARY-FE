@@ -26,7 +26,8 @@
     "react-hook-form": "^7.52.1",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.24.1",
-    "yup": "^1.4.0"
+    "yup": "^1.4.0",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

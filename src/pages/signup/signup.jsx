@@ -33,7 +33,6 @@ const defaultValues = {
 };
 
 function Signup() {
-  // const signInMutation = useSignIn();
   const navigate = useNavigate();
   const [showVerificationInput, setShowVerificationInput] = useState(false);
 
@@ -44,7 +43,7 @@ function Signup() {
   // const { endAt, isAuthenticated, setEndAt, setIsAuthenticated } =
   //   useEmailAuthStore((state) => state);
 
-  const { mutate, isLoading, valueOf } = useSignup();
+  const { mutate, isPending } = useSignup();
 
   const methods = useForm({
     defaultValues,
@@ -59,17 +58,17 @@ function Signup() {
   } = methods;
 
   const onSubmit = (data) => {
-    // const { userName, userEmail, password } = data;
-    // signUpMutation.mutate(
-    //   {
-    //     userName,
-    //     userEmail,
-    //     password: sha256(password),
-    //   },
-    //   {
-    //     onSuccess: () => setIsAuthenticated(false),
-    //   }
-    // );
+    const { userName, userEmail, password } = data;
+    mutate(
+      {
+        userName,
+        userEmail,
+        password: password,
+      },
+      {
+        onSuccess: () => setIsAuthenticated(false),
+      }
+    );
   };
 
   // const sendEmailMutation = useSendEmail();
