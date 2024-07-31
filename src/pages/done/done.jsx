@@ -12,8 +12,8 @@ function Done() {
 
   return (
     <DonePage>
-      <Header title="이메일로 로그인" iconSrc={Images.left} />
-      <DoneComponent />
+      <Header title="" iconSrc={Images.left} />
+      <DoneComponent type={'signup'} />
       <div className="bottom">
         <Button type="submit" label="시작하기" variant="BlackFull" size="medium" />
       </div>
