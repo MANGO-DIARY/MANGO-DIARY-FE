@@ -11,6 +11,9 @@ import { Images } from '../../styles/images';
 import Header from '../../components/header/Header.jsx';
 import Button from '../../components/button/button.jsx';
 import { useSignup } from '../../api/queries/auth/sign-up.js';
+import useEmailAuthStore from '../../store/auth/emailAuthStore';
+import { useSendEmail } from '../../api/queries/auth/send-email.jsx';
+import { Alert } from '@mui/material';
 
 const signUpSchema = Yup.object().shape({
   userName: Yup.string().required('이름을 입력해주세요.').max(12, '이름은 12자 이하여야 합니다.'),
@@ -35,15 +38,13 @@ const defaultValues = {
 function Signup() {
   const navigate = useNavigate();
   const [showVerificationInput, setShowVerificationInput] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
-  const handleSendVerification = () => {
-    console.log('인증번호 발송 버튼 클릭');
-    setShowVerificationInput(true); // 인증번호 입력 필드를 표시합니다.
-  };
-  // const { endAt, isAuthenticated, setEndAt, setIsAuthenticated } =
-  //   useEmailAuthStore((state) => state);
+  const { endAt, isAuthenticated, setEndAt, setIsAuthenticated } = useEmailAuthStore((state) => state);
 
-  const { mutate, isPending } = useSignup();
+  const { mutate: signupmutate, isPending: signupPending } = useSignup();
+  const { mutate: emailMutate, isPending: emailPending } = useSendEmail();
 
   const methods = useForm({
     defaultValues,
@@ -59,37 +60,51 @@ function Signup() {
 
   const onSubmit = (data) => {
     const { userName, userEmail, password } = data;
-    // mutate(
-    //   {
-    //     userName,
-    //     userEmail,
-    //     password: password,
-    //   },
-    //   {
-    //     onSuccess: () => setIsAuthenticated(false),
-    //   }
-    // );
+    signupmutate(
+      {
+        userName,
+        userEmail,
+        password: password,
+      },
+      {
+        onSuccess: () => {
+          setIsAuthenticated(false);
+        },
+        onError: () => {
+          setIsAuthenticated(false);
+        },
+      }
+    );
   };
 
-  // const sendEmailMutation = useSendEmail();
-
   const sendEmail = () => {
-    // if (endAt && new Date() < new Date(endAt)) {
-    //   setIsOtpModalOpen(true);
-    //   return;
-    // }
-    //
-    // sendEmailMutation.mutate(
-    //   {
-    //     userEmail: watch('userEmail'),
-    //     purpose: EmailVerifyPurpose.SIGN_UP,
-    //   },
-    //   {
-    //     onSuccess: () => {//
-    //       setEndAt(Date.now() + 1000 * 60 * 3);
-    //     },
-    //   }
-    // );
+    setShowVerificationInput(true);
+    if (endAt && new Date() < new Date(endAt)) {
+      return;
+    }
+
+    emailMutate(
+      {
+        userEmail: watch('userEmail'),
+        purpose: 'SIGN_UP',
+      },
+      {
+        onSuccess: (data) => {
+          setEndAt(Date.now() + 1000 * 60 * 3);
+          console.log(data);
+          setSuccessMessage(data);
+        },
+        onError: (error) => {
+          console.log(error);
+          setErrorMessage(error);
+
+          if (error.response?.status === 409) {
+          } else {
+            setErrorMessage(error);
+          }
+        },
+      }
+    );
   };
 
   return (
@@ -109,7 +124,7 @@ function Signup() {
               isUsed: true,
               label: '인증번호 발송',
               onClick: () => {
-                handleSendVerification();
+                sendEmail();
               },
             }}
           />
@@ -121,6 +136,7 @@ function Signup() {
               purpose={{
                 isUsed: true,
                 label: '확인',
+                isPending: emailPending,
                 onClick: () => console.log('확인 버튼 클릭'),
               }}
             />
@@ -132,6 +148,18 @@ function Signup() {
           <Button type="submit" label="다음" variant="BlackFull" size="medium" disabled={!isValid} />
         </div>
       </FormProvider>
+      {successMessage && (
+        <Alert
+          severity="success"
+          onClose={() => {
+            setSuccessMessage('');
+          }}
+          sx={{ margin: '0 30px' }}
+        >
+          {successMessage}
+        </Alert>
+      )}
+      {/* {errorMessage && <Alert errorMessages={errorMessage} />} */}
     </LoginWrap>
   );
 }

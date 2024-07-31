@@ -64,6 +64,7 @@ export default function InputForm({
         )}
         {purpose.isUsed && (
           <Button
+            loading={purpose.isPending}
             label={purpose.label}
             variant="BlackFull"
             size="xsmall"
