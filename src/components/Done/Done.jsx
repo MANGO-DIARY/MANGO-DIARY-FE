@@ -9,7 +9,10 @@ function DoneComponent({ type }) {
       return (
         <div className="top">
           <img src={Images.happy} alt="기쁨이 이미지" />
-          <div className="title">반가워요!</div>
+          <div className="title">
+            비밀번호가 <br />
+            변경되었습니다
+          </div>
           <div className="comment">
             회원가입이 완료되었습니다.
             <br /> 이제 오늘을 기록하고, <br />
@@ -32,7 +35,18 @@ function DoneComponent({ type }) {
     }
   };
 
-  return <DoneContain>{rendering()}</DoneContain>;
+  return (
+    <DoneContain>
+      <div className="top">
+        <img src={Images.happy} alt="기쁨이 이미지" />
+        <div className="title">
+          비밀번호가 <br />
+          변경되었습니다
+        </div>
+        <div className="comment">다시 로그인 페이지로 가볼까요?</div>
+      </div>
+    </DoneContain>
+  );
 }
 
 export default DoneComponent;
