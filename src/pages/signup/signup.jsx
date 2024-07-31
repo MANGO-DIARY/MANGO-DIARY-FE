@@ -14,6 +14,7 @@ import { useSignup } from '../../api/queries/auth/sign-up.js';
 import useEmailAuthStore from '../../store/auth/emailAuthStore';
 import { useSendEmail } from '../../api/queries/auth/send-email.jsx';
 import { Alert } from '@mui/material';
+import { useVerifyEmail } from '../../api/queries/auth/verify-email.js';
 
 const signUpSchema = Yup.object().shape({
   userName: Yup.string().required('이름을 입력해주세요.').max(12, '이름은 12자 이하여야 합니다.'),
@@ -40,11 +41,14 @@ function Signup() {
   const [showVerificationInput, setShowVerificationInput] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [emailDisabled, setEmailDisabled] = useState(false);
+  const [verificationDisabled, setVerificationDisabled] = useState(false);
 
   const { endAt, isAuthenticated, setEndAt, setIsAuthenticated } = useEmailAuthStore((state) => state);
 
   const { mutate: signupmutate, isPending: signupPending } = useSignup();
   const { mutate: emailMutate, isPending: emailPending } = useSendEmail();
+  const { mutate: verifyMutate, isPending: verifyPending } = useVerifyEmail();
 
   const methods = useForm({
     defaultValues,
@@ -82,7 +86,6 @@ function Signup() {
     if (endAt && new Date() < new Date(endAt)) {
       return;
     }
-
     emailMutate(
       {
         userEmail: watch('userEmail'),
@@ -91,14 +94,36 @@ function Signup() {
       {
         onSuccess: (data) => {
           setEndAt(Date.now() + 1000 * 60 * 3);
-          console.log(data);
           setSuccessMessage(data);
+          setEmailDisabled(true);
         },
         onError: (error) => {
           if (error.response?.status === 409) {
           } else {
             setErrorMessage(error?.message);
           }
+        },
+      }
+    );
+  };
+  const verifyEmail = () => {
+    verifyMutate(
+      {
+        userEmail: watch('userEmail'),
+        code: watch('verificationCode'),
+      },
+      {
+        onSuccess: () => {
+          setEndAt(null);
+          setIsAuthenticated(true);
+          setSuccessMessage('이메일 인증이 완료되었습니다.');
+          setErrorMessage('');
+          setVerificationDisabled(true);
+        },
+        onError: (error) => {
+          console.log(error.message);
+          setErrorMessage(error.message);
+          setSuccessMessage('');
         },
       }
     );
@@ -117,12 +142,12 @@ function Signup() {
             name="userEmail"
             IconSrc={Images.email}
             placeholder="이메일을 입력해주세요."
+            disabled={emailDisabled}
             purpose={{
               isUsed: true,
               label: '인증번호 발송',
-              onClick: () => {
-                sendEmail();
-              },
+              isPending: emailPending,
+              onClick: () => sendEmail(),
             }}
           />
           {showVerificationInput && (
@@ -130,11 +155,12 @@ function Signup() {
               name="verificationCode"
               IconSrc={Images.verify}
               placeholder="인증번호를 입력해주세요."
+              disabled={verificationDisabled}
               purpose={{
                 isUsed: true,
                 label: '확인',
-                isPending: emailPending,
-                onClick: () => console.log('확인 버튼 클릭'),
+                isPending: verifyPending,
+                onClick: () => verifyEmail(),
               }}
             />
           )}
@@ -156,7 +182,16 @@ function Signup() {
           {successMessage}
         </Alert>
       )}
-      {/* {errorMessage && <Alert errorMessages={errorMessage} />} */}
+      {errorMessage && (
+        <Alert
+          errorMessages={errorMessage}
+          severity="error"
+          onClose={() => {
+            setErrorMessage('');
+          }}
+          sx={{ margin: '0 30px' }}
+        />
+      )}
     </LoginWrap>
   );
 }

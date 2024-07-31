@@ -1,4 +1,4 @@
-import { UseMutationOptions, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useSnackbar } from 'notistack';
 import { PATH_API } from '../../path';
 import { axiosInstance } from '../../axios';
