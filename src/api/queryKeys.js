@@ -1,9 +1,9 @@
-import { PATH_API } from './path';
+import { PATH_API } from './path.js';
 
 export const QUERY_KEY = {
   // auth
   SIGN_IN: PATH_API.SIGN_IN,
-  SIGNUP: PATH_API.SIGN_UP,
+  SIGN_UP: PATH_API.SIGN_UP,
   SIGN_OUT: PATH_API.SIGN_OUT,
   PASSWORD_RESET: PATH_API.PASSWORD_RESET,
   // refresh token

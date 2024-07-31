@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ACCESS_TOKEN_KEY, API_DOMAIN, REFRESH_TOKEN_KEY } from '../../static';
+import { ACCESS_TOKEN_KEY, API_DOMAIN, REFRESH_TOKEN_KEY } from '../../static.js';
 import { PATH_API } from './path';
 
 const TIMEOUT_TIME = 10_000;
@@ -31,14 +31,12 @@ axiosInstance.interceptors.request.use(
 
     firstRequestCancelToken = cancelTokenSource();
     config.cancelToken = firstRequestCancelToken.token;
-    // eslint-disable-next-line no-param-reassign
     config.timeout = TIMEOUT_TIME;
     return config;
   },
   (error) =>
     // 요청 전 에러 처리
     // add error handling before sending the request
-    // @ts-ignore
     Promise.reject((error.response && error.response.data) || 'Something went wrong')
 );
 
@@ -75,23 +73,11 @@ axiosInstance.interceptors.response.use(
     // }
     // timeout
     if (axios.isCancel(error)) {
-      // 취소된 요청이므로 undefined로 프로미스를 해결함으로써 표시
-      return;
+      // 취소된 요청은 에러로 처리하지 않음
+      await Promise.resolve();
     }
-    if (error.response && error.response.status === 401) {
-      // 토큰 갱신 로직을 여기에 처리
-      // 모든 비동기 작업은 try-catch로 래핑되어야 함
-      try {
-        // 여기에 토큰 갱신 로직을 추가하세요
-      } catch (refreshError) {
-        console.error('토큰 갱신 실패', refreshError);
-        // 갱신 실패 로직 처리, 로그인 페이지로 리다이렉트 등
-        // @ts-ignore
-        return Promise.reject(new Error('인증이 필요합니다'));
-      }
-    }
+
     // 그 외의 에러는 그대로 반환
-    // @ts-ignore
-    return Promise.reject(new Error((error.response && error.response.data) || '문제가 발생했습니다'));
+    return Promise.reject((error.response && error.response.data) || 'Something went wrong');
   }
 );

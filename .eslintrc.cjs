@@ -50,5 +50,7 @@ module.exports = {
     'no-unused-vars': 'off',
     'react/jsx-filename-extension': 'off',
     'react/self-closing-comp': 'off',
+    'consistent-return': 'off',
+    'no-param-reassign': 'off',
   },
 };

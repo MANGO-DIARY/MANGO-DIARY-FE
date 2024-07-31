@@ -10,6 +10,7 @@ import FormProvider from '../../components/formProvider/FormProvider';
 import { Images } from '../../styles/images';
 import Header from '../../components/header/Header.jsx';
 import Button from '../../components/button/button.jsx';
+import { useSignup } from '../../api/queries/auth/sign-up.js';
 
 const signUpSchema = Yup.object().shape({
   userName: Yup.string().required('이름을 입력해주세요.').max(12, '이름은 12자 이하여야 합니다.'),
@@ -43,7 +44,7 @@ function Signup() {
   // const { endAt, isAuthenticated, setEndAt, setIsAuthenticated } =
   //   useEmailAuthStore((state) => state);
 
-  // const signUpMutation = useSignUp<Omit<IFormValues, 'passwordConfirm'>>();
+  const { mutate, isLoading, valueOf } = useSignup();
 
   const methods = useForm({
     defaultValues,

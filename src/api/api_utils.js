@@ -1,19 +1,14 @@
 // routes
 import { handleAlert } from 'react-handle-alert';
 import { axiosInstance } from './axios';
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '../../static';
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '../../static.js';
 import { PATH_API } from './path';
-
-interface props {
-  accessToken: string | null;
-  refreshToken: string | null;
-}
 
 // utils
 
 // ----------------------------------------------------------------------
 
-function jwtDecode(token: string) {
+function jwtDecode(token) {
   const base64Url = token.split('.')[1];
   const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
   const jsonPayload = decodeURIComponent(
@@ -29,7 +24,7 @@ function jwtDecode(token: string) {
 
 // ----------------------------------------------------------------------
 
-export const isValidToken = (accessToken: string) => {
+export const isValidToken = (accessToken) => {
   if (!accessToken) {
     return false;
   }
@@ -44,7 +39,7 @@ export const isValidToken = (accessToken: string) => {
 // ----------------------------------------------------------------------
 
 const tokenRefresh = async () => {
-  const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY!);
+  const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY);
   if (refreshToken) {
     try {
       const response = await axiosInstance.post(PATH_API.TOKEN_REISSUE, {
@@ -52,26 +47,27 @@ const tokenRefresh = async () => {
       });
 
       const newAccessToken = response.data.accessToken;
-      localStorage.setItem(ACCESS_TOKEN_KEY!, newAccessToken);
+      localStorage.setItem(ACCESS_TOKEN_KEY, newAccessToken);
 
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
 
       const { exp } = jwtDecode(newAccessToken);
+      // eslint-disable-next-line no-use-before-define
       tokenExpired(exp);
 
       return newAccessToken;
     } catch {
       handleAlert('로그인이 만료되었습니다.');
 
-      localStorage.removeItem(ACCESS_TOKEN_KEY!);
-      localStorage.removeItem(REFRESH_TOKEN_KEY!);
+      localStorage.removeItem(ACCESS_TOKEN_KEY);
+      localStorage.removeItem(REFRESH_TOKEN_KEY);
 
       window.location.reload();
     }
   }
 };
 
-export const tokenExpired = (exp: number) => {
+export const tokenExpired = (exp) => {
   // eslint-disable-next-line prefer-const
   let expiredTimer;
 
@@ -95,18 +91,18 @@ export const tokenExpired = (exp: number) => {
 
 // ----------------------------------------------------------------------
 
-export const setSession = (token: props) => {
+export const setSession = (token) => {
   const { accessToken, refreshToken } = token;
   if (accessToken && refreshToken) {
-    localStorage.setItem(ACCESS_TOKEN_KEY!, accessToken);
-    localStorage.setItem(REFRESH_TOKEN_KEY!, refreshToken);
+    localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+    localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
 
     axiosInstance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
 
     const { exp } = jwtDecode(accessToken);
     tokenExpired(exp);
   } else {
-    localStorage.removeItem(ACCESS_TOKEN_KEY!);
+    localStorage.removeItem(ACCESS_TOKEN_KEY);
 
     delete axiosInstance.defaults.headers.common.Authorization;
   }
@@ -115,8 +111,8 @@ export const setSession = (token: props) => {
 // ----------------------------------------------------------------------
 
 export const removeSession = () => {
-  localStorage.removeItem(ACCESS_TOKEN_KEY!);
-  localStorage.removeItem(REFRESH_TOKEN_KEY!);
+  localStorage.removeItem(ACCESS_TOKEN_KEY);
+  localStorage.removeItem(REFRESH_TOKEN_KEY);
 
   delete axiosInstance.defaults.headers.common.Authorization;
 };
@@ -124,7 +120,7 @@ export const removeSession = () => {
 // ----------------------------------------------------------------------
 
 export const getUserId = () => {
-  const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY!);
+  const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
   if (!accessToken) {
     return '';
   }
