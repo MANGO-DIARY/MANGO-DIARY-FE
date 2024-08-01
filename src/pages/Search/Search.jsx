@@ -37,12 +37,19 @@ function Search() {
   const nav = useNavigate();
 
   const filteredData = searchItem ? mockData.filter((item) => item.content.toLowerCase().includes(searchItem.toLowerCase())) : [];
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      event.target.blur();
+    }
+  };
+
   return (
     <SearchWrapper>
       <SearchBar>
         <SearchInputWrapper>
           <img src={Images.search} alt="icon" />
-          <SearchInput type="text" placeholder="검색어를 입력해주세요." value={searchItem || ''} onChange={(e) => setSearchItem(e.target.value)} />
+          <SearchInput type="text" placeholder="검색어를 입력해주세요." value={searchItem || ''} onChange={(e) => setSearchItem(e.target.value)} onKeyDown={handleKeyDown} />
           <InputCancel onClick={() => setSearchItem('')}>
             <img src={Images.cancel} alt="icon" />
           </InputCancel>

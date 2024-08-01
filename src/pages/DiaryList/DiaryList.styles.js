@@ -6,6 +6,11 @@ export const DiaryListWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const EmotionListWrapper = styled.div`
@@ -20,7 +25,7 @@ export const EmotionListWrapper = styled.div`
   gap: 12px;
 
   &::-webkit-scrollbar {
-    height: 0;
+    display: none;
   }
 `;
 
