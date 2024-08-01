@@ -9,25 +9,25 @@ const mockData = [
   {
     id: 1,
     createdDate: new Date('2024-07-19').getTime(),
-    emotionId: 1,
+    emotionName: '신남',
     content: '안녕하세요 오늘 너무 즐거웠어요호호 . . .',
   },
   {
     id: 2,
     createdDate: new Date('2024-07-18').getTime(),
-    emotionId: 2,
+    emotionName: '기쁨',
     content: '2번 일기 내용',
   },
   {
     id: 3,
     createdDate: new Date('2024-07-28').getTime(),
-    emotionId: 3,
+    emotionName: '행복',
     content: '3번 일기 내용',
   },
   {
     id: 4,
     createdDate: new Date('2024-07-29').getTime(),
-    emotionId: 1,
+    emotionName: '신남',
     content: '4번 일기 내용',
   },
 ];

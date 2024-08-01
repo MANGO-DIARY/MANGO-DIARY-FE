@@ -22,28 +22,28 @@ export const ImgSection = styled.div`
   padding-top: 20px;
   font-size: 20px;
 
-  &.img_section_1 {
+  &.img_section_신남 {
     color: #ed9c24;
   }
-  &.img_section_2 {
+  &.img_section_기쁨 {
     color: #f5c829;
   }
-  &.img_section_3 {
+  &.img_section_행복 {
     color: #fa57f4;
   }
-  &.img_section_4 {
+  &.img_section_평온 {
     color: #0eb6ec;
   }
-  &.img_section_5 {
+  &.img_section_분노 {
     color: #f21717;
   }
-  &.img_section_6 {
+  &.img_section_슬픔 {
     color: #1b89c6;
   }
-  &.img_section_7 {
+  &.img_section_불안 {
     color: #c525fe;
   }
-  &.img_section_8 {
+  &.img_section_우울 {
     color: #918e92;
   }
 `;

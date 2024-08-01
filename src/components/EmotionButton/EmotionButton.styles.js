@@ -26,7 +26,7 @@ const EmotionButtonBase = styled.button`
 `;
 
 const emotionButtonStyles = {
-  1: css`
+  신남: css`
     background-color: rgba(255, 144, 13, 0.4);
     color: #ed9c24;
     padding-bottom: 2px;
@@ -39,7 +39,7 @@ const emotionButtonStyles = {
       border: 2px solid #ed9c24;
     }
   `,
-  2: css`
+  기쁨: css`
     background-color: rgba(255, 230, 3, 0.4);
     color: #f5c829;
 
@@ -47,7 +47,7 @@ const emotionButtonStyles = {
       border: 2px solid #f5c829;
     }
   `,
-  3: css`
+  행복: css`
     background-color: rgba(241, 103, 203, 0.4);
     color: #fa57f4;
 
@@ -55,7 +55,7 @@ const emotionButtonStyles = {
       border: 2px solid #fa57f4;
     }
   `,
-  4: css`
+  평온: css`
     background-color: rgba(13, 168, 255, 0.4);
     color: #0eb6ec;
 
@@ -63,7 +63,7 @@ const emotionButtonStyles = {
       border: 2px solid #0eb6ec;
     }
   `,
-  5: css`
+  분노: css`
     background-color: rgba(255, 8, 8, 0.4);
     color: #f21717;
 
@@ -71,7 +71,7 @@ const emotionButtonStyles = {
       border: 2px solid #f21717;
     }
   `,
-  6: css`
+  슬픔: css`
     background-color: rgba(15, 107, 214, 0.4);
     color: #1b89c6;
     padding-bottom: 2px;
@@ -80,7 +80,7 @@ const emotionButtonStyles = {
       border: 2px solid #1b89c6;
     }
   `,
-  7: css`
+  불안: css`
     background-color: rgba(205, 82, 248, 0.4);
     color: #c525fe;
 
@@ -88,7 +88,7 @@ const emotionButtonStyles = {
       border: 2px solid #c525fe;
     }
   `,
-  8: css`
+  우울: css`
     background-color: rgba(143, 136, 145, 0.4);
     color: #918e92;
 
