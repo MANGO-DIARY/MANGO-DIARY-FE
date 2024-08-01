@@ -15,7 +15,11 @@ import person from '../../public/assets/icon/ico-Person.svg';
 import verify from '../../public/assets/icon/ico-verify.svg';
 import left from '../../public/assets/icon/icon-left.svg';
 import menu from '../../public/assets/icon/icon-menu.svg';
-
+import plus from '../../public/assets/icon/ico-plus.svg';
+import home from '../../public/assets/icon/ico-home.svg';
+import calendar from '../../public/assets/icon/ico-calendar.svg';
+import barchart from '../../public/assets/icon/ico-barchart.svg';
+import settings from '../../public/assets/icon/ico-settings.svg';
 // img
 import splash from '../../public/assets/img/img-splash-head.svg';
 import background from '../../public/assets/img/img-background.png';
@@ -33,7 +37,13 @@ export const Images = {
   person: person,
   verify: verify,
   left: left,
-  menu:menu,
+  menu: menu,
+  plus: plus,
+  home: home,
+  calendar: calendar, 
+  barchart: barchart,
+  settings: settings,
+
   // img
   splash: splash,
   background: background,
