@@ -1,13 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { DiaryListWrapper, EmotionListWrapper } from './DiaryList.styles';
+import { DiaryListWrapper, EmotionListWrapper, EmotionAll, Toggle } from './DiaryList.styles';
 import Header from '../../components/header/Header';
 import EmotionButton from '../../components/EmotionButton/EmotionButton';
 import emotionList from '../../util/constants';
 import DiaryItem from '../../components/DiaryItem/DiaryItem';
 import { Images } from '../../styles/images';
 import ToggleButton from '../../components/ToggleButton/ToggleButton';
+import { Button } from '../../components/ToggleButton/ToggleButton.styles';
 
 const mocData = [
   {
@@ -40,18 +41,26 @@ function DiaryList() {
   const data = mocData;
 
   const nav = useNavigate();
-  const [selectedEmotionId, setSelectedEmotionId] = useState(1);
+  const [selectedEmotionId, setSelectedEmotionId] = useState(null);
 
   const handleEmotionClick = (emotionId) => {
     setSelectedEmotionId(emotionId);
   };
 
-  const filteredData = selectedEmotionId ? data.filter((item) => item.emotionId === selectedEmotionId) : data;
+  const handleShowAllClick = () => {
+    setSelectedEmotionId(null);
+  };
+
+  const filteredData = selectedEmotionId !== null ? data.filter((item) => item.emotionId === selectedEmotionId) : data;
 
   return (
     <DiaryListWrapper>
-      <Header title="일기장" iconSrc={Images.left} onClick={() => nav(-1)} />
+      <Header title="일기장" iconSrc={Images.left} onClick={() => nav(-1)} showButtonRight onRightClick={() => nav('/search')} />
+      <Toggle>
+        <ToggleButton />
+      </Toggle>
       <EmotionListWrapper>
+        <EmotionAll onClick={handleShowAllClick}> 전체일기</EmotionAll>
         {emotionList.map((item) => (
           <EmotionButton onClick={() => handleEmotionClick(item.emotionId)} key={item.emotionId} {...item} />
         ))}

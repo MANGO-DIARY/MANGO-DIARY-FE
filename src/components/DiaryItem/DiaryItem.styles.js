@@ -23,28 +23,28 @@ export const ImgSection = styled.div`
   font-size: 20px;
 
   &.img_section_1 {
-    color: #f21717;
-  }
-  &.img_section_2 {
-    color: #c525fe;
-  }
-  &.img_section_3 {
-    color: #918e92;
-  }
-  &.img_section_4 {
     color: #ed9c24;
   }
-  &.img_section_5 {
-    color: #fa57f4;
-  }
-  &.img_section_6 {
+  &.img_section_2 {
     color: #f5c829;
   }
-  &.img_section_7 {
+  &.img_section_3 {
+    color: #fa57f4;
+  }
+  &.img_section_4 {
     color: #0eb6ec;
   }
-  &.img_section_8 {
+  &.img_section_5 {
+    color: #f21717;
+  }
+  &.img_section_6 {
     color: #1b89c6;
+  }
+  &.img_section_7 {
+    color: #c525fe;
+  }
+  &.img_section_8 {
+    color: #918e92;
   }
 `;
 

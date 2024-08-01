@@ -23,3 +23,26 @@ export const EmotionListWrapper = styled.div`
     height: 0;
   }
 `;
+
+export const EmotionAll = styled.button`
+  min-width: 84px;
+  height: 58px;
+  font-size: 17px;
+  border: none;
+  border-radius: 30px;
+  background-color: rgba(182, 177, 181, 0.2);
+  cursor: pointer;
+  font-family: 'Ownglyph_ryurue-Rg', sans-serif !important;
+
+  :hover {
+    border: 2px solid #d9d9d9;
+  }
+`;
+
+export const Toggle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2px;
+  margin-bottom: 13px;
+`;
