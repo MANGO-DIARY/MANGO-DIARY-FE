@@ -25,8 +25,20 @@ export const SplashWrap = styled.main`
     padding: 5px 50px;
     margin-top: -50px;
     & > .title {
-      width: 120px;
       ${fontGenerator('45px', 'Regular', '45px')}
+      & > .item {
+        position: relative;
+        width: fit-content;
+        & > .highlight {
+          background-color: rgba(238, 201, 72, 0.2);
+          width: 130%;
+          height: 23px;
+          position: absolute;
+          border-radius: 12px;
+          bottom: 5px;
+          margin: 0 -13px;
+        }
+      }
     }
     & > .subtitle {
       ${fontGenerator('23px', 'Regular', '30px', '6%')}
