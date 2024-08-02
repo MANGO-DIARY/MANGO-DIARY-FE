@@ -23,4 +23,14 @@ export const Colors = {
   ErrorLight: '#FF57611A',
   Kakao: '#F1DA2A',
   KakaoDark: '#ceba24',
+
+  // emotion
+  excited: '#ED9C24',
+  joy: '#F5C829',
+  happy: '#FA57F4',
+  peace: '#0EB6EC',
+  angry: '#F21717',
+  sad: '#1B89C6',
+  anxiety: '#C525FE',
+  depression: '#918E92',
 };
