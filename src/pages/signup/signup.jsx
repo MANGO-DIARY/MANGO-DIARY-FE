@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
+import { Alert } from '@mui/material';
 import { LoginWrap } from './styles';
 import InputForm from '../../components/InputForm/inputForm';
 import FormProvider from '../../components/formProvider/FormProvider';
@@ -13,8 +14,8 @@ import Button from '../../components/button/button.jsx';
 import { useSignup } from '../../api/queries/auth/sign-up.js';
 import useEmailAuthStore from '../../store/auth/emailAuthStore';
 import { useSendEmail } from '../../api/queries/auth/send-email.jsx';
-import { Alert } from '@mui/material';
 import { useVerifyEmail } from '../../api/queries/auth/verify-email.js';
+import { PATH } from '../../route/path.js';
 
 const signUpSchema = Yup.object().shape({
   userName: Yup.string().required('이름을 입력해주세요.').max(12, '이름은 12자 이하여야 합니다.'),
@@ -73,7 +74,7 @@ function Signup() {
       {
         onSuccess: () => {
           setIsAuthenticated(false);
-          navigate('/login');
+          navigate(PATH.LOGIN);
         },
         onError: () => {
           setIsAuthenticated(false);

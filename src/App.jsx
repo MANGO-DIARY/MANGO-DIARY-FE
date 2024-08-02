@@ -3,20 +3,21 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { Done, Login, NickNameReset, NotFound, PasswordReset, SignUp, Splash } from './pages';
 import DiaryList from './pages/DiaryList/DiaryList';
 import Search from './pages/Search/Search';
+import { PATH } from './route/path.js';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Splash />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/password-reset" element={<PasswordReset />} />
-          <Route path="/nickname-reset" element={<NickNameReset />} />
-          <Route path="/diaryList" element={<DiaryList />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/done" element={<Done />} />
+          <Route path={PATH.root} element={<Splash />} />
+          <Route path={PATH.SIGNUP} element={<SignUp />} />
+          <Route path={PATH.LOGIN} element={<Login />} />
+          <Route path={PATH.PASSWORD_RESET} element={<PasswordReset />} />
+          <Route path={PATH.NICKNAME_RESET} element={<NickNameReset />} />
+          <Route path={PATH.DIARYLIST} element={<DiaryList />} />
+          <Route path={PATH.SEARCH} element={<Search />} />
+          <Route path={PATH.DONE} element={<Done />} />
           {/* notFound : 일치하는 라우트 없는 경우 처리 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
