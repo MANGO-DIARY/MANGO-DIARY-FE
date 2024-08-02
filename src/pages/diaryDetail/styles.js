@@ -48,7 +48,7 @@ export const DiaryDetailWrap = styled.main`
   }
 
   .bottom {
-    margin-top: auto;
+    margin-top: 30px;
     padding: 0 30px;
     display: flex;
     justify-content: end;
