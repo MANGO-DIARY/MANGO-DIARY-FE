@@ -66,13 +66,14 @@ function Signup() {
     const { userName, userEmail, password } = data;
     signupmutate(
       {
-        userName,
-        userEmail,
-        password: password,
+        userName: watch('userName'),
+        userEmail: watch('userEmail'),
+        password: watch('password'),
       },
       {
         onSuccess: () => {
           setIsAuthenticated(false);
+          navigate('/login');
         },
         onError: () => {
           setIsAuthenticated(false);
@@ -168,7 +169,7 @@ function Signup() {
           <Button label="로그인 하러가기" variant="OutlineBlack" size="small" disabled={!isValid} onClick={() => navigate('/login')} />
         </div>
         <div className="bottom">
-          <Button type="submit" label="다음" variant="BlackFull" size="medium" disabled={!isValid} />
+          <Button type="submit" label="다음" variant="BlackFull" size="medium" disabled={!isValid} onClick={onSubmit} />
         </div>
       </FormProvider>
       {successMessage && (
