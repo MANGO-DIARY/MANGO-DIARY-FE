@@ -101,6 +101,7 @@ function Signup() {
         },
         onError: (error) => {
           if (error.response?.status === 409) {
+            // DO
           } else {
             setErrorMessage(error?.message);
           }

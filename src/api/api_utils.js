@@ -38,7 +38,7 @@ export const isValidToken = (accessToken) => {
 // ----------------------------------------------------------------------
 
 const tokenRefresh = async () => {
-  const refreshToken = localStorage.getItem(refreshToken);
+  const refreshToken = localStorage.getItem('refreshToken');
   if (refreshToken) {
     try {
       const response = await axiosInstance.post(PATH_API.TOKEN_REISSUE, {
