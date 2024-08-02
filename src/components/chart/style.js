@@ -10,6 +10,10 @@ export const ChartContainer = styled.div`
   .MuiChartsAxis-tick {
     display: none;
   }
+  .MuiChartsAxis-directionX,
+  .MuiChartsAxis-label {
+    transform: translateY(277px) !important; // label 짤림 해결
+  }
 
   // 차트 바(<rect>) 커스텀
   [class*='MuiBarElement-series-auto-generated'] {

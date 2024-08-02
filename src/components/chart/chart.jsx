@@ -1,29 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import { BarChart } from '@mui/x-charts';
 import { ChartContainer } from './style';
+import getEmotionImage from '../../util/get-emotion-img';
+import getEmotionColor from '../../util/getEmotionColor';
 
 const example = {
-  1: { emotion: '신남', value: 10 },
-  2: { emotion: '기쁨', value: 11 },
-  3: { emotion: '행복', value: 13 },
-  4: { emotion: '평온', value: 12 },
-  5: { emotion: '분노', value: 9 },
-  6: { emotion: '슬픔', value: 10 },
-  7: { emotion: '불안', value: 10 },
-  8: { emotion: '우울', value: 10 },
+  신남: 10,
+  기쁨: 11,
+  행복: 13,
+  평온: 12,
+  분노: 9,
+  슬픔: 10,
+  불안: 2,
+  우울: 8,
 };
 
+function CustomAxisLabel(props) {
+  const { text, chartData } = props;
+  return (
+    <>
+      <defs>
+        <style type="text/css">{`@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');`}</style>
+      </defs>
+      <image transform="translate(5,5)" href={getEmotionImage(text)} width="30px" height="30px" />
+      <text transform="translate(18.5, 52)" fontSize="20" fontFamily="'Jua', sans-sarif" fill={getEmotionColor(text)} textAnchor="middle">
+        {chartData[text]}
+      </text>
+    </>
+  );
+}
 export default function Chart({ chartData = example }) {
   const [isLoading, setisLoading] = useState(true);
 
-  const namesArray = Object.values(chartData).map((item) => item.emotion);
-  const valuesArray = Object.values(chartData).map((item) => item.value);
+  const namesArray = Object.keys(chartData);
+  const valuesArray = Object.values(chartData);
 
-  // TODO: 컬러 값 수정하기
-  // const barColors = namesArray.map((name) => {
-  //   return getEmotionColor(name);
-  // });
-  const barColors = ['#fbff', '#bbffd0', '#ffd3bb', '#fff6bb', '#bbc4ff', '#bbfaff', '#ffbbbb'];
+  const barColors = namesArray.map((name) => getEmotionColor(name));
 
   useEffect(() => {
     setisLoading(false);
@@ -32,7 +44,8 @@ export default function Chart({ chartData = example }) {
   return (
     <ChartContainer>
       <BarChart
-        height={350}
+        sx={{ pb: 2 }}
+        height={330}
         xAxis={[
           {
             data: namesArray,
@@ -46,6 +59,9 @@ export default function Chart({ chartData = example }) {
         ]}
         series={[{ data: valuesArray, type: 'bar' }]}
         loading={isLoading}
+        slots={{
+          axisTickLabel: (props) => CustomAxisLabel({ ...props, chartData }),
+        }}
       />
     </ChartContainer>
   );
