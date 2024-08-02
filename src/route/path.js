@@ -9,4 +9,5 @@ export const PATH = {
   DIARYLIST: '/diaryList',
   SEARCH: '/search',
   DONE: '/done',
+  DIARYDETAIL: '/diary/detail/:diaryId',
 };
