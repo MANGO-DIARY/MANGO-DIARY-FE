@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { DiaryDetail, Done, Login, NickNameReset, NotFound, PasswordReset, SignUp, Splash } from './pages';
 import DiaryList from './pages/DiaryList/DiaryList';
+import Search from './pages/Search/Search';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/password-reset" element={<PasswordReset />} />
           <Route path="/nickname-reset" element={<NickNameReset />} />
           <Route path="/diaryList" element={<DiaryList />} />
+          <Route path="/search" element={<Search />} />
           <Route path="/done" element={<Done />} />
           <Route path="diary/detail/:diaryId" element={<DiaryDetail />} />
           {/* notFound : 일치하는 라우트 없는 경우 처리 */}
