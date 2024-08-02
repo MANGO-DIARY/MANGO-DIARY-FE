@@ -16,7 +16,12 @@ import verify from '../../public/assets/icon/ico-verify.svg';
 import left from '../../public/assets/icon/icon-left.svg';
 import menu from '../../public/assets/icon/icon-menu.svg';
 import list from '../../public/assets/icon/ico-list.svg';
-import calendar from '../../public/assets/icon/icon-calendar.svg';
+
+import plus from '../../public/assets/icon/ico-plus.svg';
+import home from '../../public/assets/icon/ico-home.svg';
+import calendar from '../../public/assets/icon/ico-calendar.svg';
+import barchart from '../../public/assets/icon/ico-barchart.svg';
+import settings from '../../public/assets/icon/ico-settings.svg';
 import search from '../../public/assets/icon/icon-search.svg';
 import cancel from '../../public/assets/icon/icon-cancel.svg';
 import headerSearch from '../../public/assets/icon/icon-headerSearch.svg';
@@ -45,9 +50,13 @@ export const Images = {
   person: person,
   verify: verify,
   left: left,
-  menu:menu,
+  menu: menu,
   list: list,
-  calendar: calendar,
+  plus: plus,
+  home: home,
+  calendar: calendar, 
+  barchart: barchart,
+  settings: settings,
   search: search,
   cancel: cancel,
   headerSearch: headerSearch,
