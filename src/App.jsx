@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { Done, Login, NickNameReset, NotFound, PasswordReset, SignUp, Splash } from './pages';
+import { DiaryDetail, Done, Login, NickNameReset, NotFound, PasswordReset, SignUp, Splash } from './pages';
 import DiaryList from './pages/DiaryList/DiaryList';
 import Search from './pages/Search/Search';
 import { PATH } from './route/path.js';
@@ -18,6 +18,7 @@ function App() {
           <Route path={PATH.DIARYLIST} element={<DiaryList />} />
           <Route path={PATH.SEARCH} element={<Search />} />
           <Route path={PATH.DONE} element={<Done />} />
+          <Route path={PATH.DIARYDETAIL} element={<DiaryDetail />} />
           {/* notFound : 일치하는 라우트 없는 경우 처리 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
