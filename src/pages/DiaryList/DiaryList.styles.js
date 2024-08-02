@@ -22,8 +22,9 @@ export const EmotionListWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   margin-bottom: 21px;
-  margin-left: 9px;
+  /* margin-left: 9px; */
   gap: 12px;
+  padding: 0 8px 0 8px;
 
   &::-webkit-scrollbar {
     display: none;

@@ -37,6 +37,7 @@ import happy from '../../public/assets/img/img-happy.svg';
 import depression from '../../public/assets/img/img-depression.svg';
 import peace from '../../public/assets/img/img-peace.svg';
 import sad from '../../public/assets/img/img-sad.svg';
+import ai from '../../public/assets/img/img-ai.svg';
 
 // prettier-ignore
 export const Images = {
@@ -75,4 +76,7 @@ export const Images = {
   happy: happy,
   peace: peace,
   sad: sad,
+
+  // ai 
+  ai: ai,
 };
