@@ -3,7 +3,7 @@ import React from 'react';
 import { DiaryItemWrapper, ImgSection, CreatedDate, Content } from './DiaryItem.styles';
 import getEmotionImage from '../../util/get-emotion-img';
 
-function DiaryItem({ content, emotionId, createdDate }) {
+function DiaryItem({ emotionName, content, emotionId, createdDate }) {
   const date = new Date(createdDate);
 
   const year = date.getFullYear().toString().slice(2);
@@ -14,9 +14,9 @@ function DiaryItem({ content, emotionId, createdDate }) {
 
   return (
     <DiaryItemWrapper>
-      <ImgSection className={`img_section_${emotionId}`}>
+      <ImgSection className={`img_section_${emotionName}`}>
         <CreatedDate>{formattedDate}</CreatedDate>
-        <img src={getEmotionImage(emotionId)} alt="emotion" />
+        <img src={getEmotionImage(emotionName)} alt="emotion" />
       </ImgSection>
       <Content>{content}</Content>
     </DiaryItemWrapper>

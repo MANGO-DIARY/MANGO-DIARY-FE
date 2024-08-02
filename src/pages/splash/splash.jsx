@@ -12,9 +12,13 @@ function Splash() {
       <img src={Images.splash} alt="splash" />
       <div className="top">
         <div className="title">
-          <span className="highlight margin">아프지</span>
-          <br />
-          <span className="highlight">망고</span>
+          <div className="item">
+            <div className="highlight"></div>
+            아프지
+          </div>
+          <div className="item">
+            <div className="highlight"></div>망고
+          </div>
         </div>
         <div className="subtitle">ai가 분석해주는 감정 일기</div>
       </div>
