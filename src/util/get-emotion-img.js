@@ -1,23 +1,23 @@
 import { Images } from '../styles/images';
 
-function getEmotionImage(emotionId) {
-  switch (emotionId) {
-    case 1:
-      return Images.angry;
-    case 2:
-      return Images.anxiety;
-    case 3:
-      return Images.depression;
-    case 4:
+function getEmotionImage(emotionName) {
+  switch (emotionName) {
+    case '신남':
       return Images.excited;
-    case 5:
-      return Images.happy;
-    case 6:
+    case '기쁨':
       return Images.joy;
-    case 7:
+    case '행복':
+      return Images.happy;
+    case '평온':
       return Images.peace;
-    case 8:
+    case '분노':
+      return Images.angry;
+    case '슬픔':
       return Images.sad;
+    case '불안':
+      return Images.anxiety;
+    case '우울':
+      return Images.depression;
     default:
       return null;
   }

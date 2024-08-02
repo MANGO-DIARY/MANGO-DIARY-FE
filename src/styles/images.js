@@ -17,6 +17,9 @@ import left from '../../public/assets/icon/icon-left.svg';
 import menu from '../../public/assets/icon/icon-menu.svg';
 import list from '../../public/assets/icon/ico-list.svg';
 import calendar from '../../public/assets/icon/icon-calendar.svg';
+import search from '../../public/assets/icon/icon-search.svg';
+import cancel from '../../public/assets/icon/icon-cancel.svg';
+import headerSearch from '../../public/assets/icon/icon-headerSearch.svg';
 
 // img
 import splash from '../../public/assets/img/img-splash-head.svg';
@@ -45,6 +48,9 @@ export const Images = {
   menu:menu,
   list: list,
   calendar: calendar,
+  search: search,
+  cancel: cancel,
+  headerSearch: headerSearch,
 
   // img
   splash: splash,
