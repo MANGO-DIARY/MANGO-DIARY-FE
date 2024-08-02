@@ -1,7 +1,6 @@
 // routes
 import { handleAlert } from 'react-handle-alert';
 import { axiosInstance } from './axios';
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '../../static.js';
 import { PATH_API } from './path';
 
 // utils
@@ -39,7 +38,7 @@ export const isValidToken = (accessToken) => {
 // ----------------------------------------------------------------------
 
 const tokenRefresh = async () => {
-  const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY);
+  const refreshToken = localStorage.getItem('refreshToken');
   if (refreshToken) {
     try {
       const response = await axiosInstance.post(PATH_API.TOKEN_REISSUE, {
@@ -47,7 +46,7 @@ const tokenRefresh = async () => {
       });
 
       const newAccessToken = response.data.accessToken;
-      localStorage.setItem(ACCESS_TOKEN_KEY, newAccessToken);
+      localStorage.setItem('accessToken', newAccessToken);
 
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
 
@@ -59,8 +58,8 @@ const tokenRefresh = async () => {
     } catch {
       handleAlert('로그인이 만료되었습니다.');
 
-      localStorage.removeItem(ACCESS_TOKEN_KEY);
-      localStorage.removeItem(REFRESH_TOKEN_KEY);
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
 
       window.location.reload();
     }
@@ -68,7 +67,6 @@ const tokenRefresh = async () => {
 };
 
 export const tokenExpired = (exp) => {
-  // eslint-disable-next-line prefer-const
   let expiredTimer;
 
   const currentTime = Date.now();
@@ -94,15 +92,15 @@ export const tokenExpired = (exp) => {
 export const setSession = (token) => {
   const { accessToken, refreshToken } = token;
   if (accessToken && refreshToken) {
-    localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
-    localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
 
     axiosInstance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
 
     const { exp } = jwtDecode(accessToken);
     tokenExpired(exp);
   } else {
-    localStorage.removeItem(ACCESS_TOKEN_KEY);
+    localStorage.removeItem('accessToken');
 
     delete axiosInstance.defaults.headers.common.Authorization;
   }
@@ -111,8 +109,8 @@ export const setSession = (token) => {
 // ----------------------------------------------------------------------
 
 export const removeSession = () => {
-  localStorage.removeItem(ACCESS_TOKEN_KEY);
-  localStorage.removeItem(REFRESH_TOKEN_KEY);
+  localStorage.removeItem('accessToken');
+  localStorage.removeItem('refreshToken');
 
   delete axiosInstance.defaults.headers.common.Authorization;
 };
@@ -120,7 +118,7 @@ export const removeSession = () => {
 // ----------------------------------------------------------------------
 
 export const getUserId = () => {
-  const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
+  const accessToken = localStorage.getItem('accessToken');
   if (!accessToken) {
     return '';
   }

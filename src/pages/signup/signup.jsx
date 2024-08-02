@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
+import { Alert } from '@mui/material';
 import { LoginWrap } from './styles';
 import InputForm from '../../components/InputForm/inputForm';
 import FormProvider from '../../components/formProvider/FormProvider';
@@ -11,6 +12,10 @@ import { Images } from '../../styles/images';
 import Header from '../../components/header/Header.jsx';
 import Button from '../../components/button/button.jsx';
 import { useSignup } from '../../api/queries/auth/sign-up.js';
+import useEmailAuthStore from '../../store/auth/emailAuthStore';
+import { useSendEmail } from '../../api/queries/auth/send-email.jsx';
+import { useVerifyEmail } from '../../api/queries/auth/verify-email.js';
+import { PATH } from '../../route/path.js';
 
 const signUpSchema = Yup.object().shape({
   userName: Yup.string().required('이름을 입력해주세요.').max(12, '이름은 12자 이하여야 합니다.'),
@@ -35,15 +40,16 @@ const defaultValues = {
 function Signup() {
   const navigate = useNavigate();
   const [showVerificationInput, setShowVerificationInput] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [emailDisabled, setEmailDisabled] = useState(false);
+  const [verificationDisabled, setVerificationDisabled] = useState(false);
 
-  const handleSendVerification = () => {
-    console.log('인증번호 발송 버튼 클릭');
-    setShowVerificationInput(true); // 인증번호 입력 필드를 표시합니다.
-  };
-  // const { endAt, isAuthenticated, setEndAt, setIsAuthenticated } =
-  //   useEmailAuthStore((state) => state);
+  const { endAt, isAuthenticated, setEndAt, setIsAuthenticated } = useEmailAuthStore((state) => state);
 
-  const { mutate, isPending } = useSignup();
+  const { mutate: signupmutate, isPending: signupPending } = useSignup();
+  const { mutate: emailMutate, isPending: emailPending } = useSendEmail();
+  const { mutate: verifyMutate, isPending: verifyPending } = useVerifyEmail();
 
   const methods = useForm({
     defaultValues,
@@ -59,37 +65,71 @@ function Signup() {
 
   const onSubmit = (data) => {
     const { userName, userEmail, password } = data;
-    // mutate(
-    //   {
-    //     userName,
-    //     userEmail,
-    //     password: password,
-    //   },
-    //   {
-    //     onSuccess: () => setIsAuthenticated(false),
-    //   }
-    // );
+    signupmutate(
+      {
+        userName: watch('userName'),
+        userEmail: watch('userEmail'),
+        password: watch('password'),
+      },
+      {
+        onSuccess: () => {
+          setIsAuthenticated(false);
+          navigate(PATH.LOGIN);
+        },
+        onError: () => {
+          setIsAuthenticated(false);
+        },
+      }
+    );
   };
 
-  // const sendEmailMutation = useSendEmail();
-
   const sendEmail = () => {
-    // if (endAt && new Date() < new Date(endAt)) {
-    //   setIsOtpModalOpen(true);
-    //   return;
-    // }
-    //
-    // sendEmailMutation.mutate(
-    //   {
-    //     userEmail: watch('userEmail'),
-    //     purpose: EmailVerifyPurpose.SIGN_UP,
-    //   },
-    //   {
-    //     onSuccess: () => {//
-    //       setEndAt(Date.now() + 1000 * 60 * 3);
-    //     },
-    //   }
-    // );
+    setShowVerificationInput(true);
+    if (endAt && new Date() < new Date(endAt)) {
+      return;
+    }
+    emailMutate(
+      {
+        userEmail: watch('userEmail'),
+        purpose: 'SIGN_UP',
+      },
+      {
+        onSuccess: (data) => {
+          setEndAt(Date.now() + 1000 * 60 * 3);
+          setSuccessMessage(data);
+          setEmailDisabled(true);
+        },
+        onError: (error) => {
+          if (error.response?.status === 409) {
+            // DO
+          } else {
+            setErrorMessage(error?.message);
+          }
+        },
+      }
+    );
+  };
+  const verifyEmail = () => {
+    verifyMutate(
+      {
+        userEmail: watch('userEmail'),
+        code: watch('verificationCode'),
+      },
+      {
+        onSuccess: () => {
+          setEndAt(null);
+          setIsAuthenticated(true);
+          setSuccessMessage('이메일 인증이 완료되었습니다.');
+          setErrorMessage('');
+          setVerificationDisabled(true);
+        },
+        onError: (error) => {
+          console.log(error.message);
+          setErrorMessage('이메일 인증을 실패하였습니다. 새로고침으로 다시 진행해주세요.');
+          setSuccessMessage('');
+        },
+      }
+    );
   };
 
   return (
@@ -105,12 +145,12 @@ function Signup() {
             name="userEmail"
             IconSrc={Images.email}
             placeholder="이메일을 입력해주세요."
+            disabled={emailDisabled}
             purpose={{
               isUsed: true,
               label: '인증번호 발송',
-              onClick: () => {
-                handleSendVerification();
-              },
+              isPending: emailPending,
+              onClick: () => sendEmail(),
             }}
           />
           {showVerificationInput && (
@@ -118,10 +158,12 @@ function Signup() {
               name="verificationCode"
               IconSrc={Images.verify}
               placeholder="인증번호를 입력해주세요."
+              disabled={verificationDisabled}
               purpose={{
                 isUsed: true,
                 label: '확인',
-                onClick: () => console.log('확인 버튼 클릭'),
+                isPending: verifyPending,
+                onClick: () => verifyEmail(),
               }}
             />
           )}
@@ -129,9 +171,30 @@ function Signup() {
           <Button label="로그인 하러가기" variant="OutlineBlack" size="small" disabled={!isValid} onClick={() => navigate('/login')} />
         </div>
         <div className="bottom">
-          <Button type="submit" label="다음" variant="BlackFull" size="medium" disabled={!isValid} />
+          <Button type="submit" label="다음" variant="BlackFull" size="medium" disabled={!isValid} onClick={onSubmit} />
         </div>
       </FormProvider>
+      {successMessage && (
+        <Alert
+          severity="success"
+          onClose={() => {
+            setSuccessMessage('');
+          }}
+          sx={{ margin: '0 30px' }}
+        >
+          {successMessage}
+        </Alert>
+      )}
+      {errorMessage && (
+        <Alert
+          errorMessages={errorMessage}
+          severity="error"
+          onClose={() => {
+            setErrorMessage('');
+          }}
+          sx={{ margin: '0 30px' }}
+        />
+      )}
     </LoginWrap>
   );
 }
