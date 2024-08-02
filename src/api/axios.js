@@ -1,11 +1,10 @@
 import axios from 'axios';
-import { ACCESS_TOKEN_KEY, API_DOMAIN, REFRESH_TOKEN_KEY } from '../../static.js';
 import { PATH_API } from './path';
 
 const TIMEOUT_TIME = 10_000;
 
 export const axiosInstance = axios.create({
-  baseURL: API_DOMAIN,
+  baseURL: PATH_API.API_DOMAIN,
   headers: {
     'Content-Type': 'application/vnd.api+json',
   },

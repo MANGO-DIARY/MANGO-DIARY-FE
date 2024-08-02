@@ -16,6 +16,7 @@ export default function InputForm({
   required = false,
   loading = false,
   unit,
+  disabled = false,
   ...other
 }) {
   const {
@@ -53,17 +54,18 @@ export default function InputForm({
   }
 
   return (
-    <InputWrap>
+    <InputWrap disabled={disabled}>
       <div className="main" style={isError ? { borderBottom: `1px solid rgb(255, 43, 43)` } : {}}>
         <img src={IconSrc} className="SearchIcon" alt="SearchIcon" />
         <input placeholder={placeholder} {...register(name, { required })} {...other} />
-        {inputValue && (
+        {inputValue && !disabled && (
           <div onClick={handleClear} className="CloseIcon">
             <img src={Images.close} alt="CloseIcon" />
           </div>
         )}
-        {purpose.isUsed && (
+        {purpose.isUsed && !disabled && (
           <Button
+            loading={purpose.isPending}
             label={purpose.label}
             variant="BlackFull"
             size="xsmall"
