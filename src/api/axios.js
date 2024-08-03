@@ -3,10 +3,13 @@ import { PATH_API } from './path';
 
 const TIMEOUT_TIME = 10_000;
 
+const 임시토큰 = 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTcyMjY5Njk4MSwiZXhwIjoxNzIyNzAwNTgxfQ.VDGNFtM5tgpE-2WfXJ0EWXCt0QQcabLR-pqDJ5yL37g';
+
 export const axiosInstance = axios.create({
   baseURL: PATH_API.API_DOMAIN,
   headers: {
     'Content-Type': 'application/vnd.api+json',
+    Authorization: `Bearer ${임시토큰}`,
   },
   // withCredentials:true, // 쿠키 cors 통신 설정
 });

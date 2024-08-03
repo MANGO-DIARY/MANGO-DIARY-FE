@@ -3,11 +3,11 @@ import React from 'react';
 import { EmotionButtonBase, emotionButtonStyles } from './EmotionButton.styles';
 import getEmotionImage from '../../util/get-emotion-img';
 
-function EmotionButton({ emotionId, emotionName, onClick }) {
+function EmotionButton({ emotionId, emotion, onClick }) {
   return (
-    <EmotionButtonBase onClick={onClick} css={emotionButtonStyles[emotionName]}>
-      <img className="emotion_img" src={getEmotionImage(emotionName)} alt="emotion" />
-      <div className="emotion_name">{emotionName}</div>
+    <EmotionButtonBase onClick={onClick} css={emotionButtonStyles[emotion]}>
+      <img className="emotion_img" src={getEmotionImage(emotion)} alt="emotion" />
+      <div className="emotion_name">{emotion}</div>
     </EmotionButtonBase>
   );
 }

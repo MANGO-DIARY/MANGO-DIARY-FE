@@ -9,6 +9,8 @@ export const PATH_API = {
   TOKEN_REISSUE: '/auth/token-reissue',
   SEND_EMAIL: '/auth/mail/send',
   VERIFY_EMAIL: '/auth/mail/verify',
+  DIARY_LIST: '/diary/all',
+  DIARY_SEARCH: '/diary/search',
 };
 
 /**

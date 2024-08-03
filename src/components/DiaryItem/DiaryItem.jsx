@@ -3,20 +3,20 @@ import React from 'react';
 import { DiaryItemWrapper, ImgSection, CreatedDate, Content } from './DiaryItem.styles';
 import getEmotionImage from '../../util/get-emotion-img';
 
-function DiaryItem({ emotionName, content, emotionId, createdDate }) {
-  const date = new Date(createdDate);
+function DiaryItem({ emotion, content, date }) {
+  const DiaryDate = new Date(date);
 
-  const year = date.getFullYear().toString().slice(2);
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
+  const year = DiaryDate.getFullYear().toString().slice(2);
+  const month = DiaryDate.getMonth() + 1;
+  const day = DiaryDate.getDate();
 
   const formattedDate = `${year}년 ${month}월 ${day}일`;
 
   return (
     <DiaryItemWrapper>
-      <ImgSection className={`img_section_${emotionName}`}>
+      <ImgSection className={`img_section_${emotion}`}>
         <CreatedDate>{formattedDate}</CreatedDate>
-        <img src={getEmotionImage(emotionName)} alt="emotion" />
+        <img src={getEmotionImage(emotion)} alt="emotion" />
       </ImgSection>
       <Content>{content}</Content>
     </DiaryItemWrapper>
