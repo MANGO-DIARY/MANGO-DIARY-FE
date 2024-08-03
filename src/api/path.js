@@ -11,6 +11,8 @@ export const PATH_API = {
   VERIFY_EMAIL: '/auth/mail/verify',
   DIARY_LIST: '/diary/all',
   DIARY_SEARCH: '/diary/search',
+  MAIN: '/main',
+  USER_INFO: '/user',
 };
 
 /**
