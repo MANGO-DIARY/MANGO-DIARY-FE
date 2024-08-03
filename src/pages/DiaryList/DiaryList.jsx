@@ -1,6 +1,6 @@
-/** @jsxImportSource @emotion/react */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useInView } from 'react-intersection-observer';
 import { DiaryListWrapper, EmotionListWrapper, EmotionAll, Toggle, ScrollableEmotionList } from './DiaryList.styles';
 import Header from '../../components/header/Header';
 import EmotionButton from '../../components/EmotionButton/EmotionButton';
@@ -9,49 +9,35 @@ import DiaryItem from '../../components/DiaryItem/DiaryItem';
 import { Images } from '../../styles/images';
 import ToggleButton from '../../components/ToggleButton/ToggleButton';
 import { Button } from '../../components/ToggleButton/ToggleButton.styles';
-
-const mocData = [
-  {
-    id: 1,
-    createdDate: new Date('2024-07-19').getTime(),
-    emotionName: '신남',
-    content: '안녀하세요 오늘 너무 즐거웠어요호호 . . .',
-  },
-  {
-    id: 2,
-    createdDate: new Date('2024-07-18').getTime(),
-    emotionName: '기쁨',
-    content: '2번 일기 내용',
-  },
-  {
-    id: 3,
-    createdDate: new Date('2024-07-28').getTime(),
-    emotionName: '행복',
-    content: '3번 일기 내용',
-  },
-  {
-    id: 4,
-    createdDate: new Date('2024-07-29').getTime(),
-    emotionName: '신남',
-    content: '4번 일기 내용',
-  },
-];
+import { useDiaryList } from '../../api/queries/diary/diary-list';
 
 function DiaryList() {
-  const data = mocData;
+  const { ref, inView } = useInView();
+  const [selectedEmotion, setSelectedEmotion] = useState(null);
+
+  // 감정 필터를 useDiaryList에 전달
+  const { data, isLoading, isFetched, hasNextPage, isFetchingNextPage, fetchNextPage, refetch } = useDiaryList(selectedEmotion);
 
   const nav = useNavigate();
-  const [selectedEmotionName, setSelectedEmotionName] = useState(null);
 
-  const handleEmotionClick = (emotionName) => {
-    setSelectedEmotionName(emotionName);
+  const handleEmotionClick = (emotion) => {
+    setSelectedEmotion(emotion);
+    refetch(); // 새로운 감정 선택 시 데이터를 다시 가져옴
   };
 
   const handleShowAllClick = () => {
-    setSelectedEmotionName(null);
+    setSelectedEmotion(null);
+    refetch(); // 전체 일기 보기 클릭 시 데이터를 다시 가져옴
   };
 
-  const filteredData = selectedEmotionName !== null ? data.filter((item) => item.emotionName === selectedEmotionName) : data;
+  // Infinite scroll로 다음 페이지 데이터 로드
+  useEffect(() => {
+    if (inView && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage, fetchNextPage, isFetchingNextPage]);
+
+  const isNotData = !isLoading && !data?.pages[0]?.content?.length;
 
   return (
     <DiaryListWrapper>
@@ -62,13 +48,22 @@ function DiaryList() {
       <ScrollableEmotionList>
         <EmotionAll onClick={handleShowAllClick}> 전체일기</EmotionAll>
         {emotionList.map((item) => (
-          <EmotionButton onClick={() => handleEmotionClick(item.emotionName)} key={item.emotionName} {...item} />
+          <EmotionButton onClick={() => handleEmotionClick(item.emotion)} key={item.emotion} {...item} />
         ))}
       </ScrollableEmotionList>
       <DiaryListWrapper>
-        {filteredData.map((item) => (
-          <DiaryItem key={item.id} {...item} />
-        ))}
+        {isNotData && <>등록된 일기가 없습니다.</>}
+        {isFetched &&
+          data?.pages.map((group, i) => (
+            <React.Fragment key={String(i + 1)}>
+              {group.content.map((item) => (
+                <DiaryItem key={item.id} {...item} />
+              ))}
+            </React.Fragment>
+          ))}
+        <div style={{ width: '100%' }} ref={ref}>
+          {isFetchingNextPage && <p>Loading ...</p>}
+        </div>
       </DiaryListWrapper>
     </DiaryListWrapper>
   );

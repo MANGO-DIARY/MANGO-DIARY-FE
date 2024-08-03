@@ -1,5 +1,5 @@
 export const PATH_API = {
-  API_DOMAIN: 'http://43.200.195.86:8080/api/v1',
+  API_DOMAIN: 'http://110.11.183.148:8000/api/v1',
   // auth
   SIGN_IN: '/auth/sign-in',
   SIGN_UP: '/auth/sign-up',
@@ -9,6 +9,8 @@ export const PATH_API = {
   TOKEN_REISSUE: '/auth/token-reissue',
   SEND_EMAIL: '/auth/mail/send',
   VERIFY_EMAIL: '/auth/mail/verify',
+  DIARY_LIST: '/diary/all',
+  DIARY_SEARCH: '/diary/search',
 };
 
 /**

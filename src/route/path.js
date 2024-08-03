@@ -6,7 +6,7 @@ export const PATH = {
   LOGIN: '/login',
   PASSWORD_RESET: '/password-reset',
   NICKNAME_RESET: '/nickname-reset',
-  DIARYLIST: '/diaryList',
+  DIARYLIST: '/diary-list',
   SEARCH: '/search',
   DONE: '/done',
 };
