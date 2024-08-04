@@ -13,7 +13,7 @@ import Header from '../../components/header/Header.jsx';
 import Button from '../../components/button/button.jsx';
 import { useSignup } from '../../api/queries/auth/sign-up.js';
 import useEmailAuthStore from '../../store/auth/emailAuthStore';
-import { useSendEmail } from '../../api/queries/auth/send-email.jsx';
+import { useSendEmail } from '../../api/queries/auth/send-email.js';
 import { useVerifyEmail } from '../../api/queries/auth/verify-email.js';
 import { PATH } from '../../route/path.js';
 
@@ -134,7 +134,7 @@ function Signup() {
 
   return (
     <LoginWrap>
-      <Header title="회원가입" iconSrc={Images.left} />
+      <Header title="회원가입" iconSrc={Images.left} onClick={() => navigate(PATH.LOGIN)} />
       <div className="top">
         <img src={Images.joy} alt="기쁨이 이미지" />
       </div>
@@ -167,7 +167,7 @@ function Signup() {
               }}
             />
           )}
-          <InputForm name="password" IconSrc={Images.passward} placeholder="비밀번호를 입력해주세요." />
+          <InputForm type="password" name="password" IconSrc={Images.passward} placeholder="비밀번호를 입력해주세요." />
           <Button label="로그인 하러가기" variant="OutlineBlack" size="small" disabled={!isValid} onClick={() => navigate('/login')} />
         </div>
         <div className="bottom">
@@ -187,13 +187,14 @@ function Signup() {
       )}
       {errorMessage && (
         <Alert
-          errorMessages={errorMessage}
           severity="error"
           onClose={() => {
             setErrorMessage('');
           }}
           sx={{ margin: '0 30px' }}
-        />
+        >
+          {errorMessage}
+        </Alert>
       )}
     </LoginWrap>
   );

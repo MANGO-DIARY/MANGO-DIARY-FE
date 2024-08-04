@@ -26,6 +26,7 @@ import settings from '../../public/assets/icon/ico-settings.svg';
 import search from '../../public/assets/icon/icon-search.svg';
 import cancel from '../../public/assets/icon/icon-cancel.svg';
 import headerSearch from '../../public/assets/icon/icon-headerSearch.svg';
+import calendarWhite from '../../public/assets/icon/ico-calendarWhite.svg';
 
 // img
 import splash from '../../public/assets/img/img-splash-head.svg';
@@ -64,6 +65,7 @@ export const Images = {
   search: search,
   cancel: cancel,
   headerSearch: headerSearch,
+  calendarWhite:calendarWhite,
 
   // img
   splash: splash,

@@ -10,5 +10,7 @@ export const PATH = {
   SEARCH: '/search',
   DONE: '/done',
   DIARYDETAIL: '/diary/detail/:diaryId',
+  DIARYDETAIL_ENDPOINT: '/diary/detail/',
+  CALENDAR: '/calendar',
   CHART: '/chart',
 };
