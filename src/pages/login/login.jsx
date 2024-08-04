@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
+import { Alert } from '@mui/material';
 import { LoginWrap } from './styles';
 import InputForm from '../../components/InputForm/inputForm';
 import FormProvider from '../../components/formProvider/FormProvider';
@@ -12,7 +13,6 @@ import Header from '../../components/header/Header.jsx';
 import Button from '../../components/button/button.jsx';
 import { PATH } from '../../route/path.js';
 import { useLoginIn } from '../../api/queries/auth/log-in.js';
-import { Alert } from '@mui/material';
 
 const signupSchema = Yup.object().shape({
   userEmail: Yup.string()
