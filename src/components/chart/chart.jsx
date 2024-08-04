@@ -19,11 +19,17 @@ function CustomAxisLabel(props) {
   const { text, chartData } = props;
   return (
     <>
-      <defs>
+      {/* <defs>
         <style type="text/css">{`@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');`}</style>
-      </defs>
+      </defs> */}
       <image transform="translate(5,5)" href={getEmotionImage(text)} width="30px" height="30px" />
-      <text transform="translate(18.5, 52)" fontSize="20" fontFamily="'Jua', sans-sarif" fill={getEmotionColor(text)} textAnchor="middle">
+      <text
+        transform="translate(18.5, 52)"
+        fontSize="20"
+        // fontFamily="'Jua', sans-sarif" // 폰트 변경
+        fill={getEmotionColor(text)}
+        textAnchor="middle"
+      >
         {chartData[text]}
       </text>
     </>
