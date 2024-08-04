@@ -3,17 +3,17 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Switch, Button, DiaryBtn, CalendarBtn } from './ToggleButton.styles';
 import { Images } from '../../styles/images';
+import { PATH } from '../../route/path';
 
 function ToggleButton() {
   const nav = useNavigate();
   const location = useLocation();
-  const [value, setValue] = useState('Diary');
+  const [value, setValue] = useState('Calendar');
 
   useEffect(() => {
-    if (location.pathname === '/diaryList') {
+    if (location.pathname === PATH.DIARYLIST) {
       setValue('Diary');
-    } else if (location.pathname === '/*') {
-      // calendar 페이지 주소 들어가야함
+    } else if (location.pathname === PATH.CALENDAR) {
       setValue('Calendar');
     }
   }, [location.pathname]);
@@ -21,10 +21,10 @@ function ToggleButton() {
   const onChangeMode = (type) => {
     if (type === 'Diary') {
       setValue('Diary');
-      nav('/diaryList');
+      nav(PATH.DIARYLIST);
     } else if (type === 'Calendar') {
       setValue('Calendar');
-      nav('/*');
+      nav(PATH.CALENDAR);
     }
   };
 
@@ -36,7 +36,7 @@ function ToggleButton() {
         Diary List
       </DiaryBtn>
       <CalendarBtn value={value} onClick={() => onChangeMode('Calendar')}>
-        {value === 'Calendar' && <img src={Images.calendar} alt="icon" />}
+        {value === 'Calendar' && <img src={Images.calendarWhite} alt="icon" />}
         Calender
       </CalendarBtn>
     </Switch>
