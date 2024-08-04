@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -89,7 +89,7 @@ export default function Calendar() {
     requestAbortController.current = controller;
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetchHighlightedDays(initialValue);
     // abort request on unmount
     return () => requestAbortController.current?.abort();
