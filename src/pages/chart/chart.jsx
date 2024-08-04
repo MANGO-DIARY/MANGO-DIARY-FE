@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Stack, Typography } from '@mui/material';
 import Chart from '../../components/chart/chart';
-import { Header, NavBar } from '../../components';
+import { AiComment, Header, NavBar } from '../../components';
 import { Images } from '../../styles/images';
 import { Colors } from '../../styles/colors';
 
@@ -23,7 +23,7 @@ const example = {
     불안: 1,
     우울: 0,
   },
-  monthlyComment: 'monthlyComment',
+  monthlyComments: [{ aiComment: 'comment' }, { aiComment: 'comment' }, { aiComment: 'comment' }],
   statisticsComment: 'statisticsComment',
 };
 
@@ -52,11 +52,15 @@ export default function ChartPage() {
         </Typography>
       </Stack>
       <Chart chartData={chartData.emotionCounts} />
-      <Stack sx={{ paddingX: '30px', paddingY: 5 }}>
-        <Typography textAlign="center" color={Colors.Gray05}>
-          이번달에 아직 일기를 작성하지 않았어요. <br />
-          일기를 작성하고 ai의 코멘트를 받아보세요!
-        </Typography>
+      <Stack sx={{ paddingX: '30px', paddingY: 5 }} spacing={2}>
+        {chartData.monthlyComments.length ? (
+          chartData.monthlyComments.map((item) => <AiComment aiComment={item.aiComment} />)
+        ) : (
+          <Typography textAlign="center" color={Colors.Gray05}>
+            이번달에 아직 일기를 작성하지 않았어요. <br />
+            일기를 작성하고 ai의 코멘트를 받아보세요!
+          </Typography>
+        )}
       </Stack>
       <NavBar />
     </>
