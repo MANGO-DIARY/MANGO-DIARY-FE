@@ -19,7 +19,6 @@ function App() {
           <Route path={PATH.NICKNAME_RESET} element={<NickNameReset />} />
           <Route path={PATH.DIARYLIST} element={<DiaryList />} />
           <Route path={PATH.HOME} element={<Main />} />
-          <Route path="/test" element={<DiaryList2 />} />
           <Route path={PATH.SEARCH} element={<Search />} />
           <Route path={PATH.DONE} element={<Done />} />
           <Route path={PATH.DIARYDETAIL} element={<DiaryDetail />} />
