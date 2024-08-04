@@ -11,6 +11,8 @@ import { Images } from '../../styles/images';
 import Header from '../../components/header/Header.jsx';
 import Button from '../../components/button/button.jsx';
 import { PATH } from '../../route/path.js';
+import { useLoginIn } from '../../api/queries/auth/sign-in.js';
+import { Alert } from '@mui/material';
 
 const signupSchema = Yup.object().shape({
   userEmail: Yup.string()
@@ -27,8 +29,9 @@ const defaultValues = {
 };
 
 function Login() {
-  const loginInMutation = uselogIn();
+  const loginInMutation = useLoginIn();
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState('');
 
   const methods = useForm({
     defaultValues,
@@ -42,10 +45,21 @@ function Login() {
   } = methods;
 
   const onSubmit = (data) => {
-    loginInMutation.mutate({
-      userEmail: watch('userEmail'),
-      password: watch('password'),
-    });
+    loginInMutation.mutate(
+      {
+        userEmail: watch('userEmail'),
+        password: watch('password'),
+      },
+      {
+        onSuccess: () => {
+          navigate(PATH.HOME);
+        },
+        onError: (error) => {
+          console.log(error.message);
+          setErrorMessage(error.message);
+        },
+      }
+    );
   };
 
   const onInvalid = (error) => {
@@ -79,6 +93,17 @@ function Login() {
           <Button type="submit" label="다음" variant="BlackFull" size="medium" disabled={!isValid} onClick={onSubmit} />
         </div>
       </FormProvider>
+      {errorMessage && (
+        <Alert
+          severity="error"
+          onClose={() => {
+            setErrorMessage('');
+          }}
+          sx={{ margin: '0 30px' }}
+        >
+          {errorMessage}
+        </Alert>
+      )}
     </LoginWrap>
   );
 }

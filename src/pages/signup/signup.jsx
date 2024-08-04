@@ -187,13 +187,14 @@ function Signup() {
       )}
       {errorMessage && (
         <Alert
-          errorMessages={errorMessage}
           severity="error"
           onClose={() => {
             setErrorMessage('');
           }}
           sx={{ margin: '0 30px' }}
-        />
+        >
+          {errorMessage}
+        </Alert>
       )}
     </LoginWrap>
   );
