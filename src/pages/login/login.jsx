@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
+import { Alert } from '@mui/material';
 import { LoginWrap } from './styles';
 import InputForm from '../../components/InputForm/inputForm';
 import FormProvider from '../../components/formProvider/FormProvider';
@@ -10,6 +11,8 @@ import FormProvider from '../../components/formProvider/FormProvider';
 import { Images } from '../../styles/images';
 import Header from '../../components/header/Header.jsx';
 import Button from '../../components/button/button.jsx';
+import { PATH } from '../../route/path.js';
+import { useLoginIn } from '../../api/queries/auth/log-in.js';
 
 const signupSchema = Yup.object().shape({
   userEmail: Yup.string()
@@ -26,8 +29,9 @@ const defaultValues = {
 };
 
 function Login() {
-  // const signInMutation = useSignIn();
+  const loginInMutation = useLoginIn();
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState('');
 
   const methods = useForm({
     defaultValues,
@@ -37,14 +41,25 @@ function Login() {
   const {
     handleSubmit,
     formState: { isValid },
+    watch,
   } = methods;
 
   const onSubmit = (data) => {
-    // const { userEmail, password } = data;
-    // signInMutation.mutate({
-    //   userEmail,
-    //   password: sha256(password),
-    // });
+    loginInMutation.mutate(
+      {
+        userEmail: watch('userEmail'),
+        password: watch('password'),
+      },
+      {
+        onSuccess: () => {
+          navigate(PATH.HOME);
+        },
+        onError: (error) => {
+          console.log(error.message);
+          setErrorMessage(error.message);
+        },
+      }
+    );
   };
 
   const onInvalid = (error) => {
@@ -58,7 +73,7 @@ function Login() {
 
   return (
     <LoginWrap>
-      <Header title="이메일로 로그인" iconSrc={Images.left} />
+      <Header title="이메일로 로그인" iconSrc={Images.left} onClick={() => navigate(PATH.root)} />
       <div className="top">
         <img src={Images.joy} alt="기쁨이 이미지" />
         <div className="comment">
@@ -70,14 +85,25 @@ function Login() {
       </div>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit, onInvalid)}>
         <div className="input">
-          <InputForm name="email" IconSrc={Images.email} placeholder="이메일을 입력해주세요." />
-          <InputForm name="password" IconSrc={Images.passward} placeholder="비밀번호를 입력해주세요." />
-          <Button label="회원가입 하러가기" variant="OutlineBlack" size="small" disabled={!isValid} onClick={navigate('/signup')} />
+          <InputForm name="userEmail" IconSrc={Images.email} placeholder="이메일을 입력해주세요." />
+          <InputForm type="password" name="password" IconSrc={Images.passward} placeholder="비밀번호를 입력해주세요." />
+          <Button label="회원가입 하러가기" variant="OutlineBlack" size="small" disabled={!isValid} onClick={() => navigate(PATH.SIGNUP)} />
         </div>
         <div className="bottom">
-          <Button type="submit" label="다음" variant="BlackFull" size="medium" disabled={!isValid} />
+          <Button type="submit" label="다음" variant="BlackFull" size="medium" disabled={!isValid} onClick={onSubmit} />
         </div>
       </FormProvider>
+      {errorMessage && (
+        <Alert
+          severity="error"
+          onClose={() => {
+            setErrorMessage('');
+          }}
+          sx={{ margin: '0 30px' }}
+        >
+          {errorMessage}
+        </Alert>
+      )}
     </LoginWrap>
   );
 }
