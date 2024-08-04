@@ -14,6 +14,7 @@ import passKey from '../../public/assets/icon/ico-Passkey.svg';
 import person from '../../public/assets/icon/ico-Person.svg';
 import verify from '../../public/assets/icon/ico-verify.svg';
 import left from '../../public/assets/icon/icon-left.svg';
+import right from '../../public/assets/icon/icon-right.svg';
 import menu from '../../public/assets/icon/icon-menu.svg';
 import list from '../../public/assets/icon/ico-list.svg';
 
@@ -39,6 +40,7 @@ import depression from '../../public/assets/img/img-depression.svg';
 import peace from '../../public/assets/img/img-peace.svg';
 import sad from '../../public/assets/img/img-sad.svg';
 import ai from '../../public/assets/img/img-ai.svg';
+import rank from '../../public/assets/img/img-rank.svg';
 
 // prettier-ignore
 export const Images = {
@@ -52,6 +54,7 @@ export const Images = {
   person: person,
   verify: verify,
   left: left,
+  right: right,
   menu: menu,
   list: list,
   plus: plus,
@@ -67,6 +70,7 @@ export const Images = {
   // img
   splash: splash,
   background: background,
+  rank : rank,
 
 
   // 기분들
