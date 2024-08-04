@@ -167,7 +167,7 @@ function Signup() {
               }}
             />
           )}
-          <InputForm name="password" IconSrc={Images.passward} placeholder="비밀번호를 입력해주세요." />
+          <InputForm type="password" name="password" IconSrc={Images.passward} placeholder="비밀번호를 입력해주세요." />
           <Button label="로그인 하러가기" variant="OutlineBlack" size="small" disabled={!isValid} onClick={() => navigate('/login')} />
         </div>
         <div className="bottom">

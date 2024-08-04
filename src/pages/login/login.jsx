@@ -11,7 +11,7 @@ import { Images } from '../../styles/images';
 import Header from '../../components/header/Header.jsx';
 import Button from '../../components/button/button.jsx';
 import { PATH } from '../../route/path.js';
-import { useLoginIn } from '../../api/queries/auth/sign-in.js';
+import { useLoginIn } from '../../api/queries/auth/log-in.js';
 import { Alert } from '@mui/material';
 
 const signupSchema = Yup.object().shape({
@@ -86,7 +86,7 @@ function Login() {
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit, onInvalid)}>
         <div className="input">
           <InputForm name="userEmail" IconSrc={Images.email} placeholder="이메일을 입력해주세요." />
-          <InputForm name="password" IconSrc={Images.passward} placeholder="비밀번호를 입력해주세요." />
+          <InputForm type="password" name="password" IconSrc={Images.passward} placeholder="비밀번호를 입력해주세요." />
           <Button label="회원가입 하러가기" variant="OutlineBlack" size="small" disabled={!isValid} onClick={() => navigate(PATH.SIGNUP)} />
         </div>
         <div className="bottom">
