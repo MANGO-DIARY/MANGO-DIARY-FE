@@ -1,7 +1,7 @@
 import { Images } from '../styles/images';
 
-function getEmotionImage(emotionName) {
-  switch (emotionName) {
+function getEmotionImage(emotion) {
+  switch (emotion) {
     case '신남':
       return Images.excited;
     case '기쁨':
