@@ -13,7 +13,7 @@ import Header from '../../components/header/Header.jsx';
 import Button from '../../components/button/button.jsx';
 import { useSignup } from '../../api/queries/auth/sign-up.js';
 import useEmailAuthStore from '../../store/auth/emailAuthStore';
-import { useSendEmail } from '../../api/queries/auth/send-email.jsx';
+import { useSendEmail } from '../../api/queries/auth/send-email.js';
 import { useVerifyEmail } from '../../api/queries/auth/verify-email.js';
 import { PATH } from '../../route/path.js';
 
@@ -134,7 +134,7 @@ function Signup() {
 
   return (
     <LoginWrap>
-      <Header title="회원가입" iconSrc={Images.left} />
+      <Header title="회원가입" iconSrc={Images.left} onClick={() => navigate(PATH.LOGIN)} />
       <div className="top">
         <img src={Images.joy} alt="기쁨이 이미지" />
       </div>

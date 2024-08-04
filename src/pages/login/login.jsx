@@ -10,6 +10,7 @@ import FormProvider from '../../components/formProvider/FormProvider';
 import { Images } from '../../styles/images';
 import Header from '../../components/header/Header.jsx';
 import Button from '../../components/button/button.jsx';
+import { PATH } from '../../route/path.js';
 
 const signupSchema = Yup.object().shape({
   userEmail: Yup.string()
@@ -26,7 +27,7 @@ const defaultValues = {
 };
 
 function Login() {
-  // const signInMutation = useSignIn();
+  const loginInMutation = uselogIn();
   const navigate = useNavigate();
 
   const methods = useForm({
@@ -37,14 +38,14 @@ function Login() {
   const {
     handleSubmit,
     formState: { isValid },
+    watch,
   } = methods;
 
   const onSubmit = (data) => {
-    // const { userEmail, password } = data;
-    // signInMutation.mutate({
-    //   userEmail,
-    //   password: sha256(password),
-    // });
+    loginInMutation.mutate({
+      userEmail: watch('userEmail'),
+      password: watch('password'),
+    });
   };
 
   const onInvalid = (error) => {
@@ -58,7 +59,7 @@ function Login() {
 
   return (
     <LoginWrap>
-      <Header title="이메일로 로그인" iconSrc={Images.left} />
+      <Header title="이메일로 로그인" iconSrc={Images.left} onClick={() => navigate(PATH.root)} />
       <div className="top">
         <img src={Images.joy} alt="기쁨이 이미지" />
         <div className="comment">
@@ -72,10 +73,10 @@ function Login() {
         <div className="input">
           <InputForm name="email" IconSrc={Images.email} placeholder="이메일을 입력해주세요." />
           <InputForm name="password" IconSrc={Images.passward} placeholder="비밀번호를 입력해주세요." />
-          <Button label="회원가입 하러가기" variant="OutlineBlack" size="small" disabled={!isValid} onClick={navigate('/signup')} />
+          <Button label="회원가입 하러가기" variant="OutlineBlack" size="small" disabled={!isValid} onClick={() => navigate(PATH.SIGNUP)} />
         </div>
         <div className="bottom">
-          <Button type="submit" label="다음" variant="BlackFull" size="medium" disabled={!isValid} />
+          <Button type="submit" label="다음" variant="BlackFull" size="medium" disabled={!isValid} onClick={onSubmit} />
         </div>
       </FormProvider>
     </LoginWrap>
