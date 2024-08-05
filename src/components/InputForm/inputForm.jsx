@@ -37,14 +37,6 @@ export default function InputForm({
     setValue(name, '');
   };
 
-  // if (loading) {
-  //   return (
-  //     <div className="RHFInput">
-  //       <Skeleton />
-  //     </div>
-  //   );
-  // }
-
   if (readonly) {
     return (
       <div className="RHFInput">

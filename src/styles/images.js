@@ -27,6 +27,7 @@ import search from '../../public/assets/icon/icon-search.svg';
 import cancel from '../../public/assets/icon/icon-cancel.svg';
 import headerSearch from '../../public/assets/icon/icon-headerSearch.svg';
 import calendarWhite from '../../public/assets/icon/ico-calendarWhite.svg';
+import arrowRight from '../../public/assets/icon/icon-chevron-right.svg';
 
 // img
 import splash from '../../public/assets/img/img-splash-head.svg';
@@ -66,6 +67,7 @@ export const Images = {
   cancel: cancel,
   headerSearch: headerSearch,
   calendarWhite:calendarWhite,
+  arrowRight:arrowRight,
 
   // img
   splash: splash,
