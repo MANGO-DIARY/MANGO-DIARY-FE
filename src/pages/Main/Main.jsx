@@ -7,8 +7,8 @@ import NavBar from '../../components/navBar/navBar';
 import { MainContainer, MainTop, MainMiddle, FrameHeader, HeaderButton, MainBottom, Rank, EmotionRank, First, Second, Third, Phase } from './Main.styles';
 import { useMain } from '../../api/queries/main/main';
 import { useUserInfo } from '../../api/queries/user/useUserInfo';
-import getEmotionImage from '../../util/get-emotion-img';
 import { useKakaoLogin } from '../../api/queries/auth/kakao-Login';
+import getEmotionImage from '../../util/get-emotion-img';
 import { PATH_API } from '../../api/path.js';
 
 function Main() {
@@ -20,7 +20,7 @@ function Main() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const code = queryParams.get('code');
-  const { mutate, isLoading } = useKakaoLogin(code);
+  const { mutate, isLoading: KakaoLoading } = useKakaoLogin(code);
 
   useEffect(() => {
     if (code) {
@@ -32,7 +32,7 @@ function Main() {
   }, [code, mutate]);
 
   // 로딩 중 상태 처리
-  if (isMainLoading || isUserLoading) return <div>로딩 중...</div>;
+  if (isMainLoading || isUserLoading || KakaoLoading) return <div>로딩 중...</div>;
 
   // 데이터가 없을 때의 처리
   if (!mainData) return <div>데이터가 없습니다</div>;
