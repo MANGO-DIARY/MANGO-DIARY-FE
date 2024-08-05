@@ -11,8 +11,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
       manifest: {
-        name: 'Vite PWA Project',
-        short_name: 'Vite PWA Project',
+        name: 'Mango Diary',
+        short_name: 'Mango Diary',
+        description: 'Mango Diary : AI 감정 일기 어플리케이션',
         theme_color: '#ffffff',
         icons: [
           {
