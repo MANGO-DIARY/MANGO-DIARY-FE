@@ -17,16 +17,16 @@ function Setting() {
   return (
     <SettingContainer>
       <div className="top">설정</div>
-      <UserGreeting name="김민정" />
+      <UserGreeting name={userInfo?.userName} />
       <div className="userInfo">
         <div className="title">정보</div>
         <div className="info">
           <div className="infoContent">Email</div>
-          <InputFormUI inputValue="유저 이메일" name="userEmail" IconSrc={Images.email} disabled />
+          <InputFormUI inputValue={userInfo?.userEmail} name="userEmail" IconSrc={Images.email} disabled />
         </div>
         <div className="info">
           <div className="infoContent">Nickname</div>
-          <InputFormUI inputValue="닉네임" name="userEmail" IconSrc={Images.person} disabled />
+          <InputFormUI inputValue={userInfo?.userName} name="userEmail" IconSrc={Images.person} disabled />
         </div>
       </div>
       <div className="more" onClick={() => navigate(PATH.NICKNAME_RESET)}>
