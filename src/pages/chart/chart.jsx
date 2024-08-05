@@ -53,8 +53,13 @@ export default function ChartPage() {
       </Stack>
       <Chart chartData={chartData.emotionCounts} />
       <Stack sx={{ paddingX: '30px', paddingY: 5 }} spacing={2}>
-        {chartData.monthlyComments.length ? (
-          chartData.monthlyComments.map((item) => <AiComment aiComment={item.aiComment} />)
+          {chartData.monthlyComments && chartData.monthlyComments.length ? (
+            <>
+              <Typography variant="h6">코멘트 모아보기</Typography>
+              {example.monthlyComments.map((item) => (
+                <AiComment aiComment={item.aiComment} />
+              ))}
+            </>
         ) : (
           <Typography textAlign="center" color={Colors.Gray05}>
             이번달에 아직 일기를 작성하지 않았어요. <br />
