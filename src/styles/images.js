@@ -17,6 +17,7 @@ import left from '../../public/assets/icon/icon-left.svg';
 import right from '../../public/assets/icon/icon-right.svg';
 import menu from '../../public/assets/icon/icon-menu.svg';
 import list from '../../public/assets/icon/ico-list.svg';
+import MainAi from '../../public/assets/icon/icon-mainAi.svg';
 
 import plus from '../../public/assets/icon/ico-plus.svg';
 import home from '../../public/assets/icon/ico-home.svg';
@@ -68,6 +69,7 @@ export const Images = {
   headerSearch: headerSearch,
   calendarWhite:calendarWhite,
   arrowRight:arrowRight,
+  MainAi: MainAi,
 
   // img
   splash: splash,
