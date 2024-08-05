@@ -3,7 +3,6 @@ import { PATH_API } from './path';
 
 const TIMEOUT_TIME = 10_000;
 
-
 export const axiosInstance = axios.create({
   baseURL: PATH_API.API_DOMAIN,
   headers: {

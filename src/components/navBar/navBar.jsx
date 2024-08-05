@@ -61,7 +61,7 @@ function NavBar() {
           label="설정"
           icon={<img src={Images.settings} alt="plus-icon" />}
           onClick={() => {
-            navigate(PATH.HOME);
+            navigate(PATH.SETTING);
           }}
         />
       </BottomNav>
