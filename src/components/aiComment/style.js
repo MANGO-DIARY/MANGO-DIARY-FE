@@ -11,6 +11,6 @@ export const AiCommentContainer = styled.div`
     margin-right: 1rem;
   }
   & > .ai-comment {
-    font-family: 'Jua', sans-serif !important;
+    /* font-family: 'Jua', sans-serif !important; */
   }
 `;
