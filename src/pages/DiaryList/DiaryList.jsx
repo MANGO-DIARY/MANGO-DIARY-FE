@@ -10,6 +10,7 @@ import { Images } from '../../styles/images';
 import ToggleButton from '../../components/ToggleButton/ToggleButton';
 import { Button } from '../../components/ToggleButton/ToggleButton.styles';
 import { useDiaryList } from '../../api/queries/diary/diary-list';
+import NavBar from '../../components/navBar/navBar';
 
 function DiaryList() {
   const { ref, inView } = useInView();
@@ -65,6 +66,7 @@ function DiaryList() {
           {isFetchingNextPage && <p>Loading ...</p>}
         </div>
       </DiaryListWrapper>
+      <NavBar></NavBar>
     </DiaryListWrapper>
   );
 }

@@ -5,6 +5,7 @@ import DiaryList from './pages/DiaryList/DiaryList';
 import Main from './pages/Main/Main.jsx';
 import Search from './pages/Search/Search';
 import { PATH } from './route/path.js';
+import Setting from './pages/setting/Setting.jsx';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path={PATH.DIARYDETAIL} element={<DiaryDetail />} />
           <Route path={PATH.CHART} element={<ChartPage />} />
           <Route path={PATH.CALENDAR} element={<CalendarPage />} />
+          <Route path={PATH.SETTING} element={<Setting />} />
           {/* notFound : 일치하는 라우트 없는 경우 처리 */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -18,6 +18,8 @@ import right from '../../public/assets/icon/icon-right.svg';
 import menu from '../../public/assets/icon/icon-menu.svg';
 import list from '../../public/assets/icon/ico-list.svg';
 import deleteIcon from '../../public/assets/icon/ico-delete.svg';
+import MainAi from '../../public/assets/icon/icon-mainAi.svg';
+
 import plus from '../../public/assets/icon/ico-plus.svg';
 import home from '../../public/assets/icon/ico-home.svg';
 import calendar from '../../public/assets/icon/ico-calendar.svg';
@@ -27,6 +29,7 @@ import search from '../../public/assets/icon/icon-search.svg';
 import cancel from '../../public/assets/icon/icon-cancel.svg';
 import headerSearch from '../../public/assets/icon/icon-headerSearch.svg';
 import calendarWhite from '../../public/assets/icon/ico-calendarWhite.svg';
+import arrowRight from '../../public/assets/icon/icon-chevron-right.svg';
 
 // img
 import splash from '../../public/assets/img/img-splash-head.svg';
@@ -67,6 +70,9 @@ export const Images = {
   headerSearch: headerSearch,
   calendarWhite:calendarWhite,
   deleteIcon: deleteIcon,
+  arrowRight:arrowRight,
+  MainAi: MainAi,
+
 
   // img
   splash: splash,
