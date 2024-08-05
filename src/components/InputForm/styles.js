@@ -12,7 +12,9 @@ export const InputWrap = styled.main`
     display: flex;
     width: 100%;
     gap: 10px;
-    padding: 6px;
+    padding: 0 6px;
+    align-items: center;
+
     border-bottom: 1px solid ${Colors.Gray03};
     & > .SearchIcon {
       width: 20px;
