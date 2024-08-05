@@ -35,20 +35,23 @@ const questionMarkStyle = css`
   letter-spacing: 2px;
 `;
 
-const UserGreeting = ({ name }) => (
-  <UserGreetingWrap>
-    <img
-      loading="lazy"
-      src="https://cdn.builder.io/api/v1/image/assets/TEMP/0057a916b79329c3e7f2eacc0c84139f28b1e2d363d01f4ef2764710b444ea9e?apiKey=2f1c3d702854430c9d5f68ac3d9e3238&&apiKey=2f1c3d702854430c9d5f68ac3d9e3238"
-      className="img"
-    />
-    <div className="greetingStyle">
-      <span>{name} </span>
-      <span>님, </span>
-      <br />
-      <span>오늘 하루는 어떠셨나요?</span>
-    </div>
-  </UserGreetingWrap>
-);
+function UserGreeting({ name }) {
+  return (
+    <UserGreetingWrap>
+      {/* eslint-disable-next-line jsx-a11y/alt-text */}
+      <img
+        loading="lazy"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/0057a916b79329c3e7f2eacc0c84139f28b1e2d363d01f4ef2764710b444ea9e?apiKey=2f1c3d702854430c9d5f68ac3d9e3238&&apiKey=2f1c3d702854430c9d5f68ac3d9e3238"
+        className="img"
+      />
+      <div className="greetingStyle">
+        <span>{name} </span>
+        <span>님, </span>
+        <br />
+        <span>오늘 하루는 어떠셨나요?</span>
+      </div>
+    </UserGreetingWrap>
+  );
+}
 
 export default UserGreeting;

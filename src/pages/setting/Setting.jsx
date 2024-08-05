@@ -20,16 +20,16 @@ function Setting() {
         <div className="title">정보</div>
         <div className="info">
           <div className="infoContent">Email</div>
-          <InputFormUI inputValue="유저 이메일" name="userEmail" IconSrc={Images.email} disabled={true} />
+          <InputFormUI inputValue="유저 이메일" name="userEmail" IconSrc={Images.email} disabled />
         </div>
         <div className="info">
           <div className="infoContent">Nickname</div>
-          <InputFormUI inputValue="닉네임" name="userEmail" IconSrc={Images.person} disabled={true} />
+          <InputFormUI inputValue="닉네임" name="userEmail" IconSrc={Images.person} disabled />
         </div>
       </div>
       <div className="more" onClick={() => navigate(PATH.NICKNAME_RESET)}>
         <div className="title">닉네임 변경</div>
-        <img className="img" src={Images.arrowRight} />
+        <img className="img" src={Images.arrowRight} alt="오른쪽 화살표" />
       </div>
       <div className="navBar">
         <NavBar />
