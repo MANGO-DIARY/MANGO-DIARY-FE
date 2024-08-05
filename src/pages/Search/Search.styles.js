@@ -1,8 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import styled from '@emotion/styled';
+import { Images } from '../../styles/images';
 
 export const SearchWrapper = styled.div`
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const SearchBar = styled.div`
@@ -36,6 +40,7 @@ export const SearchInput = styled.input`
   font-size: 17px;
   padding-left: 10px;
   flex-grow: 1;
+  flex-shrink: 0;
   font-family: 'Ownglyph_ryurue-Rg', sans-serif !important;
 `;
 
@@ -53,4 +58,11 @@ export const CancelButton = styled.button`
   border: none;
   background: none;
   font-family: 'Ownglyph_ryurue-Rg', sans-serif !important;
+`;
+
+export const NavBarWrapper = styled.div`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-image: url(${Images.background});
 `;

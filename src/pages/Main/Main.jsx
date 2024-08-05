@@ -36,7 +36,7 @@ function Main() {
             <img src={Images.right} alt="icon" />
           </HeaderButton>
         </FrameHeader>
-        <DiaryItem emotion={mainData.todayDiary.emotion} date={mainData.todayDiary.date} content={mainData.todayDiary.content} />
+        <DiaryItem emotion={mainData.todayDiary?.emotion} date={mainData.todayDiary?.date} content={mainData.todayDiary?.content} />
       </MainMiddle>
       <MainBottom>
         <FrameHeader>

@@ -2,7 +2,6 @@ import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { DiaryDetail, Done, Login, NickNameReset, NotFound, PasswordReset, SignUp, Splash, CalendarPage } from './pages';
 import DiaryList from './pages/DiaryList/DiaryList';
-import DiaryList2 from './pages/DiaryList/DiaryList2';
 import Main from './pages/Main/Main.jsx';
 import Search from './pages/Search/Search';
 import { PATH } from './route/path.js';

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
-import { DiaryListWrapper, EmotionListWrapper, EmotionAll, Toggle, ScrollableEmotionList } from './DiaryList.styles';
+import { DiaryListWrapper, EmotionListWrapper, EmotionAll, Toggle, ScrollableEmotionList, NavBarWrapper, DiaryContent } from './DiaryList.styles';
 import Header from '../../components/header/Header';
 import EmotionButton from '../../components/EmotionButton/EmotionButton';
 import emotionList from '../../util/constants';
@@ -10,6 +10,7 @@ import { Images } from '../../styles/images';
 import ToggleButton from '../../components/ToggleButton/ToggleButton';
 import { Button } from '../../components/ToggleButton/ToggleButton.styles';
 import { useDiaryList } from '../../api/queries/diary/diary-list';
+import NavBar from '../../components/navBar/navBar';
 
 function DiaryList() {
   const { ref, inView } = useInView();
@@ -41,7 +42,7 @@ function DiaryList() {
 
   return (
     <DiaryListWrapper>
-      <Header title="일기장" iconSrc={Images.left} onClick={() => nav(-1)} showButtonRight onRightClick={() => nav('/search')} />
+      <Header title="일기장" iconSrc={Images.left} onClick={() => nav('/home')} showButtonRight onRightClick={() => nav('/search')} />
       <Toggle>
         <ToggleButton />
       </Toggle>
@@ -51,7 +52,7 @@ function DiaryList() {
           <EmotionButton onClick={() => handleEmotionClick(item.emotion)} key={item.emotion} {...item} />
         ))}
       </ScrollableEmotionList>
-      <DiaryListWrapper>
+      <DiaryContent>
         {isNotData && <>등록된 일기가 없습니다.</>}
         {isFetched &&
           data?.pages.map((group, i) => (
@@ -61,10 +62,12 @@ function DiaryList() {
               ))}
             </React.Fragment>
           ))}
-        <div style={{ width: '100%' }} ref={ref}>
-          {isFetchingNextPage && <p>Loading ...</p>}
-        </div>
-      </DiaryListWrapper>
+        {isFetchingNextPage && <p>Loading ...</p>}
+        <div style={{ width: '100%' }} ref={ref}></div>
+      </DiaryContent>
+      <NavBarWrapper>
+        <NavBar />
+      </NavBarWrapper>
     </DiaryListWrapper>
   );
 }

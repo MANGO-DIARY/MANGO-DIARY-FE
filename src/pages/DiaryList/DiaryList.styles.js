@@ -2,12 +2,14 @@
 import React, { useRef } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { Images } from '../../styles/images';
 
 export const DiaryListWrapper = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  overflow: hidden;
 
   &::-webkit-scrollbar {
     display: none;
@@ -52,6 +54,19 @@ export const Toggle = styled.div`
   align-items: center;
   margin-top: 2px;
   margin-bottom: 13px;
+`;
+
+export const DiaryContent = styled.div`
+  width: 100%;
+  overflow-y: hidden;
+`;
+
+export const NavBarWrapper = styled.div`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-image: url(${Images.background});
+  z-index: 100;
 `;
 
 export function ScrollableEmotionList({ children }) {

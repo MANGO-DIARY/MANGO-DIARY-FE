@@ -2,10 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
-import { SearchWrapper, SearchBar, SearchInputWrapper, SearchInput, InputCancel, CancelButton } from './Search.styles';
+import { SearchWrapper, SearchBar, SearchInputWrapper, SearchInput, InputCancel, CancelButton, NavBarWrapper } from './Search.styles';
 import DiaryItem from '../../components/DiaryItem/DiaryItem';
 import { Images } from '../../styles/images';
 import { useDiarySearch } from '../../api/queries/diary/diary-search';
+import NavBar from '../../components/navBar/navBar';
+import { DiaryContent } from '../DiaryList/DiaryList.styles';
 
 function Search() {
   const [keyword, setKeyword] = useState('');
@@ -53,16 +55,19 @@ function Search() {
         </SearchInputWrapper>
         <CancelButton onClick={() => nav('/diary-list')}>취소</CancelButton>
       </SearchBar>
+      <DiaryContent>
+        {isLoading && <p>Loading...</p>}
+        {isError && <p>Something went wrong...</p>}
+        {isNotData && <p>No results found.</p>}
 
-      {isLoading && <p>Loading...</p>}
-      {isError && <p>Something went wrong...</p>}
-      {isNotData && <p>No results found.</p>}
-
-      {/* 데이터 렌더링 */}
-      {data && data.pages && data.pages.map((page) => page.content.map((item) => <DiaryItem key={item.id} {...item} />))}
-
-      <div ref={ref} style={{ height: 20, visibility: 'hidden' }} />
-      {isFetchingNextPage && <p>Loading more...</p>}
+        {/* 데이터 렌더링 */}
+        {data && data.pages && data.pages.map((page) => page.content.map((item) => <DiaryItem key={item.id} {...item} />))}
+        <div ref={ref} style={{ height: 20, visibility: 'hidden' }} />
+        {isFetchingNextPage && <p>Loading more...</p>}
+      </DiaryContent>
+      <NavBarWrapper>
+        <NavBar />
+      </NavBarWrapper>
     </SearchWrapper>
   );
 }
