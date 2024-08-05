@@ -9,35 +9,26 @@ import Chart from '../../components/chart/chart';
 import { AiComment, Header, NavBar } from '../../components';
 import { Images } from '../../styles/images';
 import { Colors } from '../../styles/colors';
-
-const example = {
-  yearMonth: '2024-08',
-  emotionCounts: {
-    기쁨: 2,
-    신남: 5,
-    행복: 2,
-    평온: 3,
-    슬픔: 1,
-    분노: 2,
-    불안: 1,
-    우울: 0,
-  },
-  // aiComments: ['comment', 'comment', 'comment'],
-  aiComment: [],
-  statisticsComment: 'statisticsComment',
-};
+import { useChart } from '../../api/queries/chart/chart';
 
 const today = dayjs(new Date());
 
 export default function ChartPage() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(today); // dayjs 객체!!
-  const [chartData, setChartData] = useState({});
+  const { data: chartData, isLoading: isChartLoading, refetch } = useChart({ yearMonth: selectedDate.format('YYYY-MM') });
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    setChartData(example);
-  }, []);
+    if (selectedDate) {
+      refetch();
+    }
+  }, [refetch, selectedDate]);
+
+  if (isChartLoading) {
+    return <div>로딩 중...</div>;
+  }
 
   return (
     <div className="use-navbar">
@@ -48,9 +39,10 @@ export default function ChartPage() {
         <Box display="flex" justifyContent="space-between">
           <Typography variant="h3">
             망고럭키님의 <br />
-            {selectedDate.month() + 1}월 리포트
+            {selectedDate.year()}년 {selectedDate.month() + 1}월 리포트
           </Typography>
           <Button
+            variant="text"
             sx={{ alignSelf: 'end' }}
             onClick={() => {
               setIsOpen(true);
@@ -73,7 +65,7 @@ export default function ChartPage() {
           <Chart chartData={chartData.emotionCounts} />
           <Stack sx={{ paddingX: '30px', paddingY: 5 }} spacing={2}>
             <Typography variant="h6">코멘트 모아보기</Typography>
-            {chartData.aiComments && chartData.aiComments.length && example.aiComments.map((item) => <AiComment aiComment={item} />)}
+            {chartData.aiComments && chartData.aiComments.length && chartData.aiComments.map((item, index) => <AiComment key={index} aiComment={item} />)}
           </Stack>
         </>
       ) : (
@@ -102,7 +94,10 @@ function ChartDatePicker({ selectedDate, setSelectedDate, isOpen, setIsOpen }) {
         open={isOpen}
         onOpen={() => setIsOpen(true)}
         onClose={() => setIsOpen(false)}
-        onChange={setSelectedDate}
+        onChange={(e) => {
+          setSelectedDate(e);
+          setIsOpen(false);
+        }}
       />
     </LocalizationProvider>
   );
