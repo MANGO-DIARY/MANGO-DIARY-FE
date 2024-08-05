@@ -3,13 +3,10 @@ import { PATH_API } from './path';
 
 const TIMEOUT_TIME = 10_000;
 
-const 임시토큰 = 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTcyMjg3ODE3MywiZXhwIjoxNzIyODgxNzczfQ.TJzzA1fYQJ9kx9xbJlZquGR3z_sbe3HqrURPFef4pLY';
-
 export const axiosInstance = axios.create({
   baseURL: PATH_API.API_DOMAIN,
   headers: {
     'Content-Type': 'application/vnd.api+json',
-    Authorization: `Bearer ${임시토큰}`,
   },
   // withCredentials:true, // 쿠키 cors 통신 설정
 });
@@ -28,8 +25,8 @@ let firstRequestCancelToken = null;
 
 axiosInstance.interceptors.request.use(
   async (config) => {
-    // const token = localStorage.getItem('capsule_token') as any;
-    // config.headers.Authorization = `Bearer ${token?.access}`;
+    const token = localStorage.getItem('accessToken');
+    config.headers.Authorization = `Bearer ${token}`;
 
     firstRequestCancelToken = cancelTokenSource();
     config.cancelToken = firstRequestCancelToken.token;

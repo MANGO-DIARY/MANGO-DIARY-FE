@@ -7,9 +7,11 @@ import UserGreeting from '../../components/userGreeting/userGreeting.jsx';
 import { Images } from '../../styles/images.js';
 import InputFormUI from '../../components/InputFormUI/inputForm.jsx';
 import { PATH } from '../../route/path.js';
+import { useUserInfo } from '../../api/queries/user/useUserInfo.js';
 
 function Setting() {
   const navigate = useNavigate(); // 네비게이션 훅
+  const { data: userInfo, isLoading: isUserLoading } = useUserInfo();
 
   // 데이터가 있을 때의 렌더링
   return (
