@@ -12,6 +12,7 @@ import { Images } from '../../styles/images';
 import Header from '../../components/header/Header.jsx';
 import Button from '../../components/button/button.jsx';
 import { useNickNameReset } from '../../api/queries/auth/nickname-reset.js';
+import { PATH } from '../../route/path.js';
 
 const defaultValues = {
   password: '',
@@ -45,6 +46,7 @@ function NickNameReset() {
         onSuccess: () => {
           setSuccessMessage('이메일 인증이 완료되었습니다.');
           setErrorMessage('');
+          navigate(PATH.HOME);
         },
         onError: (error) => {
           setErrorMessage(error.message ? error.message : '알 수 없는 오류가 발생했습니다.');
