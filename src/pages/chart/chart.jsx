@@ -10,6 +10,7 @@ import { AiComment, Header, NavBar } from '../../components';
 import { Images } from '../../styles/images';
 import { Colors } from '../../styles/colors';
 import { useChart } from '../../api/queries/chart/chart';
+import { useUserInfo } from '../../api/queries/user/useUserInfo';
 
 const today = dayjs(new Date());
 
@@ -17,6 +18,7 @@ export default function ChartPage() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(today); // dayjs 객체!!
   const { data: chartData, isLoading: isChartLoading, refetch } = useChart({ yearMonth: selectedDate.format('YYYY-MM') });
+  const { data: userInfo, isLoading: isUserLoading } = useUserInfo(); // 데이터, 로딩 상태, 에러 상태
 
   const navigate = useNavigate();
 
@@ -26,7 +28,7 @@ export default function ChartPage() {
     }
   }, [refetch, selectedDate]);
 
-  if (isChartLoading) {
+  if (isChartLoading || isUserLoading) {
     return <div>로딩 중...</div>;
   }
 
@@ -38,7 +40,7 @@ export default function ChartPage() {
         <ChartDatePicker {...{ selectedDate, setSelectedDate, isOpen, setIsOpen }} />
         <Box display="flex" justifyContent="space-between">
           <Typography variant="h3">
-            망고럭키님의 <br />
+            {userInfo?.userName}님의 <br />
             {selectedDate.year()}년 {selectedDate.month() + 1}월 리포트
           </Typography>
           <Button
@@ -65,7 +67,7 @@ export default function ChartPage() {
           <Chart chartData={chartData.emotionCounts} />
           <Stack sx={{ paddingX: '30px', paddingY: 5 }} spacing={2}>
             <Typography variant="h6">코멘트 모아보기</Typography>
-            {chartData.aiComments && chartData.aiComments.length && chartData.aiComments.map((item, index) => <AiComment key={index} aiComment={item} />)}
+            {chartData.aiComments && chartData.aiComments.length && chartData.aiComments.map((item) => <AiComment aiComment={item} />)}
           </Stack>
         </>
       ) : (
