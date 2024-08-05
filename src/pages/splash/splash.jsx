@@ -1,11 +1,23 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SplashWrap } from './styles';
 import { Images } from '../../styles/images';
 import Button from '../../components/button/button';
+import { axiosInstance } from '../../api/axios.js';
+import { PATH } from '../../route/path.js';
 
 function Splash() {
-  const handleKakaoLogin = () => {
-    console.log('kakao login');
+  const navigate = useNavigate();
+  const redirectUri = encodeURIComponent('http://localhost:5173/home');
+
+  const handleKakaoLogin = async () => {
+    try {
+      const response = await axiosInstance.get(`http://43.200.195.86:8080/api/v1/oauth/kakao/sign-in-uri?redirect-uri=${redirectUri}`);
+      console.log(response);
+      window.location.href = response.data.signInUri;
+    } catch (error) {
+      console.error('Error fetching Kakao login URL:', error);
+    }
   };
   return (
     <SplashWrap>
@@ -24,7 +36,7 @@ function Splash() {
       </div>
       <div className="bottom">
         <Button label="카카오로 계속하기" variant="kakao" size="kakao" prevIcon={Images.kakao} onClick={handleKakaoLogin} />
-        <a href="/login" className="email">
+        <a href={PATH.LOGIN} className="email">
           이메일로 로그인
         </a>
       </div>
