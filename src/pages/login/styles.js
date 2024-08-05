@@ -4,7 +4,8 @@ import { Colors } from '../../styles/colors';
 
 export const LoginWrap = styled.main`
   width: 100%;
-
+  height: 100vh;
+  position: relative;
   & > .top {
     display: flex;
     flex-direction: column;
@@ -25,6 +26,10 @@ export const LoginWrap = styled.main`
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    .password-reset {
+      margin-top: -10px;
+      color: ${Colors.Black};
+    }
   }
   .bottom {
     padding: 0 30px;
