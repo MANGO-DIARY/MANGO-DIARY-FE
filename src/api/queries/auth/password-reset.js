@@ -14,7 +14,7 @@ export const usePasswordReset = (options) => {
       return response.data;
     },
     onSuccess: () => {
-      navigate(PATH.DONE);
+      navigate(`${PATH.DONE}?type=password`);
     },
     onError: (error) => {},
     ...options,

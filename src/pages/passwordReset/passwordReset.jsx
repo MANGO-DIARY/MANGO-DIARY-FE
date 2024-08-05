@@ -122,11 +122,6 @@ function PasswordReset() {
     );
   };
 
-  const handleSendVerification = () => {
-    console.log('인증번호 발송 버튼 클릭');
-    setShowVerificationInput(true); // 인증번호 입력 필드를 표시합니다.
-  };
-
   return (
     <PasswordResetWrap>
       <Header title="비밀번호 재설정" iconSrc={Images.left} />
