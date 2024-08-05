@@ -35,7 +35,7 @@ function CustomAxisLabel(props) {
     </>
   );
 }
-export default function Chart({ chartData = example }) {
+export default function Chart({ chartData = example, chartProps }) {
   const [isLoading, setisLoading] = useState(true);
 
   const namesArray = Object.keys(chartData);
@@ -68,6 +68,7 @@ export default function Chart({ chartData = example }) {
         slots={{
           axisTickLabel: (props) => CustomAxisLabel({ ...props, chartData }),
         }}
+        {...chartProps}
       />
     </ChartContainer>
   );
