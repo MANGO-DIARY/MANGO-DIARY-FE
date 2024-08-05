@@ -180,7 +180,7 @@ function Signup() {
           onClose={() => {
             setSuccessMessage('');
           }}
-          sx={{ margin: '0 30px' }}
+          sx={{ margin: '10px 30px' }}
         >
           {successMessage}
         </Alert>
@@ -191,7 +191,7 @@ function Signup() {
           onClose={() => {
             setErrorMessage('');
           }}
-          sx={{ margin: '0 30px' }}
+          sx={{ margin: '10px 30px' }}
         >
           {errorMessage}
         </Alert>

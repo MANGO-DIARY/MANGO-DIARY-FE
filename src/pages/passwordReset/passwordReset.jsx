@@ -40,6 +40,9 @@ function PasswordReset() {
   const { endAt, isAuthenticated, setEndAt, setIsAuthenticated } = useEmailAuthStore((state) => state);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [emailDisabled, setEmailDisabled] = useState(false);
+  const [verificationDisabled, setVerificationDisabled] = useState(false);
+
   const { mutate: passwordResetMutate, isPending: passwordResetPending } = usePasswordReset();
   const { mutate: emailMutate, isPending: emailPending } = useSendEmail();
   const { mutate: verifyMutate, isPending: verifyPending } = useVerifyEmail();
@@ -136,6 +139,7 @@ function PasswordReset() {
             name="userEmail"
             IconSrc={Images.email}
             placeholder="이메일을 입력해주세요."
+            disabled={emailDisabled}
             purpose={{
               isUsed: true,
               label: '인증번호 발송',
@@ -148,6 +152,7 @@ function PasswordReset() {
               name="verificationCode"
               IconSrc={Images.verify}
               placeholder="인증번호를 입력해주세요."
+              disabled={verificationDisabled}
               purpose={{
                 isUsed: true,
                 label: '확인',
@@ -156,7 +161,6 @@ function PasswordReset() {
               }}
             />
           )}
-          <InputForm name="passwordOld" IconSrc={Images.passKey} placeholder="기존 비밀번호를 입력해주세요." />
           <InputForm name="password" IconSrc={Images.passward} placeholder="새 비밀번호를 입력해주세요." />
           <InputForm name="passwordConfirm" IconSrc={Images.passwardReset} placeholder="비밀번호를 재입력해주세요." />
         </div>
@@ -170,7 +174,7 @@ function PasswordReset() {
           onClose={() => {
             setSuccessMessage('');
           }}
-          sx={{ margin: '0 30px' }}
+          sx={{ margin: '10px 30px' }}
         >
           {successMessage}
         </Alert>
@@ -181,7 +185,7 @@ function PasswordReset() {
           onClose={() => {
             setErrorMessage('');
           }}
-          sx={{ margin: '0 30px' }}
+          sx={{ margin: '10px 30px' }}
         >
           {errorMessage}
         </Alert>
