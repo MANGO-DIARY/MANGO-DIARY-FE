@@ -6,6 +6,7 @@ import { Images } from '../../styles/images';
 import Header from '../../components/header/Header.jsx';
 import Button from '../../components/button/button.jsx';
 import DoneComponent from '../../components/Done/Done.jsx';
+import { PATH } from '../../route/path.js';
 
 /**
  * @discription DonePage
@@ -26,7 +27,7 @@ function Done() {
       <Header title="" iconSrc={Images.left} />
       <DoneComponent type={type} />
       <div className="bottom">
-        <Button type="submit" label="로그인 페이지로 이동하기" variant="BlackFull" size="medium" />
+        <Button type="submit" label="로그인 페이지로 이동하기" variant="BlackFull" size="medium" onClick={() => navigate(PATH.LOGIN)} />
       </div>
     </DonePage>
   );

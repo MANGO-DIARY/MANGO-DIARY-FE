@@ -168,7 +168,7 @@ function Signup() {
             />
           )}
           <InputForm type="password" name="password" IconSrc={Images.passward} placeholder="비밀번호를 입력해주세요." />
-          <Button label="로그인 하러가기" variant="OutlineBlack" size="small" disabled={!isValid} onClick={() => navigate('/login')} />
+          <Button label="로그인 하러가기" variant="OutlineBlack" size="small" disabled={!isValid} onClick={() => navigate(PATH.LOGIN)} />
         </div>
         <div className="bottom">
           <Button type="submit" label="다음" variant="BlackFull" size="medium" disabled={!isValid} onClick={onSubmit} />
