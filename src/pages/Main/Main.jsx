@@ -21,7 +21,7 @@ function Main() {
 
   // 데이터가 있을 때의 렌더링
   return (
-    <MainContainer>
+    <MainContainer className="use-navbar">
       <MainTop>
         <div>
           <img src={Images.joy} alt="icon" />
