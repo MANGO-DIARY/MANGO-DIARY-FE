@@ -17,6 +17,7 @@ export const PATH_API = {
   DIARY_SEARCH: '/diary/search',
   MAIN: '/main',
   USER_INFO: '/user',
+  CHART: '/statistics',
 };
 
 /**
