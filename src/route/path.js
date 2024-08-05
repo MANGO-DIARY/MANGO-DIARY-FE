@@ -13,4 +13,5 @@ export const PATH = {
   DIARYDETAIL_ENDPOINT: '/diary/detail/',
   CALENDAR: '/calendar',
   CHART: '/chart',
+  SETTING: '/setting',
 };
