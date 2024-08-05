@@ -11,6 +11,7 @@ export const DiaryItemWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
+  text-align: center;
 `;
 
 export const ImgSection = styled.div`
@@ -45,6 +46,11 @@ export const ImgSection = styled.div`
   }
   &.img_section_우울 {
     color: #918e92;
+  }
+  &.img_section_none {
+    width: 35%;
+    height: 35%;
+    margin: 20px 0;
   }
 `;
 

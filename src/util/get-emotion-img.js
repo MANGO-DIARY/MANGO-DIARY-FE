@@ -18,6 +18,8 @@ function getEmotionImage(emotion) {
       return Images.anxiety;
     case '우울':
       return Images.depression;
+    case 'none':
+      return Images.MainAi;
     default:
       return null;
   }

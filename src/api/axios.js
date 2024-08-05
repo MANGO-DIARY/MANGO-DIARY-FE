@@ -3,7 +3,7 @@ import { PATH_API } from './path';
 
 const TIMEOUT_TIME = 10_000;
 
-const 임시토큰 = 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTcyMjg3ODE3MywiZXhwIjoxNzIyODgxNzczfQ.TJzzA1fYQJ9kx9xbJlZquGR3z_sbe3HqrURPFef4pLY';
+const 임시토큰 = 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTcyMjg4MjM0MCwiZXhwIjoxNzIyODg1OTQwfQ.U0aGcswG1nz1UrX9tuacBBc2hf-CtpsA7PD58JJn-0A';
 
 export const axiosInstance = axios.create({
   baseURL: PATH_API.API_DOMAIN,
