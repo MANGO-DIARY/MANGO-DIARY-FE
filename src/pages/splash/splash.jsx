@@ -5,10 +5,11 @@ import { Images } from '../../styles/images';
 import Button from '../../components/button/button';
 import { axiosInstance } from '../../api/axios.js';
 import { PATH } from '../../route/path.js';
+import { PATH_API } from '../../api/path.js';
 
 function Splash() {
   const navigate = useNavigate();
-  const redirectUri = encodeURIComponent('http://localhost:5173/home');
+  const redirectUri = encodeURIComponent(PATH_API.REDIRECT_URL);
 
   const handleKakaoLogin = async () => {
     try {

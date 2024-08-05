@@ -1,7 +1,7 @@
 export const PATH_API = {
   // API_DOMAIN: 'http://43.200.195.86:8080/api/v1',
   API_DOMAIN: 'https://mangolion-server.site/api/v1',
-  REDIRECT_URL: 'http://localhost:5173/home',
+  REDIRECT_URL: 'https://mango-diary.netlify.app/home',
   // auth
   SIGN_IN: '/auth/sign-in',
   SIGN_UP: '/auth/sign-up',
