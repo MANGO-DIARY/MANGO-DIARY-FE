@@ -6,6 +6,7 @@ import { Colors } from '../../styles/colors';
 
 const BottomNav = styled(BottomNavigation)`
   background-color: transparent;
+  background-image: url('/public/assets/img/img-background.png');
 `;
 const BottomNavAction = styled(BottomNavigationAction)`
   .Mui-selected {
@@ -18,7 +19,7 @@ function NavBar() {
   const [value, setValue] = React.useState(0);
 
   return (
-    <Box sx={{ width: '100%', position: 'fixed', bottom: 0, left: 0, right: 0 }}>
+    <Box className="navbar" sx={{ width: '100%', position: 'fixed', bottom: 0, left: 0, right: 0 }}>
       <BottomNav
         showLabels
         value={value}
