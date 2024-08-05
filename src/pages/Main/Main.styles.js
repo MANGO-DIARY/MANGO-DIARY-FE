@@ -13,10 +13,15 @@ export const MainContainer = styled.div`
 export const MainTop = styled.div`
   display: flex;
   flex-direction: column;
+  text-align: center;
   align-items: center;
   padding-top: 54px;
   border: none;
   font-size: 19px;
+`;
+
+export const Comment = styled.div`
+  width: 250px;
 `;
 
 // Main_middle styles
@@ -59,7 +64,6 @@ export const Rank = styled.div`
 
 // emotion_rank styles
 export const EmotionRank = styled.div`
-  position: relative;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -69,28 +73,34 @@ export const EmotionRank = styled.div`
 // individual rank items
 export const First = styled.div`
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0; /* podium의 1번 위에 배치 */
+  bottom: 80px; /* podium의 1번 위에 배치 */
 `;
 
 export const Second = styled.div`
   position: absolute;
-  left: 25%;
-  transform: translateX(-20%);
-  bottom: -20px; /* podium의 2번 위에 배치 */
+  margin-right: 200px;
+  // transform: translateX(-140%);
+  bottom: 60px; /* podium의 2번 위에 배치 */
 `;
 
 export const Third = styled.div`
   position: absolute;
-  left: 75%;
-  transform: translateX(-90%);
-  bottom: -35px; /* podium의 3번 위에 배치 */
+  margin-left: 200px;
+  // transform: translateX(200%);
+  bottom: 50px; /* podium의 3번 위에 배치 */
 `;
 
 // phase styles
 export const Phase = styled.div`
+  padding-top: 20px;
   img {
     width: 100%; /* podium 이미지 크기 조절 */
   }
+`;
+
+export const NavBarWrapper = styled.div`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-image: url(${Images.background});
 `;
