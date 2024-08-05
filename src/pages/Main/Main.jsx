@@ -7,7 +7,7 @@ import NavBar from '../../components/navBar/navBar';
 import { MainContainer, MainTop, MainMiddle, FrameHeader, HeaderButton, MainBottom, Rank, EmotionRank, First, Second, Third, Phase } from './Main.styles';
 import { useMain } from '../../api/queries/main/main';
 import { useUserInfo } from '../../api/queries/user/useUserInfo';
-import { useKakaoLogin } from '../../api/queries/auth/kakao-Login';
+import { useKakaoLogin } from '../../api/queries/auth/kakao-login.js';
 import getEmotionImage from '../../util/get-emotion-img';
 import { PATH_API } from '../../api/path.js';
 
