@@ -65,8 +65,7 @@ function Login() {
   const onInvalid = (error) => {
     if (error.userEmail) {
       console.log('error');
-    }
-    if (error.password) {
+    } else if (error.password) {
       console.log('error');
     }
   };
