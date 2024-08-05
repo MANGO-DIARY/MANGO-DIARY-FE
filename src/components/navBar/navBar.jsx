@@ -16,7 +16,6 @@ const BottomNavAction = styled(BottomNavigationAction)`
 
 function NavBar() {
   // const [value, setValue] = React.useState(0);
-  const navigate = useNavigate();
 
   return (
     <Box className="navbar" sx={{ width: '100%', position: 'fixed', bottom: 0, left: 0, right: 0 }}>
