@@ -88,6 +88,9 @@ function Login() {
           <InputForm name="userEmail" IconSrc={Images.email} placeholder="이메일을 입력해주세요." />
           <InputForm type="password" name="password" IconSrc={Images.passward} placeholder="비밀번호를 입력해주세요." />
           <Button type="button" label="회원가입 하러가기" variant="OutlineBlack" size="small" disabled={!isValid} onClick={() => navigate(PATH.SIGNUP)} />
+          <a href={PATH.PASSWORD_RESET} className="password-reset">
+            비밀번호 재설정{' '}
+          </a>
         </div>
         <div className="bottom">
           <Button type="submit" label="다음" variant="BlackFull" size="medium" disabled={!isValid} />

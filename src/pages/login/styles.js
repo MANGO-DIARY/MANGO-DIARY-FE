@@ -26,6 +26,10 @@ export const LoginWrap = styled.main`
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    .password-reset {
+      margin-top: -10px;
+      color: ${Colors.Black};
+    }
   }
   .bottom {
     padding: 0 30px;
