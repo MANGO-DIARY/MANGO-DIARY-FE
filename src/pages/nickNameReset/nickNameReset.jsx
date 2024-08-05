@@ -58,7 +58,7 @@ function NickNameReset() {
 
   return (
     <NickNameResetWrap>
-      <Header title="닉네임 재설정" iconSrc={Images.left} />
+      <Header title="닉네임 재설정" iconSrc={Images.left} onClick={() => navigate(PATH.SETTING)} />
       <div className="top">
         <img src={Images.joy} alt="기쁨이 이미지" />
       </div>
