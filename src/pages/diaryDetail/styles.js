@@ -34,11 +34,4 @@ export const DiaryDetailWrap = styled.main`
   .ai-wrap {
     padding: 0 30px;
   }
-
-  .bottom {
-    margin-top: 30px;
-    padding: 0 30px;
-    display: flex;
-    justify-content: end;
-  }
 `;

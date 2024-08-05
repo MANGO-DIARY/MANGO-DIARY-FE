@@ -5,7 +5,7 @@ import Header from '../../components/header/Header';
 import { Images } from '../../styles/images';
 import getHeaderDate from '../../util/getHeaderDate';
 import { DiaryDetailWrap } from './styles';
-import { AiComment } from '../../components';
+import { AiComment, NavBar } from '../../components';
 
 const mockupData = {
   id: 1,
@@ -49,6 +49,7 @@ function DiaryDetail() {
             </Button>
           </div>
         </Stack>
+        <NavBar />
       </DiaryDetailWrap>
     )
   );
