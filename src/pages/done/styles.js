@@ -4,6 +4,8 @@ import { Colors } from '../../styles/colors';
 
 export const DonePage = styled.main`
   width: 100%;
+  height: 100vh;
+  position: relative;
 
   .bottom {
     padding: 0 30px;
