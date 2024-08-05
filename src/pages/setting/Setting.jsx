@@ -15,7 +15,7 @@ function Setting() {
 
   // 데이터가 있을 때의 렌더링
   return (
-    <SettingContainer>
+    <SettingContainer className="use-navbar">
       <div className="top">설정</div>
       <UserGreeting name={userInfo?.userName} />
       <div className="userInfo">

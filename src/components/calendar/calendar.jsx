@@ -10,38 +10,13 @@ import { Avatar } from '@mui/material';
 import getEmotionImage from '../../util/get-emotion-img';
 import { CalendarWrap } from './style';
 import { PATH } from '../../route/path';
-
-function getRandomNumber(min, max) {
-  return Math.round(Math.random() * (max - min) + min);
-}
-
-/**
- * Mimic fetch with abort controller https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort
- * ⚠️ No IE11 support
- */
-function fakeFetch(date, { signal }) {
-  return new Promise((resolve, reject) => {
-    const timeout = setTimeout(() => {
-      const daysInMonth = date.daysInMonth();
-      const daysToHighlight = [1, 2, 3].map(() => getRandomNumber(1, daysInMonth));
-
-      resolve({ daysToHighlight });
-    }, 500);
-
-    signal.onabort = () => {
-      clearTimeout(timeout);
-      reject(new DOMException('aborted', 'AbortError'));
-    };
-  });
-}
-
-const initialValue = dayjs(new Date());
+import { useCalendar } from '../../api/queries/calendar/calendar.js';
 
 function ServerDay(props) {
   const navigate = useNavigate();
   const { highlightedDays = [], day, outsideCurrentMonth, diarys = [], ...other } = props;
 
-  const index = highlightedDays.indexOf(day.date());
+  const index = highlightedDays.indexOf(day.format('YYYY-MM-DD'));
 
   const isSelected = !outsideCurrentMonth && index >= 0;
 
@@ -60,59 +35,38 @@ function ServerDay(props) {
   );
 }
 
+const initialValue = dayjs(new Date());
+
 export default function Calendar() {
-  const requestAbortController = useRef(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [highlightedDays, setHighlightedDays] = useState([1, 2, 15]);
-  const [diarys, setDiarys] = useState([
-    { id: 1, emotion: '신남', date: '2024-08-01' },
-    { id: 2, emotion: '기쁨', date: '2024-08-02' },
-    { id: 3, emotion: '행복', date: '2024-08-03' },
-  ]);
+  const [selectedDate, setSelectedDate] = useState(initialValue);
+  const [highlightedDays, setHighlightedDays] = useState([]);
+  const { data: diarys, isLoading: isCalendarLoading, refetch } = useCalendar({ yearMonth: selectedDate.format('YYYY-MM') });
 
-  const fetchHighlightedDays = (date) => {
-    const controller = new AbortController();
-    fakeFetch(date, {
-      signal: controller.signal,
-    })
-      .then(({ daysToHighlight }) => {
-        setHighlightedDays(daysToHighlight);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        // ignore the error if it's caused by `controller.abort`
-        if (error.name !== 'AbortError') {
-          throw error;
-        }
-      });
-
-    requestAbortController.current = controller;
+  const handleMonthChange = (date) => {
+    setSelectedDate(date);
   };
 
   useEffect(() => {
-    fetchHighlightedDays(initialValue);
-    // abort request on unmount
-    return () => requestAbortController.current?.abort();
-  }, []);
-
-  const handleMonthChange = (date) => {
-    if (requestAbortController.current) {
-      // make sure that you are aborting useless requests
-      // because it is possible to switch between months pretty quickly
-      requestAbortController.current.abort();
+    if (selectedDate) {
+      refetch();
     }
+  }, [refetch, selectedDate]);
 
-    setIsLoading(true);
-    setHighlightedDays([]);
-    fetchHighlightedDays(date);
-  };
+  useEffect(() => {
+    setHighlightedDays(diarys?.map((item) => item.date));
+  }, [diarys]);
+
+  if (isCalendarLoading) {
+    return <div>로딩중...</div>;
+  }
 
   return (
     <CalendarWrap>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DateCalendar
           defaultValue={initialValue}
-          loading={isLoading}
+          value={selectedDate}
+          loading={isCalendarLoading}
           onMonthChange={handleMonthChange}
           renderLoading={() => <DayCalendarSkeleton />}
           slots={{
