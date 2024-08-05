@@ -39,7 +39,7 @@ const ButtonRight = styled.button`
   background: none;
 `;
 
-function Header({ title, iconSrc, onClick, showButtonRight, onRightClick }) {
+function Header({ title, iconSrc, onClick, showButtonRight, onRightClick, rightIconSrc }) {
   return (
     <HeaderContainer>
       <ButtonLeft>
@@ -49,7 +49,7 @@ function Header({ title, iconSrc, onClick, showButtonRight, onRightClick }) {
       <Title>{title}</Title>
       {showButtonRight && (
         <ButtonRight onClick={onRightClick}>
-          <img src={Images.headerSearch} alt="icon" />
+          <img src={rightIconSrc} alt="icon" />
         </ButtonRight>
       )}
     </HeaderContainer>
