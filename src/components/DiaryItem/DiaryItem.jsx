@@ -4,7 +4,7 @@ import { DiaryItemWrapper, ImgSection, CreatedDate, Content } from './DiaryItem.
 import getEmotionImage from '../../util/get-emotion-img';
 
 function DiaryItem({ emotion, content, date }) {
-  const DiaryDate = new Date(date);
+  const DiaryDate = date ? new Date(date) : null;
 
   const formattedDate = DiaryDate ? `${DiaryDate.getFullYear().toString().slice(2)}년 ${DiaryDate.getMonth() + 1}월 ${DiaryDate.getDate()}일` : null;
 

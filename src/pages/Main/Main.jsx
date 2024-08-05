@@ -38,7 +38,7 @@ function Main() {
         {hasData && mainData.todayDiary ? (
           <DiaryItem emotion={mainData.todayDiary.emotion} date={mainData.todayDiary.date} content={mainData.todayDiary.content} />
         ) : (
-          <DiaryItem content="작성하신 일기가 없습니다. 일기를 작성해 주세요" formattedDate={null} />
+          <DiaryItem content="작성하신 일기가 없습니다. 일기를 작성해 주세요" formattedDate={null} emotion="none" />
         )}
       </MainMiddle>
       <MainBottom>
