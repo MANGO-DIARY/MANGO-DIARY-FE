@@ -12,20 +12,20 @@ const BottomNavAction = styled(BottomNavigationAction)`
   .Mui-selected {
     color: ${Colors.Gray01};
   }
-  font-family: 'Ownglyph_ryurue-Rg', sans-serif !important;
 `;
 
 function NavBar() {
-  const [value, setValue] = React.useState(0);
+  // const [value, setValue] = React.useState(0);
+  const navigate = useNavigate();
 
   return (
     <Box className="navbar" sx={{ width: '100%', position: 'fixed', bottom: 0, left: 0, right: 0 }}>
       <BottomNav
         showLabels
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
+        // value={value}
+        // onChange={(event, newValue) => {
+        //   setValue(newValue);
+        // }}
       >
         <BottomNavAction label="홈" icon={<img src={Images.home} alt="plus-icon" />} />
         <BottomNavAction label="일기내역" icon={<img src={Images.calendar} alt="plus-icon" />} />
