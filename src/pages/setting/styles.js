@@ -39,15 +39,18 @@ export const SettingContainer = styled.div`
       }
     }
   }
-  & > .more {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 0;
-    padding: 10px;
-    & > .title {
-      font-size: 24px;
-      font-weight: 400;
-      line-height: 23px;
+  & > .moreWrap {
+    margin: 25px 0;
+
+    & > .more {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      & > .title {
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 23px;
+      }
     }
   }
 `;
