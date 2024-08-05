@@ -41,7 +41,7 @@ function DiaryList() {
 
   return (
     <DiaryListWrapper>
-      <Header title="일기장" iconSrc={Images.left} onClick={() => nav(-1)} showButtonRight onRightClick={() => nav('/search')} />
+      <Header title="일기장" iconSrc={Images.left} onClick={() => nav(-1)} showButtonRight onRightClick={() => nav('/search')} rightIconSrc={Images.headerSearch} />
       <Toggle>
         <ToggleButton />
       </Toggle>
