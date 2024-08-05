@@ -8,7 +8,7 @@ import { MainContainer, MainTop, MainMiddle, FrameHeader, HeaderButton, MainBott
 import { useMain } from '../../api/queries/main/main';
 import { useUserInfo } from '../../api/queries/user/useUserInfo';
 import getEmotionImage from '../../util/get-emotion-img';
-import { useKakaoLogin } from '../../api/queries/auth/kakao-Login.js';
+import { useKakaoLogin } from '../../api/queries/auth/kakao-Login';
 import { PATH_API } from '../../api/path.js';
 
 function Main() {
