@@ -6,6 +6,7 @@ import { SearchWrapper, SearchBar, SearchInputWrapper, SearchInput, InputCancel,
 import DiaryItem from '../../components/DiaryItem/DiaryItem';
 import { Images } from '../../styles/images';
 import { useDiarySearch } from '../../api/queries/diary/diary-search';
+import NavBar from '../../components/navBar/navBar';
 
 function Search() {
   const [keyword, setKeyword] = useState('');
@@ -63,6 +64,7 @@ function Search() {
 
       <div ref={ref} style={{ height: 20, visibility: 'hidden' }} />
       {isFetchingNextPage && <p>Loading more...</p>}
+      <NavBar></NavBar>
     </SearchWrapper>
   );
 }
