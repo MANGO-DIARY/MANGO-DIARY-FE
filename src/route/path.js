@@ -12,4 +12,5 @@ export const PATH = {
   DIARYDETAIL: '/diary/detail/:diaryId',
   DIARYDETAIL_ENDPOINT: '/diary/detail/',
   CALENDAR: '/calendar',
+  CHART: '/chart',
 };

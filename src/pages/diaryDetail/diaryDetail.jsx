@@ -5,6 +5,7 @@ import Header from '../../components/header/Header';
 import { Images } from '../../styles/images';
 import getHeaderDate from '../../util/getHeaderDate';
 import { DiaryDetailWrap } from './styles';
+import { AiComment } from '../../components';
 
 const mockupData = {
   id: 1,
@@ -40,10 +41,8 @@ function DiaryDetail() {
           </div>
           <article>{diaryData.content}</article>
           <div className="ai-wrap">
-            <img alt="ai" src={Images.ai} />
-            <span className="ai-comment">&quot;{diaryData.aiComment}&quot;</span>
+            <AiComment aiComment={diaryData.aiComment} />
           </div>
-
           <div className="bottom">
             <Button variant="contained" color="secondary">
               삭제하기

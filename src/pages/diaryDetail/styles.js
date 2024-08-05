@@ -33,18 +33,6 @@ export const DiaryDetailWrap = styled.main`
 
   .ai-wrap {
     padding: 0 30px;
-    display: flex;
-    direction: row;
-
-    & > img {
-      width: 33px;
-      height: auto;
-      align-self: baseline;
-      margin-right: 1rem;
-    }
-    & > .ai-comment {
-      font-family: 'Jua', sans-serif !important;
-    }
   }
 
   .bottom {
