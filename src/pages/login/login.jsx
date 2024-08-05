@@ -45,10 +45,11 @@ function Login() {
   } = methods;
 
   const onSubmit = (data) => {
+    const { userEmail, password } = data;
     loginInMutation.mutate(
       {
-        userEmail: watch('userEmail'),
-        password: watch('password'),
+        userEmail: userEmail,
+        password: password,
       },
       {
         onSuccess: () => {
@@ -86,10 +87,10 @@ function Login() {
         <div className="input">
           <InputForm name="userEmail" IconSrc={Images.email} placeholder="이메일을 입력해주세요." />
           <InputForm type="password" name="password" IconSrc={Images.passward} placeholder="비밀번호를 입력해주세요." />
-          <Button label="회원가입 하러가기" variant="OutlineBlack" size="small" disabled={!isValid} onClick={() => navigate(PATH.SIGNUP)} />
+          <Button type="button" label="회원가입 하러가기" variant="OutlineBlack" size="small" disabled={!isValid} onClick={() => navigate(PATH.SIGNUP)} />
         </div>
         <div className="bottom">
-          <Button type="submit" label="다음" variant="BlackFull" size="medium" disabled={!isValid} onClick={onSubmit} />
+          <Button type="submit" label="다음" variant="BlackFull" size="medium" disabled={!isValid} />
         </div>
       </FormProvider>
       {errorMessage && (
