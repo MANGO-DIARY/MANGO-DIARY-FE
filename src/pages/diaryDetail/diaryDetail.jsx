@@ -5,7 +5,7 @@ import Header from '../../components/header/Header';
 import { Images } from '../../styles/images';
 import getHeaderDate from '../../util/getHeaderDate';
 import { DiaryDetailWrap } from './styles';
-import { AiComment } from '../../components';
+import { AiComment, NavBar } from '../../components';
 
 const mockupData = {
   id: 1,
@@ -23,6 +23,14 @@ function DiaryDetail() {
   const [diaryData, setDiaryData] = useState(mockupData);
   const [isLoading, setIsLoading] = useState(true);
 
+  function handleDeleteClick() {
+    const isDelete = window.confirm('일기를 삭제하시겠습니까?');
+
+    if (!isDelete) return;
+
+    console.log('delete', isDelete, diaryId);
+  }
+
   useEffect(() => {
     console.log(diaryId);
     setDiaryData(mockupData);
@@ -32,8 +40,17 @@ function DiaryDetail() {
 
   return (
     isLoading && (
-      <DiaryDetailWrap emotion={diaryData.emotion}>
-        <Header title={date} iconSrc={Images.left} onClick={() => navigate(-1)} />
+      <DiaryDetailWrap emotion={diaryData.emotion} className="use-navbar">
+        <Header
+          title={date}
+          iconSrc={Images.left}
+          onClick={() => navigate(-1)}
+          showButtonRight
+          rightIconSrc={Images.deleteIcon}
+          onRightClick={() => {
+            handleDeleteClick();
+          }}
+        />
         <Stack>
           <div className="top">
             <img alt="emotion" />
@@ -43,12 +60,8 @@ function DiaryDetail() {
           <div className="ai-wrap">
             <AiComment aiComment={diaryData.aiComment} />
           </div>
-          <div className="bottom">
-            <Button variant="contained" color="secondary">
-              삭제하기
-            </Button>
-          </div>
         </Stack>
+        <NavBar />
       </DiaryDetailWrap>
     )
   );
