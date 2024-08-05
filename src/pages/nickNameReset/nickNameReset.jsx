@@ -10,6 +10,8 @@ import FormProvider from '../../components/formProvider/FormProvider';
 import { Images } from '../../styles/images';
 import Header from '../../components/header/Header.jsx';
 import Button from '../../components/button/button.jsx';
+import { useNickNameReset } from '../../api/queries/auth/nickname-reset.js';
+import { Alert } from '@mui/material';
 
 const defaultValues = {
   password: '',
@@ -18,8 +20,9 @@ const defaultValues = {
 
 function NickNameReset() {
   const navigate = useNavigate();
-
-  // const resetNNMutation = useNickNameReset();
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const nicknameResetMutation = useNickNameReset();
 
   const methods = useForm({
     defaultValues,
@@ -32,11 +35,23 @@ function NickNameReset() {
   } = methods;
 
   const onSubmit = (data) => {
-    // const { password } = data;
-    //
-    // resetPwMutation.mutate({
-    //   nickname,
-    // });
+    const { userName } = data;
+
+    nicknameResetMutation.mutate(
+      {
+        userName,
+      },
+      {
+        onSuccess: () => {
+          setSuccessMessage('이메일 인증이 완료되었습니다.');
+          setErrorMessage('');
+        },
+        onError: (error) => {
+          setErrorMessage(error.message ? error.message : '알 수 없는 오류가 발생했습니다.');
+          setSuccessMessage('');
+        },
+      }
+    );
   };
 
   return (
@@ -47,12 +62,34 @@ function NickNameReset() {
       </div>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <div className="input">
-          <InputForm name="nickname" IconSrc={Images.person} placeholder="새 닉네임을 입력해주세요." />
+          <InputForm name="userName" IconSrc={Images.person} placeholder="새 닉네임을 입력해주세요." />
         </div>
         <div className="bottom">
           <Button type="submit" label="닉네임 재설정하기" variant="BlackFull" size="medium" disabled={!isValid} />
         </div>
       </FormProvider>
+      {successMessage && (
+        <Alert
+          severity="success"
+          onClose={() => {
+            setSuccessMessage('');
+          }}
+          sx={{ margin: '10px 30px' }}
+        >
+          {successMessage}
+        </Alert>
+      )}
+      {errorMessage && (
+        <Alert
+          severity="error"
+          onClose={() => {
+            setErrorMessage('');
+          }}
+          sx={{ margin: '10px 30px' }}
+        >
+          {errorMessage}
+        </Alert>
+      )}
     </NickNameResetWrap>
   );
 }
