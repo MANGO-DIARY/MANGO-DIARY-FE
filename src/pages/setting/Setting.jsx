@@ -8,14 +8,17 @@ import { Images } from '../../styles/images.js';
 import InputFormUI from '../../components/InputFormUI/inputForm.jsx';
 import { PATH } from '../../route/path.js';
 import { useUserInfo } from '../../api/queries/user/useUserInfo.js';
+import { useSignOut } from '../../api/queries/auth/sign-out.js';
 
 function Setting() {
   const navigate = useNavigate(); // 네비게이션 훅
   const { data: userInfo, isLoading: isUserLoading } = useUserInfo();
-  const handleLogout = () => {
-    localStorage.removeItem('accessToken');
-    navigate(PATH.root);
+  const { mutate } = useSignOut();
+
+  const handleLogout = async () => {
+    mutate();
   };
+
   // 데이터가 있을 때의 렌더링
   return (
     <SettingContainer>
