@@ -10,6 +10,10 @@ body {
   margin: 0 auto;
 }
 
+.use-navbar {
+  padding-bottom: 56px;
+}
+
 @font-face {
   font-family: 'Ownglyph_ryurue-Rg';
   src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/Ownglyph_ryurue-Rg.woff2') format('woff2');
