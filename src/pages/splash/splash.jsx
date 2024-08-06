@@ -26,7 +26,7 @@ function Splash() {
     if (token) {
       navigate(PATH.HOME);
     }
-  }, [token]);
+  }, [navigate, token]);
 
   return (
     <SplashWrap>
