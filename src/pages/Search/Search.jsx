@@ -55,9 +55,9 @@ function Search() {
         <CancelButton onClick={() => nav('/diary-list')}>취소</CancelButton>
       </SearchBar>
 
-      {isLoading && <p>Loading...</p>}
-      {isError && <p>Something went wrong...</p>}
-      {isNotData && <p>No results found.</p>}
+      {isLoading && <p>로딩중...</p>}
+      {isError && <p>검색결과가 없어요...</p>}
+      {isNotData && <p>검색결과가 없어요...</p>}
 
       {/* 데이터 렌더링 */}
       {data && data.pages && data.pages.map((page) => page.content.map((item) => <DiaryItem key={item.id} {...item} />))}
