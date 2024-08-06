@@ -23,16 +23,20 @@ import {
 import { useEmotionAnalyz } from '../../api/queries/diary/emoton-analyz.js';
 import { useComment } from '../../api/queries/diary/comment.js';
 import emotionList from '../../util/constants.js';
+import { useDiarySubmit } from '../../api/queries/diary/diary-submit.js';
+import { formatDateToISO } from '../../util/getHeaderDate.js';
 
 function DiaryWrite() {
   const [diary, setDiary] = useState();
   const [emotion, setEmotion] = useState();
   const [diaryContent, setDiaryContent] = useState();
+  const [selectEmotion, setSelectEmotion] = useState();
   const [otherEmotion, setOtherEmotion] = useState();
   const [errorMessage, setErrorMessage] = useState('');
 
   const { mutate: emotionAnalyzMutate, isPending: isAnalyzLoading } = useEmotionAnalyz();
   const { mutate: commentMutate, isPending: isCommentLoading } = useComment();
+  const { mutate: diaryMutate, isPending: isDiaryLoading } = useDiarySubmit();
 
   const onEmotionAnalyz = () => {
     if (diary) {
@@ -61,6 +65,7 @@ function DiaryWrite() {
         },
         {
           onSuccess: (data) => {
+            setSelectEmotion(emotion);
             setDiaryContent(data.aiComment);
           },
           onError: (error) => {
@@ -71,11 +76,30 @@ function DiaryWrite() {
     }
   };
 
+  const onSubmit = () => {
+    diaryMutate(
+      {
+        content: diary,
+        date: submitDate,
+        emotion: selectEmotion,
+        aiComment: diaryContent,
+      },
+      {
+        onSuccess: (data) => {},
+        onError: (error) => {
+          setErrorMessage(error.message);
+        },
+      }
+    );
+  };
+
   const date = new Date();
+  const submitDate = formatDateToISO(date);
 
   const year = date.getFullYear().toString().slice();
   const month = date.getMonth() + 1;
   const day = date.getDate();
+  console.log(year, month, day);
 
   const formattedDate = `${year}년 ${month}월 ${day}일`;
   const nav = useNavigate();
@@ -157,12 +181,12 @@ function DiaryWrite() {
           onClose={() => {
             setErrorMessage('');
           }}
-          sx={{ margin: '10px 20px' }}
+          sx={{ margin: '10px 0' }}
         >
           {errorMessage}
         </Alert>
       )}
-      {diaryContent && !isCommentLoading && <CreateButton onClick={onEmotionAnalyz}>작성하기</CreateButton>}
+      {diaryContent && !isCommentLoading && <CreateButton onClick={onSubmit}>작성하기</CreateButton>}
 
       <NavBar />
     </DiaryWriteContainer>
