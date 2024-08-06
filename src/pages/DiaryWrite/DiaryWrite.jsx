@@ -80,6 +80,7 @@ function DiaryWrite() {
     diaryMutate(
       {
         content: diary,
+        // eslint-disable-next-line no-use-before-define
         date: submitDate,
         emotion: selectEmotion,
         aiComment: diaryContent,
