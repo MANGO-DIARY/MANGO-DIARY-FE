@@ -58,7 +58,7 @@ function DiaryList() {
           data?.pages.map((group, i) => (
             <React.Fragment key={String(i + 1)}>
               {group.content.map((item) => (
-                <DiaryItem key={item.id} {...item} />
+                <DiaryItem onClick={nav('/diary/detail/:diaryId')} key={item.id} {...item} />
               ))}
             </React.Fragment>
           ))}
