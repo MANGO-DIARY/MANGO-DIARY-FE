@@ -6,6 +6,11 @@ export const DiaryWriteContainer = styled.div`
   padding: 0 10px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  & > .progress {
+    margin-top: 40px;
+    width: 100%;
+  }
 `;
 
 export const TextAreaContainer = styled.div`

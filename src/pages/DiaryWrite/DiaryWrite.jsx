@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Alert, Grid } from '@mui/material';
+import { Alert, CircularProgress, Grid } from '@mui/material';
 import { Images } from '../../styles/images';
 import Header from '../../components/header/Header';
 import EmotionButton from '../../components/EmotionButton/EmotionButton';
@@ -142,7 +142,7 @@ function DiaryWrite() {
           </Grid>
         </AiSection2>
       )}
-      {(isAnalyzLoading || isCommentLoading) && <div>감정 분석중...</div>}
+      {(isAnalyzLoading || isCommentLoading) && <CircularProgress className="progress" color="inherit" />}
 
       {diaryContent && !isCommentLoading && (
         <AiComment>
