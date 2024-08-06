@@ -85,7 +85,7 @@ function DiaryWrite() {
       <TextAreaContainer>
         <TextArea value={diary} onChange={(e) => setDiary(e.target.value)} placeholder={'오늘 있었던 핵시 사건과 감정에 관한 일기를 150자 이내로 작성해보세요.'} />
       </TextAreaContainer>
-      <CreateButton onClick={onEmotionAnalyz}>일기쓰기</CreateButton>
+      <CreateButton onClick={onEmotionAnalyz}>일기 분석하기</CreateButton>
       {emotion && !otherEmotion && (
         <AiSection>
           <AiRecommendContainer>
@@ -161,6 +161,8 @@ function DiaryWrite() {
           {errorMessage}
         </Alert>
       )}
+      {diaryContent && !isCommentLoading && <CreateButton onClick={onEmotionAnalyz}>작성하기</CreateButton>}
+
       <NavBar />
     </DiaryWriteContainer>
   );
