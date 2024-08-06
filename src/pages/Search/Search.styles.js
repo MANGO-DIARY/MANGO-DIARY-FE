@@ -24,9 +24,10 @@ export const SearchInputWrapper = styled.div`
   border-radius: 10px;
   height: 36px;
   padding-left: 10px;
+  padding-right: 5px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 `;
 
@@ -50,8 +51,10 @@ export const InputCancel = styled.button`
 `;
 
 export const CancelButton = styled.button`
+  width: 50px;
   margin-left: 4%;
-  font-size: 16px;
+
+  font-size: 17px;
   font-weight: bold;
   color: black;
   cursor: pointer;
