@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
-import { DiaryListWrapper, EmotionListWrapper, EmotionAll, Toggle, ScrollableEmotionList } from './DiaryList.styles';
+import { DiaryListWrapper, EmotionListWrapper, EmotionAll, Toggle, ScrollableEmotionList, NoneData } from './DiaryList.styles';
 import Header from '../../components/header/Header';
 import EmotionButton from '../../components/EmotionButton/EmotionButton';
 import emotionList from '../../util/constants';
@@ -53,7 +53,7 @@ function DiaryList() {
         ))}
       </ScrollableEmotionList>
       <DiaryListWrapper>
-        {isNotData && <>등록된 일기가 없습니다.</>}
+        {isNotData && <NoneData>등록된 일기가 없습니다.</NoneData>}
         {isFetched &&
           data?.pages.map((group, i) => (
             <React.Fragment key={String(i + 1)}>

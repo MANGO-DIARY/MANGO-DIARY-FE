@@ -36,7 +36,7 @@ function Main() {
           </HeaderButton>
         </FrameHeader>
         {hasData && mainData.todayDiary ? (
-          <DiaryItem emotion={mainData.todayDiary.emotion} date={mainData.todayDiary.date} content={mainData.todayDiary.content} />
+          <DiaryItem onClick={nav('/diary/detail/:diaryId')} emotion={mainData.todayDiary.emotion} date={mainData.todayDiary.date} content={mainData.todayDiary.content} />
         ) : (
           <DiaryItem content="작성하신 일기가 없습니다. 일기를 작성해 주세요" formattedDate={null} emotion="none" />
         )}
@@ -51,17 +51,17 @@ function Main() {
         <Rank>
           <EmotionRank>
             {hasData && mainData.topThreeEmotionThisMonth[0] && (
-              <First>
+              <First onClick={nav('/chart')}>
                 <img src={getEmotionImage(mainData.topThreeEmotionThisMonth[0]?.emotion)} alt="img" />
               </First>
             )}
             {hasData && mainData.topThreeEmotionThisMonth[1] && (
-              <Second>
+              <Second onClick={nav('/chart')}>
                 <img src={getEmotionImage(mainData.topThreeEmotionThisMonth[1]?.emotion)} alt="img" />
               </Second>
             )}
             {hasData && mainData.topThreeEmotionThisMonth[2] && (
-              <Third>
+              <Third onClick={nav('/chart')}>
                 <img src={getEmotionImage(mainData.topThreeEmotionThisMonth[2]?.emotion)} alt="img" />
               </Third>
             )}

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
-import { useNavigate, useReducer } from 'react-router-dom';
+import React, { useReducer } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import { Images } from '../../styles/images';
 import Header from '../../components/header/Header';

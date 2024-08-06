@@ -43,12 +43,17 @@ export const InputCancel = styled.button`
   border: none;
   background: none;
   cursor: pointer;
+
+  img {
+    margin-right: 5px;
+  }
 `;
 
 export const CancelButton = styled.button`
-  margin-left: 5%;
-  font-size: 17px;
+  margin-left: 4%;
+  font-size: 16px;
   font-weight: bold;
+  color: black;
   cursor: pointer;
   border: none;
   background: none;
