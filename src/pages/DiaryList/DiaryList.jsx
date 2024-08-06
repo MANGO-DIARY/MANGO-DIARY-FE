@@ -11,6 +11,7 @@ import ToggleButton from '../../components/ToggleButton/ToggleButton';
 import { Button } from '../../components/ToggleButton/ToggleButton.styles';
 import { useDiaryList } from '../../api/queries/diary/diary-list';
 import NavBar from '../../components/navBar/navBar';
+import { PATH } from '../../route/path';
 
 function DiaryList() {
   const { ref, inView } = useInView();
@@ -58,7 +59,13 @@ function DiaryList() {
           data?.pages.map((group, i) => (
             <React.Fragment key={String(i + 1)}>
               {group.content.map((item) => (
-                <DiaryItem onClick={nav('/diary/detail/:diaryId')} key={item.id} {...item} />
+                <DiaryItem
+                  onClick={() => {
+                    nav(`${PATH.DIARYDETAIL_ENDPOINT}${item.id}`);
+                  }}
+                  key={item.id}
+                  {...item}
+                />
               ))}
             </React.Fragment>
           ))}
