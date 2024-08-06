@@ -8,7 +8,7 @@ import { PATH } from '../../route/path.js';
 
 const BottomNav = styled(BottomNavigation)`
   background-color: transparent;
-  background-image: url('/public/assets/img/img-background.png');
+  background-image: url('../../public/assets/img/img-background.png');
 `;
 const BottomNavAction = styled(BottomNavigationAction)`
   .Mui-selected {

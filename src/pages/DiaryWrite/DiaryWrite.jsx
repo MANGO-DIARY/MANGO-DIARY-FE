@@ -139,7 +139,9 @@ function DiaryWrite() {
                   setOtherEmotion(true);
                 }}
               >
-                다른감정선택
+                다른감정
+                <br />
+                선택
               </EmotionNone>
             </Grid>
           </Grid>
