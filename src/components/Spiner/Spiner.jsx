@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { SpinerWrap } from './styles';
 import { CircularProgress } from '@mui/material';
+import { SpinerWrap } from './styles';
 
 function Spiner() {
   return (
