@@ -6,6 +6,7 @@ import Main from './pages/Main/Main.jsx';
 import Search from './pages/Search/Search';
 import { PATH } from './route/path.js';
 import Setting from './pages/setting/Setting.jsx';
+import DiaryWrite from './pages/DiaryWrite/DiaryWrite.jsx';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path={PATH.NICKNAME_RESET} element={<NickNameReset />} />
           <Route path={PATH.DIARYLIST} element={<DiaryList />} />
           <Route path={PATH.HOME} element={<Main />} />
+          <Route path={PATH.DIARYWRITE} element={<DiaryWrite />} />
           <Route path={PATH.SEARCH} element={<Search />} />
           <Route path={PATH.DONE} element={<Done />} />
           <Route path={PATH.DIARYDETAIL} element={<DiaryDetail />} />

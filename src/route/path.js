@@ -14,4 +14,5 @@ export const PATH = {
   CALENDAR: '/calendar',
   CHART: '/chart',
   SETTING: '/setting',
+  DIARYWRITE: '/diary-write',
 };

@@ -19,6 +19,7 @@ import menu from '../../public/assets/icon/icon-menu.svg';
 import list from '../../public/assets/icon/ico-list.svg';
 import deleteIcon from '../../public/assets/icon/ico-delete.svg';
 import MainAi from '../../public/assets/icon/icon-mainAi.svg';
+import Bulb from '../../public/assets/icon/icon-bulb.svg';
 
 import plus from '../../public/assets/icon/ico-plus.svg';
 import home from '../../public/assets/icon/ico-home.svg';
@@ -72,6 +73,7 @@ export const Images = {
   deleteIcon: deleteIcon,
   arrowRight:arrowRight,
   MainAi: MainAi,
+  Bulb: Bulb,
 
 
   // img
