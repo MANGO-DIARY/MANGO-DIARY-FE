@@ -1,11 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import styled from '@emotion/styled';
+import { Colors } from '../../styles/colors.js';
 
 export const DiaryWriteContainer = styled.div`
   width: 100%;
   padding: 0 10px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  & > .progress {
+    margin-top: 40px;
+    width: 100%;
+  }
 `;
 
 export const TextAreaContainer = styled.div`
@@ -41,12 +47,15 @@ export const TextArea = styled.textarea`
 
 export const CreateButton = styled.button`
   margin-left: auto;
-  width: 80px;
-  height: 50px;
+  right: 0;
+  width: fit-content;
+  padding: 0 15px;
+  height: 40px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 17px;
   border: none;
   border-radius: 30px;
+  background-color: ${Colors.Light_Red};
   font-family: 'Ownglyph_ryurue-Rg', sans-serif !important;
 `;
 

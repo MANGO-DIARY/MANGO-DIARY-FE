@@ -1,5 +1,5 @@
-import React from 'react';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
 import { DiaryDetail, Done, Login, NickNameReset, NotFound, PasswordReset, SignUp, Splash, CalendarPage, ChartPage } from './pages';
 import DiaryList from './pages/DiaryList/DiaryList';
 import Main from './pages/Main/Main.jsx';
@@ -9,10 +9,21 @@ import Setting from './pages/setting/Setting.jsx';
 import DiaryWrite from './pages/DiaryWrite/DiaryWrite.jsx';
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const accessToken = localStorage.getItem('accessToken');
+
+  useEffect(() => {
+    if (accessToken) {
+      setIsAuthenticated(true);
+    }
+  }, [accessToken]);
+
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
+          {isAuthenticated && <Route path="*" element={<Navigate to={PATH.HOME} />} />}
+
           <Route path={PATH.root} element={<Splash />} />
           <Route path={PATH.SIGNUP} element={<SignUp />} />
           <Route path={PATH.LOGIN} element={<Login />} />
