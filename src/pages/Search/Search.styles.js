@@ -36,11 +36,11 @@ export const SearchInputWrapper = styled.div`
 `;
 
 export const SearchInput = styled.input`
+  width: 180px;
   border: none;
   outline: none;
   font-size: 17px;
   padding-left: 10px;
-  flex-grow: 1;
   font-family: 'Ownglyph_ryurue-Rg', sans-serif !important;
 `;
 
