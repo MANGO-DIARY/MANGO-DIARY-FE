@@ -20,6 +20,7 @@ export const PATH_API = {
   USER_INFO: '/user',
   CHART: '/statistics',
   CALENDAR: '/diary/all/month',
+  DIARY_DETAIL: '/diary',
 };
 
 /**
