@@ -28,6 +28,7 @@ function Done() {
       <Header title="" iconSrc={Images.left} />
       <DoneComponent type={type} />
       <div className="bottom">
+        {/* eslint-disable-next-line no-return-assign */}
         <Button type="submit" label="홈으로 이동" variant="BlackFull" size="medium" onClick={() => (window.location.href = PATH.HOME)} />
       </div>
     </DonePage>
