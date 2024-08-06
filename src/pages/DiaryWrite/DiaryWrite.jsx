@@ -187,7 +187,7 @@ function DiaryWrite() {
           {errorMessage}
         </Alert>
       )}
-      {diaryContent && !isCommentLoading && <CreateButton onClick={onSubmit}>작성하기</CreateButton>}
+      {diaryContent && !isCommentLoading && <CreateButton onClick={onSubmit}>저장하기</CreateButton>}
 
       <NavBar />
     </DiaryWriteContainer>
