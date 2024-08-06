@@ -27,6 +27,7 @@ import { useEmotionAnalyz } from '../../api/queries/diary/emoton-analyz.js';
 import { useComment } from '../../api/queries/diary/comment.js';
 import emotionList from '../../util/constants.js';
 import { useDiarySubmit } from '../../api/queries/diary/diary-submit.js';
+import { useMain } from '../../api/queries/main/main.js';
 
 const today = dayjs(new Date());
 
@@ -43,6 +44,7 @@ function DiaryWrite() {
   const { mutate: emotionAnalyzMutate, isPending: isAnalyzLoading } = useEmotionAnalyz();
   const { mutate: commentMutate, isPending: isCommentLoading } = useComment();
   const { mutate: diaryMutate, isPending: isDiaryLoading } = useDiarySubmit();
+  const { refetch: mainRefetch } = useMain();
 
   const onEmotionAnalyz = () => {
     if (diary) {
@@ -94,6 +96,7 @@ function DiaryWrite() {
       {
         onSuccess: (data) => {
           console.log('diary submit success on ', selectedDate.format('YYYY-MM-DD'));
+          mainRefetch();
         },
         onError: (error) => {
           setErrorMessage(error.message);

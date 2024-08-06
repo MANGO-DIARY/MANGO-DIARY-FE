@@ -10,4 +10,5 @@ export const useMain = () =>
       const response = await axiosInstance.get(PATH_API.MAIN);
       return response.data;
     },
+    staleTime: 0,
   });
