@@ -1,18 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Button, Stack } from '@mui/material';
+import { Stack } from '@mui/material';
 import Header from '../../components/header/Header';
 import { Images } from '../../styles/images';
 import getHeaderDate from '../../util/getHeaderDate';
 import { DiaryDetailWrap } from './styles';
 import { AiComment, NavBar } from '../../components';
 import { useDiaryDetail } from '../../api/queries/diary/diary-detail';
+import { useDiaryDelelte } from '../../api/queries/diary/diary-delete';
+import { PATH } from '../../route/path';
 
 function DiaryDetail() {
   const { diaryId } = useParams();
   const navigate = useNavigate();
   const [date, setDate] = useState('2024.08.06.');
   const { data: diaryData, isLoading: isDiaryLoading, refetch } = useDiaryDetail({ diaryId });
+  const { mutate, isLoading: isDeleteLoading } = useDiaryDelelte(
+    { diaryId },
+    {
+      onSuccess: () => {
+        alert('일기가 삭제되었습니다.');
+        navigate(PATH.HOME);
+      },
+    }
+  );
 
   function handleDeleteClick() {
     const isDelete = window.confirm('일기를 삭제하시겠습니까?');
@@ -20,6 +31,7 @@ function DiaryDetail() {
     if (!isDelete) return;
 
     console.log('delete', isDelete, diaryId);
+    mutate({ diaryId });
   }
 
   useEffect(() => {
@@ -35,7 +47,7 @@ function DiaryDetail() {
     }
   }, [diaryData]);
 
-  if (isDiaryLoading) {
+  if (isDiaryLoading || isDeleteLoading) {
     return <div>로딩중...</div>;
   }
 
