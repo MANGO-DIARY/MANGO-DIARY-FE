@@ -31,10 +31,17 @@ export const EmotionListWrapper = styled.div`
   }
 `;
 
+export const NoneData = styled.div`
+  width: 100%;
+  margin-top: 200px;
+  text-align: center;
+`;
+
 export const EmotionAll = styled.button`
   min-width: 84px;
   height: 58px;
-  font-size: 17px;
+  font-size: 15px;
+  color: #black;
   border: none;
   border-radius: 30px;
   background-color: rgba(182, 177, 181, 0.2);

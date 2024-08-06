@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 export const Switch = styled.div`
   position: relative;
-  width: 155px;
+  width: 180px;
   height: 26px;
   display: flex;
   align-items: center;
@@ -11,14 +11,14 @@ export const Switch = styled.div`
   border-radius: 12px;
   span {
     position: absolute;
-    width: 82px;
+    width: 90px;
     height: 21px;
     border-radius: 15px;
     background-color: #505050;
     margin: 0 1px;
     // transition: all 0.6s ease-in-out;
     z-index: 1;
-    transform: ${({ value }) => (value === 'Diary' ? 'translateX(0px)' : 'translateX(69px)')};
+    transform: ${({ value }) => (value === 'Diary' ? 'translateX(1px)' : 'translateX(86px)')};
   }
 `;
 
@@ -28,7 +28,7 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 82px;
+  width: 90px;
   height: 21px;
   color: #9c9c9c;
   gap: 3px;
