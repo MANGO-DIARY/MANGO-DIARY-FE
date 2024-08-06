@@ -1,21 +1,36 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Grid } from '@mui/material';
+import { Alert, Grid } from '@mui/material';
 import { Images } from '../../styles/images';
 import Header from '../../components/header/Header';
 import EmotionButton from '../../components/EmotionButton/EmotionButton';
 import NavBar from '../../components/navBar/navBar';
 
-import { AiComment, AiRecommendContainer, AiRecommendText1, AiRecommendText2, AiSection, CreateButton, DiaryWriteContainer, EmotionNone, TextArea, TextAreaContainer } from './DiaryWrite.styles';
+import {
+  AiComment,
+  AiRecommendContainer,
+  AiRecommendText1,
+  AiRecommendText2,
+  AiSection,
+  AiSection2,
+  CreateButton,
+  DiaryWriteContainer,
+  EmotionNone,
+  TextArea,
+  TextAreaContainer,
+} from './DiaryWrite.styles';
 import { useEmotionAnalyz } from '../../api/queries/diary/emoton-analyz.js';
 import { useComment } from '../../api/queries/diary/comment.js';
+import emotionList from '../../util/constants.js';
 
 function DiaryWrite() {
   const [diary, setDiary] = useState();
   const [emotion, setEmotion] = useState();
-  const [selectEmotion, setSelectEmotion] = useState();
   const [diaryContent, setDiaryContent] = useState();
+  const [otherEmotion, setOtherEmotion] = useState();
+  const [errorMessage, setErrorMessage] = useState('');
+
   const { mutate: emotionAnalyzMutate, isPending: isAnalyzLoading } = useEmotionAnalyz();
   const { mutate: commentMutate, isPending: isCommentLoading } = useComment();
 
@@ -30,25 +45,25 @@ function DiaryWrite() {
             setEmotion(data.emotions);
           },
           onError: (error) => {
-            console.log(error.message);
+            setErrorMessage(error.message);
           },
         }
       );
     }
   };
-  const onComment = () => {
+  const onComment = (emotion) => {
     if (diary && emotion) {
       commentMutate(
         {
           diaryContent: diary,
-          emotion: selectEmotion,
+          emotion: emotion,
         },
         {
           onSuccess: (data) => {
             setDiaryContent(data.aiComment);
           },
           onError: (error) => {
-            console.log(error.message);
+            setErrorMessage(error.message);
           },
         }
       );
@@ -71,7 +86,7 @@ function DiaryWrite() {
         <TextArea value={diary} onChange={(e) => setDiary(e.target.value)} placeholder={'오늘 있었던 핵시 사건과 감정에 관한 일기를 150자 이내로 작성해보세요.'} />
       </TextAreaContainer>
       <CreateButton onClick={onEmotionAnalyz}>일기쓰기</CreateButton>
-      {emotion && (
+      {emotion && !otherEmotion && (
         <AiSection>
           <AiRecommendContainer>
             <AiRecommendText1>
@@ -87,41 +102,65 @@ function DiaryWrite() {
                 <EmotionButton
                   emotion={item}
                   onClick={() => {
-                    setSelectEmotion(item);
-                    onComment();
+                    onComment(item);
                   }}
                 />
               </Grid>
             ))}
             <Grid item xs={3}>
-              <EmotionNone> 다른감정선택</EmotionNone>
+              <EmotionNone
+                onClick={() => {
+                  setOtherEmotion(true);
+                }}
+              >
+                다른감정선택
+              </EmotionNone>
             </Grid>
           </Grid>
         </AiSection>
       )}
-      {isAnalyzLoading && <div>감정 분석중...</div>}
-      {/* <AiSection2> */}
-      {/*   <AiRecommendContainer> */}
-      {/*     <AiRecommendText1> */}
-      {/*       <img src={Images.ai} alt="icon" /> */}
-      {/*       감정을 선택해주세요! */}
-      {/*     </AiRecommendText1> */}
-      {/*   </AiRecommendContainer> */}
-      {/*   <Grid container spacing={1} sx={{ marginTop: '5px' }}> */}
-      {/*     {emotionList.map((item) => ( */}
-      {/*       <Grid item xs={3} key={item.emotion}> */}
-      {/*         <EmotionButton {...item} /> */}
-      {/*       </Grid> */}
-      {/*     ))} */}
-      {/*   </Grid> */}
-      {/* </AiSection2> */}
-      {diaryContent && (
+
+      {otherEmotion && (
+        <AiSection2>
+          <AiRecommendContainer>
+            <AiRecommendText1>
+              <img src={Images.ai} alt="icon" />
+              감정을 선택해주세요!
+            </AiRecommendText1>
+          </AiRecommendContainer>
+          <Grid container spacing={1} sx={{ marginTop: '5px' }}>
+            {emotionList.map((item) => (
+              <Grid item xs={3} key={item.emotion}>
+                <EmotionButton
+                  {...item}
+                  onClick={() => {
+                    onComment(item.emotion);
+                  }}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </AiSection2>
+      )}
+      {(isAnalyzLoading || isCommentLoading) && <div>감정 분석중...</div>}
+
+      {diaryContent && !isCommentLoading && (
         <AiComment>
           <img src={Images.Bulb} alt="icon" />
           {diaryContent}
         </AiComment>
       )}
-
+      {errorMessage && (
+        <Alert
+          severity="error"
+          onClose={() => {
+            setErrorMessage('');
+          }}
+          sx={{ margin: '10px 20px' }}
+        >
+          {errorMessage}
+        </Alert>
+      )}
       <NavBar />
     </DiaryWriteContainer>
   );

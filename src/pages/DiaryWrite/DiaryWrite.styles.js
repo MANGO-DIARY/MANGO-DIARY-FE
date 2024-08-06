@@ -41,6 +41,7 @@ export const TextArea = styled.textarea`
 
 export const CreateButton = styled.button`
   margin-left: auto;
+  right: 0;
   width: 80px;
   height: 50px;
   cursor: pointer;
