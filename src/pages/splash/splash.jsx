@@ -13,7 +13,7 @@ function Splash() {
 
   const handleKakaoLogin = async () => {
     try {
-      const response = await axiosInstance.get(`http://43.200.195.86:8080/api/v1/oauth/kakao/sign-in-uri?redirect-uri=${redirectUri}`);
+      const response = await axiosInstance.get(`${PATH_API.KAKAO_LOGIN_URL}?redirect-uri=${redirectUri}`);
       console.log(response);
       window.location.href = response.data.signInUri;
     } catch (error) {
