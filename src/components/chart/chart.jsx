@@ -45,6 +45,12 @@ export default function Chart({ chartData = example, chartProps }) {
   const barColors = namesArray.map((name) => getEmotionColor(name));
 
   useEffect(() => {
+    // 차트 모양 둥글게 해주기 (for safari)
+    const rects = document.querySelectorAll('.MuiBarElement-root');
+    rects.forEach((rect) => {
+      rect.setAttribute('rx', '10'); // 원하는 rx 값을 설정
+    });
+
     setisLoading(false);
   }, []);
 

@@ -46,7 +46,7 @@ export default function ChartPage() {
           </Typography>
           <Button
             variant="text"
-            sx={{ alignSelf: 'end' }}
+            sx={{ alignSelf: 'end', fontWeight: 'bold' }}
             onClick={() => {
               setIsOpen(true);
             }}
@@ -65,7 +65,9 @@ export default function ChartPage() {
           <Typography sx={{ mt: 5, mx: '30px' }} textAlign="center" color={Colors.Gray02}>
             {chartData.statisticsComment}
           </Typography>
-          <Chart chartData={chartData.emotionCounts} />
+          <Chart
+          // chartData={chartData.emotionCounts}
+          />
           <Stack sx={{ paddingX: '30px', paddingY: 5 }} spacing={2}>
             <Typography variant="h6">코멘트 모아보기</Typography>
             {chartData.aiComments && chartData.aiComments.length && chartData.aiComments.map((item) => <AiComment aiComment={item} />)}
