@@ -41,7 +41,7 @@ function DiaryList() {
   const isNotData = !isLoading && !data?.pages[0]?.content?.length;
 
   return (
-    <DiaryListWrapper>
+    <DiaryListWrapper className="use-navbar">
       <Header title="일기장" iconSrc={Images.left} onClick={() => nav(-1)} showButtonRight onRightClick={() => nav('/search')} rightIconSrc={Images.headerSearch} />
       <Toggle>
         <ToggleButton />
