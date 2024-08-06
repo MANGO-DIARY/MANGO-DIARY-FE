@@ -9,6 +9,7 @@ import { AiComment, NavBar } from '../../components';
 import { useDiaryDetail } from '../../api/queries/diary/diary-detail';
 import { useDiaryDelelte } from '../../api/queries/diary/diary-delete';
 import { PATH } from '../../route/path';
+import Spiner from '../../components/Spiner/Spiner.jsx';
 
 function DiaryDetail() {
   const { diaryId } = useParams();
@@ -48,7 +49,7 @@ function DiaryDetail() {
   }, [diaryData]);
 
   if (isDiaryLoading || isDeleteLoading) {
-    return <div>로딩중...</div>;
+    return <Spiner />;
   }
 
   return (
