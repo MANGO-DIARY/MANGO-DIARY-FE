@@ -47,7 +47,7 @@ function NavBar() {
           label="일기작성"
           icon={<img src={Images.plus} alt="plus-icon" />}
           onClick={() => {
-            navigate(PATH.HOME);
+            navigate(PATH.DIARYWRITE);
           }}
         />
         <BottomNavAction
