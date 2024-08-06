@@ -11,6 +11,7 @@ import getEmotionImage from '../../util/get-emotion-img';
 import { CalendarWrap } from './style';
 import { PATH } from '../../route/path';
 import { useCalendar } from '../../api/queries/calendar/calendar.js';
+import Spiner from '../Spiner/Spiner.jsx';
 
 function ServerDay(props) {
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ export default function Calendar() {
   }, [diarys]);
 
   if (isCalendarLoading) {
-    return <div>로딩중...</div>;
+    return <Spiner />;
   }
 
   return (

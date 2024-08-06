@@ -9,6 +9,7 @@ import { NavBar } from '../../components';
 
 export default function CalendarPage() {
   const navigate = useNavigate();
+
   return (
     <div className="use-navbar">
       <Header iconSrc={Images.left} onClick={() => navigate(-1)} />

@@ -3,6 +3,7 @@ import { BarChart } from '@mui/x-charts';
 import { ChartContainer } from './style';
 import getEmotionImage from '../../util/get-emotion-img';
 import getEmotionColor from '../../util/getEmotionColor';
+import Spiner from '../Spiner/Spiner.jsx';
 
 const example = {
   신남: 10,

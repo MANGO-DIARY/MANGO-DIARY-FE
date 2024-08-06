@@ -11,6 +11,7 @@ import { Images } from '../../styles/images';
 import { Colors } from '../../styles/colors';
 import { useChart } from '../../api/queries/chart/chart';
 import { useUserInfo } from '../../api/queries/user/useUserInfo';
+import Spiner from '../../components/Spiner/Spiner.jsx';
 
 const today = dayjs(new Date());
 
@@ -29,7 +30,7 @@ export default function ChartPage() {
   }, [refetch, selectedDate]);
 
   if (isChartLoading || isUserLoading) {
-    return <div>로딩 중...</div>;
+    return <Spiner />;
   }
 
   return (
