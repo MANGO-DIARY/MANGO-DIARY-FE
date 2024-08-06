@@ -4,12 +4,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import DiaryItem from '../../components/DiaryItem/DiaryItem';
 import { Images } from '../../styles/images';
 import NavBar from '../../components/navBar/navBar';
-import { MainContainer, MainTop, Comment, MainMiddle, FrameHeader, HeaderButton, MainBottom, Rank, EmotionRank, First, Second, Third, Phase, NavBarWrapper } from './Main.styles';
+import { MainContainer, MainTop, Comment, MainMiddle, FrameHeader, HeaderButton, MainBottom, Rank, EmotionRank, First, Second, Third, Phase } from './Main.styles';
 import { useMain } from '../../api/queries/main/main';
 import { useUserInfo } from '../../api/queries/user/useUserInfo';
 import { useKakaoLogin } from '../../api/queries/auth/kakao-login.js';
 import getEmotionImage from '../../util/get-emotion-img';
 import { PATH_API } from '../../api/path.js';
+
 
 function Main() {
   const nav = useNavigate(); // 네비게이션 훅
@@ -48,12 +49,19 @@ function Main() {
       <MainMiddle>
         <FrameHeader>
           {userInfo?.userName}님의 최근 일기
-          <HeaderButton onClick={() => nav('/diary-list')}>
+          <HeaderButton onClick={() => nav(PATH.DIARYLIST)}>
             <img src={Images.right} alt="icon" />
           </HeaderButton>
         </FrameHeader>
         {hasData && mainData.todayDiary ? (
-          <DiaryItem emotion={mainData.todayDiary.emotion} date={mainData.todayDiary.date} content={mainData.todayDiary.content} />
+          <DiaryItem
+            onClick={() => {
+              nav(`${PATH.DIARYDETAIL_ENDPOINT}${mainData.todayDiary.id}`);
+            }}
+            emotion={mainData.todayDiary.emotion}
+            date={mainData.todayDiary.date}
+            content={mainData.todayDiary.content}
+          />
         ) : (
           <DiaryItem content="작성하신 일기가 없습니다. 일기를 작성해 주세요" formattedDate={null} emotion="none" />
         )}
@@ -68,25 +76,37 @@ function Main() {
         <Rank>
           <EmotionRank>
             {hasData && mainData.topThreeEmotionThisMonth[0] && (
-              <First>
+              <First
+                onClick={() => {
+                  nav(PATH.CHART);
+                }}
+              >
                 <img src={getEmotionImage(mainData.topThreeEmotionThisMonth[0]?.emotion)} alt="img" />
               </First>
             )}
             {hasData && mainData.topThreeEmotionThisMonth[1] && (
-              <Second>
+              <Second
+                onClick={() => {
+                  nav(PATH.CHART);
+                }}
+              >
                 <img src={getEmotionImage(mainData.topThreeEmotionThisMonth[1]?.emotion)} alt="img" />
               </Second>
             )}
             {hasData && mainData.topThreeEmotionThisMonth[2] && (
-              <Third>
+              <Third
+                onClick={() => {
+                  nav(PATH.CHART);
+                }}
+              >
                 <img src={getEmotionImage(mainData.topThreeEmotionThisMonth[2]?.emotion)} alt="img" />
               </Third>
             )}
             {!hasData && (
               <>
-                <First></First>
-                <Second></Second>
-                <Third></Third>
+                <First />
+                <Second />
+                <Third />
               </>
             )}
           </EmotionRank>
@@ -95,9 +115,7 @@ function Main() {
           </Phase>
         </Rank>
       </MainBottom>
-      <NavBarWrapper>
-        <NavBar />
-      </NavBarWrapper>
+      <NavBar />
     </MainContainer>
   );
 }

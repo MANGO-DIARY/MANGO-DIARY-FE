@@ -24,18 +24,23 @@ export const SearchInputWrapper = styled.div`
   border-radius: 10px;
   height: 36px;
   padding-left: 10px;
+  padding-right: 5px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+
+  img {
+    margin-left: 5px;
+  }
 `;
 
 export const SearchInput = styled.input`
+  width: 180px;
   border: none;
   outline: none;
   font-size: 17px;
   padding-left: 10px;
-  flex-grow: 1;
   font-family: 'Ownglyph_ryurue-Rg', sans-serif !important;
 `;
 
@@ -43,12 +48,19 @@ export const InputCancel = styled.button`
   border: none;
   background: none;
   cursor: pointer;
+
+  img {
+    margin-right: 5px;
+  }
 `;
 
 export const CancelButton = styled.button`
-  margin-left: 5%;
+  width: 20%;
+  // margin-left: 2%;
+
   font-size: 17px;
   font-weight: bold;
+  color: black;
   cursor: pointer;
   border: none;
   background: none;
