@@ -188,7 +188,6 @@ function DiaryWrite() {
         </Alert>
       )}
       {diaryContent && !isCommentLoading && <CreateButton onClick={onSubmit}>저장하기</CreateButton>}
-
       <NavBar />
     </DiaryWriteContainer>
   );
