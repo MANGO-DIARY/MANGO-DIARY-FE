@@ -26,6 +26,7 @@ export const LoginWrap = styled.main`
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    flex-shrink: 0;
   }
   .bottom {
     padding: 0 30px;
