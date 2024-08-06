@@ -51,6 +51,7 @@ function DiaryWrite() {
       );
     }
   };
+  // eslint-disable-next-line no-shadow
   const onComment = (emotion) => {
     if (diary && emotion) {
       commentMutate(
@@ -83,7 +84,7 @@ function DiaryWrite() {
     <DiaryWriteContainer>
       <Header title={formattedDate} iconSrc={Images.left} onClick={() => nav(-1)} />
       <TextAreaContainer>
-        <TextArea value={diary} onChange={(e) => setDiary(e.target.value)} placeholder={'오늘 있었던 핵시 사건과 감정에 관한 일기를 150자 이내로 작성해보세요.'} />
+        <TextArea value={diary} onChange={(e) => setDiary(e.target.value)} placeholder="오늘 있었던 핵시 사건과 감정에 관한 일기를 150자 이내로 작성해보세요." />
       </TextAreaContainer>
       <CreateButton onClick={onEmotionAnalyz}>일기 분석하기</CreateButton>
       {emotion && !otherEmotion && (
