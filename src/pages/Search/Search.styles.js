@@ -51,8 +51,8 @@ export const InputCancel = styled.button`
 `;
 
 export const CancelButton = styled.button`
-  width: 50px;
-  margin-left: 4%;
+  width: 20%;
+  // margin-left: 2%;
 
   font-size: 17px;
   font-weight: bold;
