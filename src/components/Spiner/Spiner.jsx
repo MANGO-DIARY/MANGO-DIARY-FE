@@ -1,8 +1,6 @@
 import React from 'react';
-import { css } from '@emotion/react';
 
 import { SpinerWrap } from './styles';
-import Loading from '../loading/Loading';
 import { CircularProgress } from '@mui/material';
 
 function Spiner() {

@@ -45,7 +45,7 @@ function Main() {
         <div>
           <img src={Images.joy} alt="icon" />
         </div>
-        <Comment>{CommentData.todayComment}</Comment>
+        <Comment>{CommentData?.todayComment}</Comment>
       </MainTop>
       <MainMiddle>
         <FrameHeader>
@@ -55,7 +55,7 @@ function Main() {
           </HeaderButton>
         </FrameHeader>
         {hasData && mainData.todayDiary ? (
-          <DiaryItem onClick={nav('/diary/detail/:diaryId')} emotion={mainData.todayDiary.emotion} date={mainData.todayDiary.date} content={mainData.todayDiary.content} />
+          <DiaryItem onClick={nav('/diary/detail/:diaryId')} emotion={mainData?.todayDiary.emotion} date={mainData.todayDiary.date} content={mainData.todayDiary.content} />
         ) : (
           <DiaryItem content="작성하신 일기가 없습니다. 일기를 작성해 주세요" formattedDate={null} emotion="none" />
         )}
