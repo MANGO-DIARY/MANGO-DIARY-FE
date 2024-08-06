@@ -14,6 +14,10 @@ import Button from '../../components/button/button.jsx';
 import { useNickNameReset } from '../../api/queries/auth/nickname-reset.js';
 import { PATH } from '../../route/path.js';
 
+const signUpSchema = Yup.object().shape({
+  userName: Yup.string().required('이름을 입력해주세요.').max(12, '이름은 12자 이하여야 합니다.'),
+});
+
 const defaultValues = {
   password: '',
   passwordConfirm: '',
@@ -27,6 +31,7 @@ function NickNameReset() {
 
   const methods = useForm({
     defaultValues,
+    resolver: yupResolver(signUpSchema),
     mode: 'onChange',
   });
 
@@ -46,7 +51,6 @@ function NickNameReset() {
         onSuccess: () => {
           setSuccessMessage('이메일 인증이 완료되었습니다.');
           setErrorMessage('');
-          navigate(PATH.HOME);
         },
         onError: (error) => {
           setErrorMessage(error.message ? error.message : '알 수 없는 오류가 발생했습니다.');

@@ -40,6 +40,23 @@ function DoneComponent({ type }) {
         </div>
       );
     }
+    if (type === 'nickname') {
+      return (
+        <div className="top">
+          <img src={Images.happy} alt="기쁨이 이미지" />
+          <div className="title">
+            <div className="item">
+              <div className="highlight"></div>
+              닉네임이 변경되었습니다.
+            </div>
+          </div>
+          <div className="comment">
+            이제 새로운 닉네임으로 <br />
+            일기를 작성해볼까요?
+          </div>
+        </div>
+      );
+    }
   };
 
   return <DoneContain>{rendering()}</DoneContain>;
