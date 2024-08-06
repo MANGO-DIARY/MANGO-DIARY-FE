@@ -60,7 +60,7 @@ function Search() {
       {isNotData && <p>검색결과가 없어요...</p>}
 
       {/* 데이터 렌더링 */}
-      {data && data.pages && data.pages.map((page) => page.content.map((item) => <DiaryItem key={item.id} {...item} />))}
+      {data && data.pages && data.pages.map((page) => page.content.map((item) => <DiaryItem onClick={nav('/diary/detail/:diaryId')} key={item.id} {...item} />))}
 
       <div ref={ref} style={{ height: 20, visibility: 'hidden' }} />
       {isFetchingNextPage && <p>Loading more...</p>}

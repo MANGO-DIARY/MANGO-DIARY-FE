@@ -49,6 +49,7 @@ export const CreateButton = styled.button`
   margin-left: auto;
   right: 0;
   width: fit-content;
+  color: black;
   padding: 0 15px;
   height: 40px;
   cursor: pointer;
