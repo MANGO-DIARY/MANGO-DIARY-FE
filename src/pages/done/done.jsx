@@ -28,7 +28,7 @@ function Done() {
       <Header title="" iconSrc={Images.left} />
       <DoneComponent type={type} />
       <div className="bottom">
-        <Button type="submit" label="홈으로 이동" variant="BlackFull" size="medium" onClick={() => navigate(PATH.HOME)} />
+        <Button type="submit" label="홈으로 이동" variant="BlackFull" size="medium" onClick={() => (window.location.href = PATH.HOME)} />
       </div>
     </DonePage>
   );
