@@ -9,7 +9,7 @@ const HeaderContainer = styled.div`
   padding: 0 15px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   position: relative;
 `;
@@ -17,8 +17,6 @@ const HeaderContainer = styled.div`
 const ButtonLeft = styled.button`
   width: 24px;
   height: 24px;
-  position: absolute;
-  left: 15px;
   cursor: pointer;
   border: none;
   background: none;
@@ -32,11 +30,10 @@ const Title = styled.div`
 const ButtonRight = styled.button`
   width: 24px;
   height: 24px;
-  position: absolute;
-  right: 15px;
   cursor: pointer;
   border: none;
   background: none;
+  padding: 0;
 `;
 
 function Header({ title, iconSrc, onClick, showButtonRight, onRightClick, rightIconSrc }) {
@@ -44,12 +41,12 @@ function Header({ title, iconSrc, onClick, showButtonRight, onRightClick, rightI
     <HeaderContainer>
       <ButtonLeft>
         {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-        <img src={iconSrc} alt="Icon" onClick={onClick} />
+        <img src={iconSrc} alt="leftIcon" onClick={onClick} />
       </ButtonLeft>
       <Title>{title}</Title>
       {showButtonRight && (
         <ButtonRight onClick={onRightClick}>
-          <img src={rightIconSrc} alt="icon" />
+          <img src={rightIconSrc} alt="rightIcon" />
         </ButtonRight>
       )}
     </HeaderContainer>
