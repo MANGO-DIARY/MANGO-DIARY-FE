@@ -44,11 +44,9 @@ function Header({ title, iconSrc, onClick, showButtonRight, onRightClick, rightI
         <img src={iconSrc} alt="leftIcon" onClick={onClick} />
       </ButtonLeft>
       <Title>{title}</Title>
-      {showButtonRight && (
-        <ButtonRight onClick={onRightClick}>
-          <img src={rightIconSrc} alt="rightIcon" />
-        </ButtonRight>
-      )}
+      <ButtonRight onClick={onRightClick} style={{ visibility: showButtonRight ? 'visible' : 'hidden' }}>
+        <img src={rightIconSrc} alt="rightIcon" />
+      </ButtonRight>
     </HeaderContainer>
   );
 }

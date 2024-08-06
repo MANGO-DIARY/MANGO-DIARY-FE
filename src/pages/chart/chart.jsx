@@ -46,7 +46,7 @@ export default function ChartPage() {
           </Typography>
           <Button
             variant="text"
-            sx={{ alignSelf: 'end' }}
+            sx={{ alignSelf: 'end', fontWeight: 'bold' }}
             onClick={() => {
               setIsOpen(true);
             }}
