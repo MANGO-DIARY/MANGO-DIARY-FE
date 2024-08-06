@@ -20,6 +20,8 @@ export const PATH_API = {
   USER_INFO: '/user',
   CHART: '/statistics',
   CALENDAR: '/diary/all/month',
+  EMOTION_ANALYZE: '/ai/emotion-analyze',
+  COMMENT: '/ai/comment',
 };
 
 /**
