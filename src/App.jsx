@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
 import { DiaryDetail, Done, Login, NickNameReset, NotFound, PasswordReset, SignUp, Splash, CalendarPage, ChartPage } from './pages';
 import DiaryList from './pages/DiaryList/DiaryList';
+import { PATH } from './route/path.js';
 import Main from './pages/Main/Main.jsx';
 import Search from './pages/Search/Search';
-import { PATH } from './route/path.js';
 import Setting from './pages/setting/Setting.jsx';
 import DiaryWrite from './pages/DiaryWrite/DiaryWrite.jsx';
 

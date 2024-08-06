@@ -18,6 +18,11 @@ export const SearchBar = styled.div`
   align-items: center;
 `;
 
+export const NoneData = styled.div`
+  width: 100%;
+  text-align: center;
+`;
+
 export const SearchInputWrapper = styled.div`
   width: 83%;
   background-color: white;

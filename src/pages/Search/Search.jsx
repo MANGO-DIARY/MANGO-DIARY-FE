@@ -2,11 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
-import { SearchWrapper, SearchBar, SearchInputWrapper, SearchInput, InputCancel, CancelButton } from './Search.styles';
+import { SearchWrapper, SearchBar, SearchInputWrapper, SearchInput, InputCancel, CancelButton, NoneData } from './Search.styles';
 import DiaryItem from '../../components/DiaryItem/DiaryItem';
 import { Images } from '../../styles/images';
 import { useDiarySearch } from '../../api/queries/diary/diary-search';
 import NavBar from '../../components/navBar/navBar';
+import { PATH } from '../../route/path';
 
 function Search() {
   const [keyword, setKeyword] = useState('');
@@ -55,12 +56,25 @@ function Search() {
         <CancelButton onClick={() => nav('/diary-list')}>취소</CancelButton>
       </SearchBar>
 
-      {isLoading && <p>로딩중...</p>}
-      {isError && <p>검색결과가 없어요...</p>}
-      {isNotData && <p>검색결과가 없어요...</p>}
+      <NoneData>
+        {isError && <p>검색결과가 없어요...</p>}
+        {isNotData && <p>검색결과가 없어요...</p>}
+      </NoneData>
 
       {/* 데이터 렌더링 */}
-      {data && data.pages && data.pages.map((page) => page.content.map((item) => <DiaryItem onClick={nav('/diary/detail/:diaryId')} key={item.id} {...item} />))}
+      {data &&
+        data.pages &&
+        data.pages.map((page) =>
+          page.content.map((item) => (
+            <DiaryItem
+              onClick={() => {
+                nav(`${PATH.DIARYDETAIL_ENDPOINT}${item.id}`);
+              }}
+              key={item.id}
+              {...item}
+            />
+          ))
+        )}
 
       <div ref={ref} style={{ height: 20, visibility: 'hidden' }} />
       {isFetchingNextPage && <p>Loading more...</p>}

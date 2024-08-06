@@ -70,7 +70,11 @@ function Main() {
       <MainBottom>
         <FrameHeader>
           이번달의 감정순위
-          <HeaderButton>
+          <HeaderButton
+            onClick={() => {
+              nav(PATH.CHART);
+            }}
+          >
             <img src={Images.right} alt="icon" />
           </HeaderButton>
         </FrameHeader>
