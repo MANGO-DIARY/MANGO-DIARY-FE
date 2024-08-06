@@ -12,6 +12,7 @@ import { Button } from '../../components/ToggleButton/ToggleButton.styles';
 import { useDiaryList } from '../../api/queries/diary/diary-list';
 import NavBar from '../../components/navBar/navBar';
 import { PATH } from '../../route/path';
+import Spiner from '../../components/Spiner/Spiner.jsx';
 
 function DiaryList() {
   const { ref, inView } = useInView();
@@ -70,7 +71,7 @@ function DiaryList() {
             </React.Fragment>
           ))}
         <div style={{ width: '100%' }} ref={ref}>
-          {isFetchingNextPage && <p>Loading ...</p>}
+          {isFetchingNextPage && <Spiner />}
         </div>
       </DiaryListWrapper>
       <NavBar></NavBar>

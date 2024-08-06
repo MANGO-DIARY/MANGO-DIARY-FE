@@ -8,6 +8,7 @@ import { Images } from '../../styles/images';
 import { useDiarySearch } from '../../api/queries/diary/diary-search';
 import NavBar from '../../components/navBar/navBar';
 import { PATH } from '../../route/path';
+import Spiner from '../../components/Spiner/Spiner.jsx';
 
 function Search() {
   const [keyword, setKeyword] = useState('');
@@ -77,7 +78,7 @@ function Search() {
         )}
 
       <div ref={ref} style={{ height: 20, visibility: 'hidden' }} />
-      {isFetchingNextPage && <p>Loading more...</p>}
+      {isFetchingNextPage && <Spiner />}
       <NavBar></NavBar>
     </SearchWrapper>
   );
