@@ -8,7 +8,7 @@ export const useDiaryDetail = ({ diaryId }) =>
   useQuery({
     queryKey: [QUERY_KEY.DIARY_DETAIL, diaryId],
     queryFn: async () => {
-      const response = await axiosInstance.get(PATH_API.DIARY_DETAIL, { params: { diaryId } });
+      const response = await axiosInstance.get(PATH_API.DIARY, { params: { diaryId } });
       return response.data;
     },
   });
