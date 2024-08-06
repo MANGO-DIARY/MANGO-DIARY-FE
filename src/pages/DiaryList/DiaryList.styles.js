@@ -41,7 +41,7 @@ export const EmotionAll = styled.button`
   min-width: 84px;
   height: 58px;
   font-size: 15px;
-  color: #black;
+  color: black;
   border: none;
   border-radius: 30px;
   background-color: rgba(182, 177, 181, 0.2);
@@ -50,6 +50,7 @@ export const EmotionAll = styled.button`
 
   :hover {
     border: 2px solid #d9d9d9;
+    color: black;
   }
 `;
 
