@@ -97,10 +97,3 @@ export const Phase = styled.div`
     width: 100%; /* podium 이미지 크기 조절 */
   }
 `;
-
-export const NavBarWrapper = styled.div`
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-image: url(${Images.background});
-`;
