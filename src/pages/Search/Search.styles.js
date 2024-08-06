@@ -29,6 +29,10 @@ export const SearchInputWrapper = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+
+  img {
+    margin-left: 5px;
+  }
 `;
 
 export const SearchInput = styled.input`
