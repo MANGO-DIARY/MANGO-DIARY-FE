@@ -10,6 +10,7 @@ import { useUserInfo } from '../../api/queries/user/useUserInfo';
 import { useKakaoLogin } from '../../api/queries/auth/kakao-login.js';
 import getEmotionImage from '../../util/get-emotion-img';
 import { PATH_API } from '../../api/path.js';
+import Spiner from '../../components/Spiner/button.jsx';
 
 function Main() {
   const nav = useNavigate(); // 네비게이션 훅
@@ -33,7 +34,7 @@ function Main() {
   }, [code, mutate]);
 
   // 로딩 중 상태 처리
-  if (isMainLoading || isUserLoading) return <div>로딩 중...</div>;
+  if (isMainLoading || isUserLoading) return <Spiner />;
 
   const hasData = mainData && Array.isArray(mainData.topThreeEmotionThisMonth);
 
