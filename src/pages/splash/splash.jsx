@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SplashWrap } from './styles';
 import { Images } from '../../styles/images';
@@ -20,6 +20,14 @@ function Splash() {
       console.error('Error fetching Kakao login URL:', error);
     }
   };
+  const token = localStorage.getItem('accessToken');
+
+  useEffect(() => {
+    if (token) {
+      navigate(PATH.HOME);
+    }
+  }, [navigate, token]);
+
   return (
     <SplashWrap>
       <img src={Images.splash} alt="splash" />
