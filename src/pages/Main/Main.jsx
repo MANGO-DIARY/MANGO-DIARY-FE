@@ -10,7 +10,7 @@ import { useUserInfo } from '../../api/queries/user/useUserInfo';
 import { useKakaoLogin } from '../../api/queries/auth/kakao-login.js';
 import getEmotionImage from '../../util/get-emotion-img';
 import { PATH_API } from '../../api/path.js';
-import Spiner from '../../components/Spiner/button.jsx';
+import Spiner from '../../components/Spiner/Spiner.jsx';
 
 function Main() {
   const nav = useNavigate(); // 네비게이션 훅
