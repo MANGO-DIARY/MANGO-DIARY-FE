@@ -181,7 +181,7 @@ function DiaryWrite() {
           onClose={() => {
             setErrorMessage('');
           }}
-          sx={{ margin: '10px 0' }}
+          sx={{ margin: '10px 40px', width: '100%' }}
         >
           {errorMessage}
         </Alert>
