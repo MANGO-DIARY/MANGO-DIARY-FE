@@ -88,6 +88,7 @@ export const ButtonSizes = {
   `,
   xsmall: css`
     width: 150px;
+    padding: 0;
     margin: -2px;
     font-size: 18px;
   `,

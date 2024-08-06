@@ -6,7 +6,7 @@ export const PATH_API = {
   SIGN_IN: '/auth/sign-in',
   SIGN_UP: '/auth/sign-up',
   SIGN_OUT: '/auth/sign-out',
-  KAKAO_LOGIN_URL: '/oauth/kakao/sign-in-url',
+  KAKAO_LOGIN_URL: '/oauth/kakao/sign-in-uri',
   KAKAO_LOGIN: '/oauth/kakao/sign-in',
   PASSWORD_RESET: '/auth/reset-pw',
   NICKNAME_RESET: '/user',
