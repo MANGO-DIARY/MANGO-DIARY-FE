@@ -22,6 +22,7 @@ export const PATH_API = {
   CALENDAR: '/diary/all/month',
   EMOTION_ANALYZE: '/ai/emotion-analyze',
   COMMENT: '/ai/comment',
+  DIARY: '/diary',
 };
 
 /**
