@@ -1,19 +1,36 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import DiaryItem from '../../components/DiaryItem/DiaryItem';
 import { Images } from '../../styles/images';
 import NavBar from '../../components/navBar/navBar';
 import { MainContainer, MainTop, Comment, MainMiddle, FrameHeader, HeaderButton, MainBottom, Rank, EmotionRank, First, Second, Third, Phase } from './Main.styles';
 import { useMain } from '../../api/queries/main/main';
 import { useUserInfo } from '../../api/queries/user/useUserInfo';
+import { useKakaoLogin } from '../../api/queries/auth/kakao-login.js';
 import getEmotionImage from '../../util/get-emotion-img';
+import { PATH_API } from '../../api/path.js';
 
 function Main() {
   const nav = useNavigate(); // 네비게이션 훅
   const { data: CommentData } = useMain();
   const { data: mainData, isLoading: isMainLoading } = useMain(); // 데이터, 로딩 상태, 에러 상태
   const { data: userInfo, isLoading: isUserLoading } = useUserInfo(); // 데이터, 로딩 상태, 에러 상태
+
+  // 현재 URL 정보를 가져오는 훅
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const code = queryParams.get('code');
+  const { mutate, isLoading: KakaoLoading } = useKakaoLogin(code);
+
+  useEffect(() => {
+    if (code) {
+      mutate({
+        code,
+        redirectUri: PATH_API.REDIRECT_URL,
+      });
+    }
+  }, [code, mutate]);
 
   // 로딩 중 상태 처리
   if (isMainLoading || isUserLoading) return <div>로딩 중...</div>;

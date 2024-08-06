@@ -5,16 +5,16 @@ import { axiosInstance } from '../../axios';
 import { PATH_API } from '../../path';
 import { PATH } from '../../../route/path.js';
 
-export const useNickNameReset = (options) => {
+export const useDiarySubmit = (options) => {
   const navigate = useNavigate();
 
   return useMutation({
     mutationFn: async (payload) => {
-      const response = await axiosInstance.patch(PATH_API.NICKNAME_RESET, payload);
+      const response = await axiosInstance.post(PATH_API.DIARY, payload);
       return response.data;
     },
-    onSuccess: () => {
-      navigate(`${PATH.DONE}?type=nickname`);
+    onSuccess: (data) => {
+      navigate(PATH.DIARYDETAIL_ENDPOINT + data.diaryId);
     },
     onError: (error) => {},
     ...options,
