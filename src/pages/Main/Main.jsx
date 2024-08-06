@@ -8,10 +8,10 @@ import { MainContainer, MainTop, Comment, MainMiddle, FrameHeader, HeaderButton,
 import { useMain } from '../../api/queries/main/main';
 import { useUserInfo } from '../../api/queries/user/useUserInfo';
 import getEmotionImage from '../../util/get-emotion-img';
-import { PATH } from '../../route/path';
 
 function Main() {
   const nav = useNavigate(); // 네비게이션 훅
+  const { data: CommentData } = useMain();
   const { data: mainData, isLoading: isMainLoading } = useMain(); // 데이터, 로딩 상태, 에러 상태
   const { data: userInfo, isLoading: isUserLoading } = useUserInfo(); // 데이터, 로딩 상태, 에러 상태
 
@@ -27,24 +27,17 @@ function Main() {
         <div>
           <img src={Images.joy} alt="icon" />
         </div>
-        {hasData ? <Comment>{mainData.todayComment}</Comment> : '오늘의 코멘트가 없어요'}
+        <Comment>{CommentData.todayComment}</Comment>
       </MainTop>
       <MainMiddle>
         <FrameHeader>
           {userInfo?.userName}님의 최근 일기
-          <HeaderButton onClick={() => nav(PATH.DIARYLIST)}>
+          <HeaderButton onClick={() => nav('/diary-list')}>
             <img src={Images.right} alt="icon" />
           </HeaderButton>
         </FrameHeader>
         {hasData && mainData.todayDiary ? (
-          <DiaryItem
-            onClick={() => {
-              nav(`${PATH.DIARYDETAIL_ENDPOINT}${mainData.todayDiary.id}`);
-            }}
-            emotion={mainData.todayDiary.emotion}
-            date={mainData.todayDiary.date}
-            content={mainData.todayDiary.content}
-          />
+          <DiaryItem onClick={nav('/diary/detail/:diaryId')} emotion={mainData.todayDiary.emotion} date={mainData.todayDiary.date} content={mainData.todayDiary.content} />
         ) : (
           <DiaryItem content="작성하신 일기가 없습니다. 일기를 작성해 주세요" formattedDate={null} emotion="none" />
         )}
@@ -59,37 +52,25 @@ function Main() {
         <Rank>
           <EmotionRank>
             {hasData && mainData.topThreeEmotionThisMonth[0] && (
-              <First
-                onClick={() => {
-                  nav(PATH.CHART);
-                }}
-              >
+              <First onClick={nav('/chart')}>
                 <img src={getEmotionImage(mainData.topThreeEmotionThisMonth[0]?.emotion)} alt="img" />
               </First>
             )}
             {hasData && mainData.topThreeEmotionThisMonth[1] && (
-              <Second
-                onClick={() => {
-                  nav(PATH.CHART);
-                }}
-              >
+              <Second onClick={nav('/chart')}>
                 <img src={getEmotionImage(mainData.topThreeEmotionThisMonth[1]?.emotion)} alt="img" />
               </Second>
             )}
             {hasData && mainData.topThreeEmotionThisMonth[2] && (
-              <Third
-                onClick={() => {
-                  nav(PATH.CHART);
-                }}
-              >
+              <Third onClick={nav('/chart')}>
                 <img src={getEmotionImage(mainData.topThreeEmotionThisMonth[2]?.emotion)} alt="img" />
               </Third>
             )}
             {!hasData && (
               <>
-                <First />
-                <Second />
-                <Third />
+                <First></First>
+                <Second></Second>
+                <Third></Third>
               </>
             )}
           </EmotionRank>
@@ -98,6 +79,7 @@ function Main() {
           </Phase>
         </Rank>
       </MainBottom>
+
       <NavBar />
     </MainContainer>
   );

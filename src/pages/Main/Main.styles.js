@@ -21,7 +21,7 @@ export const MainTop = styled.div`
 `;
 
 export const Comment = styled.div`
-  width: 250px;
+  width: 200px;
 `;
 
 // Main_middle styles
