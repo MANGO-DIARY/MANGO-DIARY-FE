@@ -10,7 +10,7 @@ export const useNickNameReset = (options) => {
 
   return useMutation({
     mutationFn: async (payload) => {
-      const response = await axiosInstance.post(PATH_API.NICKNAME_RESET, payload);
+      const response = await axiosInstance.patch(PATH_API.NICKNAME_RESET, payload);
       return response.data;
     },
     onSuccess: () => {

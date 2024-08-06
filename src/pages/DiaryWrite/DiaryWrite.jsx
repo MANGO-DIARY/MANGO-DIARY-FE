@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
-import { useNavigate, useReducer } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import { Images } from '../../styles/images';
 import Header from '../../components/header/Header';
@@ -31,29 +31,29 @@ const mocData = [
   },
 ];
 
-function reducer(state, action) {
-  switch (action.type) {
-    case 'CREATE':
-      return [action.data, ...state];
-    default:
-      return state;
-  }
-}
+// function reducer(state, action) {
+//   switch (action.type) {
+//     case 'CREATE':
+//       return [action.data, ...state];
+//     default:
+//       return state;
+//   }
+// }
 
 function DiaryWrite() {
-  const [data, dispatch] = useReducer(reducer, mocData);
-
-  const onCreate = (content) => {
-    dispatch({
-      type: 'CREATE',
-      data: {
-        content,
-      },
-    });
-  };
+  // const [data, dispatch] = useReducer(reducer, mocData);
+  //
+  // const onCreate = (content) => {
+  //   dispatch({
+  //     type: 'CREATE',
+  //     data: {
+  //       content,
+  //     },
+  //   });
+  // };
 
   const onSubmit = (input) => {
-    onCreate(input.content);
+    // onCreate(input.content);
   };
 
   const date = new Date();
