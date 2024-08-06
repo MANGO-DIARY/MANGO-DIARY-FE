@@ -78,6 +78,7 @@ export default function Calendar() {
               diarys,
             },
           }}
+          disableFuture
         />
       </LocalizationProvider>
     </CalendarWrap>
