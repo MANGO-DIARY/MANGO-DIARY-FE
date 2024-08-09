@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "gen-pwa": "pwa-assets-generator --preset minimal public/logo.svg",
     "dev": "vite",
     "build": "vite build",
     "format": "prettier --cache --write .",
@@ -14,15 +15,30 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@hookform/resolvers": "^3.9.0",
     "@mui/icons-material": "^5.16.0",
     "@mui/material": "^5.16.0",
+    "@mui/x-charts": "^7.12.0",
+    "@mui/x-date-pickers": "^7.12.0",
+    "@tanstack/react-query": "^5.51.15",
+    "@tanstack/react-query-devtools": "^5.51.18",
+    "axios": "^1.7.2",
+    "dayjs": "^1.11.12",
+    "notistack": "^3.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.24.1"
+    "react-handle-alert": "^0.3.6",
+    "react-hook-form": "^7.52.1",
+    "react-intersection-observer": "^9.13.0",
+    "react-query": "^3.39.3",
+    "react-router-dom": "^6.24.1",
+    "yup": "^1.4.0",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@vite-pwa/assets-generator": "^0.2.4",
     "@vitejs/plugin-react": "^4.3.1",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -34,6 +50,7 @@
     "eslint-plugin-react-refresh": "^0.4.7",
     "husky": "^9.0.11",
     "prettier": "^3.3.2",
-    "vite": "^5.3.1"
+    "vite": "^5.3.1",
+    "vite-plugin-pwa": "^0.20.0"
   }
 }

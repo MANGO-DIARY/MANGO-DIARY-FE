@@ -1,0 +1,22 @@
+html,
+body {
+  font-family: 'Ownglyph_ryurue-Rg', sans-serif !important;
+  background-image: url('../../public/assets/img/img-background.png');
+  background-size: cover;
+  max-width: 500px;
+  width: 100%;
+  min-height: calc(100% + env(safe-area-inset-top));
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  margin: 0 auto;
+}
+
+.use-navbar {
+  padding-bottom: 56px;
+}
+
+@font-face {
+  font-family: 'Ownglyph_ryurue-Rg';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/Ownglyph_ryurue-Rg.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}

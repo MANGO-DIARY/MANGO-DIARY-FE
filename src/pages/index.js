@@ -1,3 +1,10 @@
 export { default as NotFound } from './notFound/notFound';
-export { default as SignUp } from './signup/signup';
-export { default as SignIn } from './signin/signin';
+export { default as SignUp } from './signup/signup.jsx';
+export { default as Login } from './login/login';
+export { default as PasswordReset } from './passwordReset/passwordReset.jsx';
+export { default as NickNameReset } from './nickNameReset/nickNameReset.jsx';
+export { default as Done } from './done/done';
+export { default as Splash } from './splash/splash';
+export { default as DiaryDetail } from './diaryDetail/diaryDetail.jsx';
+export { default as ChartPage } from './chart/chart.jsx';
+export { default as CalendarPage } from './calendar/CalendarPage.jsx';
