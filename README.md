@@ -1,7 +1,21 @@
-# MANGO-DIARY-FE
+# 마음의 소리에 귀를 기울이고 싶은 당신에게, "아프지 망고" 
+
+
+## 💻 Developers
+
+|FE | FE | FE |
+| :---: | :---: | :---: |
+|  <img style="width: 200px;" src="https://github.com/goormthon-Univ/2024_BEOTKKOTTHON_TEAM_4_FE/assets/88662427/a8b3a2b9-0761-4da8-8a79-679c12d34b67" />  |  |  |
+|국민대학교|국민대학교|국민대학교|
+|김민정|이하람|박성영|
+|   [@minjeoong](https://github.com/minjeoong)   | [@haram8009](https://github.com/haram8009) | [@Sung-young](https://github.com/Sung-young) |
+
+## 📲 Tech
+
+
+## 📲 기능
 
 ![1 인트로](https://github.com/user-attachments/assets/e6b374e9-a363-4e2a-bd11-4da386a008c6)
-
 ![2 문제상황](https://github.com/user-attachments/assets/ef75e78c-d5e8-49e3-8724-d13eeb1a41e8)
 ![3 솔루션](https://github.com/user-attachments/assets/95c615f7-2e4d-4e8d-88e4-9463eae571d1)
 ![4 기능1](https://github.com/user-attachments/assets/ad9d2a00-3cbe-4f53-8380-5f98682e427c)
