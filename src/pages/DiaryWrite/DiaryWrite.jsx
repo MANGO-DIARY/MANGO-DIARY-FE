@@ -88,7 +88,6 @@ function DiaryWrite() {
     diaryMutate(
       {
         content: diary,
-        // eslint-disable-next-line no-use-before-define
         date: selectedDate.format('YYYY-MM-DD'),
         emotion: selectEmotion,
         aiComment: diaryContent,
