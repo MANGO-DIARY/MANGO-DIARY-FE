@@ -4,13 +4,12 @@
 
 ## 💻 Developers
 
-| FE  | FE  | FE  |
-| :-: | :-: | :-: |
-
-| <img style="width: 200px;" src="https://github.com/goormthon-Univ/2024_BEOTKKOTTHON_TEAM_4_FE/assets/88662427/a8b3a2b9-0761-4da8-8a79-679c12d34b67" /> | ![image 42 (2)](https://github.com/user-attachments/assets/167a3fe4-ab64-49f5-bab2-c6f6b2dbef3f) | <img src="https://github.com/haram8009.png" width="200"/> |
-|국민대학교|국민대학교|국민대학교|
-|김민정|이하람|박성영|
-| [@minjeoong](https://github.com/minjeoong) | [@haram8009](https://github.com/haram8009) | [@Sung-young](https://github.com/Sung-young) |
+|                                                                           FE                                                                           |                                  FE                                  |                                                FE                                                |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------: |
+| <img style="width: 200px;" src="https://github.com/goormthon-Univ/2024_BEOTKKOTTHON_TEAM_4_FE/assets/88662427/a8b3a2b9-0761-4da8-8a79-679c12d34b67" /> | <img style="width: 200px;" src="https://github.com/haram8009.png" /> | ![image 42 (2)](https://github.com/user-attachments/assets/167a3fe4-ab64-49f5-bab2-c6f6b2dbef3f) |
+|                                                                       국민대학교                                                                       |                              국민대학교                              |                                            국민대학교                                            |
+|                                                                         김민정                                                                         |                                이하람                                |                                              박성영                                              |
+|                                                       [@minjeoong](https://github.com/minjeoong)                                                       |              [@haram8009](https://github.com/haram8009)              |                           [@Sung-young](https://github.com/Sung-young)                           |
 
 ## 📲 Tech
 
