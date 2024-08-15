@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import NavBar from '../../components/navBar/navBar';
 import { SettingContainer } from './styles.js';
 import UserGreeting from '../../components/userGreeting/userGreeting.jsx';
@@ -14,6 +15,12 @@ function Setting() {
   const navigate = useNavigate(); // 네비게이션 훅
   const { data: userInfo, isLoading: isUserLoading } = useUserInfo();
   const { mutate } = useSignOut();
+  const { i18n, t } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    console.log('change language to', lng);
+    i18n.changeLanguage(lng);
+  };
 
   const handleLogout = async () => {
     mutate();
@@ -42,6 +49,17 @@ function Setting() {
         </div>
         <div className="more" onClick={handleLogout}>
           <div className="title">로그아웃</div>
+          <img className="img" src={Images.arrowRight} alt="오른쪽 화살표" />
+        </div>
+        <div
+          className="more"
+          onClick={() => {
+            changeLanguage('en');
+          }}
+        >
+          <div className="title">
+            언어변경 {/*TODO: 지우기*/}({t('language')})
+          </div>
           <img className="img" src={Images.arrowRight} alt="오른쪽 화살표" />
         </div>
       </div>

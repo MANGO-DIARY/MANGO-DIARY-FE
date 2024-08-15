@@ -46,6 +46,7 @@ export const SettingContainer = styled.div`
       display: flex;
       justify-content: space-between;
       padding: 10px;
+      cursor: pointer;
       & > .title {
         font-size: 24px;
         font-weight: 400;
