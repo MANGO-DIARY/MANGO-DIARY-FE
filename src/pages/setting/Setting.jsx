@@ -17,8 +17,9 @@ function Setting() {
   const { mutate } = useSignOut();
   const { i18n, t } = useTranslation();
 
-  const changeLanguage = (lng) => {
-    console.log('change language to', lng);
+  const changeLanguage = () => {
+    const lng = i18n.language === 'ko' ? 'en' : 'ko';
+    console.log('change language from', i18n.language, 'to', lng);
     i18n.changeLanguage(lng);
   };
 
@@ -29,10 +30,10 @@ function Setting() {
   // 데이터가 있을 때의 렌더링
   return (
     <SettingContainer className="use-navbar">
-      <div className="top">설정</div>
+      <div className="top">{t('setting.setting')}</div>
       <UserGreeting name={userInfo?.userName} />
       <div className="userInfo">
-        <div className="title">정보</div>
+        <div className="title">{t('setting.information')}</div>
         <div className="info">
           <div className="infoContent">Email</div>
           <InputFormUI inputValue={userInfo?.userEmail} name="userEmail" IconSrc={Images.email} disabled />
@@ -44,22 +45,15 @@ function Setting() {
       </div>
       <div className="moreWrap">
         <div className="more" onClick={() => navigate(PATH.NICKNAME_RESET)}>
-          <div className="title">닉네임 변경</div>
+          <div className="title">{t('setting.change-nickname')}</div>
           <img className="img" src={Images.arrowRight} alt="오른쪽 화살표" />
         </div>
         <div className="more" onClick={handleLogout}>
-          <div className="title">로그아웃</div>
+          <div className="title">{t('setting.logout')}</div>
           <img className="img" src={Images.arrowRight} alt="오른쪽 화살표" />
         </div>
-        <div
-          className="more"
-          onClick={() => {
-            changeLanguage('en');
-          }}
-        >
-          <div className="title">
-            언어변경 {/*TODO: 지우기*/}({t('language')})
-          </div>
+        <div className="more" onClick={changeLanguage}>
+          <div className="title">{t('setting.change-language')}</div>
           <img className="img" src={Images.arrowRight} alt="오른쪽 화살표" />
         </div>
       </div>

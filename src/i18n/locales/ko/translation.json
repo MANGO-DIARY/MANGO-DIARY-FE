@@ -1,1 +1,12 @@
-{ "language": "한국어" }
+{
+  "language": "한국어",
+  "setting": {
+    "setting": "설정",
+    "userGreeting1": " 님, ",
+    "userGreeting2": "오늘 하루는 어떠셨나요?",
+    "information": "정보",
+    "change-nickname": "닉네임 변경",
+    "logout": "로그아웃",
+    "change-language": "언어 변경"
+  }
+}

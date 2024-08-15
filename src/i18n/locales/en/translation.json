@@ -1,1 +1,12 @@
-{ "language": "English" }
+{
+  "language": "English",
+  "setting": {
+    "setting": "Setting",
+    "userGreeting1": ", ",
+    "userGreeting2": "How was your day?",
+    "information": "Information",
+    "change-nickname": "Change nickname",
+    "logout": "Logout",
+    "change-language": "Change language"
+  }
+}

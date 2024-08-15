@@ -1,6 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { UserGreetingWrap } from './styles.js';
+import { t } from 'i18next';
 
 const containerStyle = css`
   align-items: flex-start;
@@ -45,10 +46,10 @@ function UserGreeting({ name }) {
         className="img"
       />
       <div className="greetingStyle">
-        <span>{name} </span>
-        <span>님, </span>
+        <span>{name}</span>
+        <span>{t('setting.userGreeting1')}</span>
         <br />
-        <span>오늘 하루는 어떠셨나요?</span>
+        <span>{t('setting.userGreeting2')}</span>
       </div>
     </UserGreetingWrap>
   );
