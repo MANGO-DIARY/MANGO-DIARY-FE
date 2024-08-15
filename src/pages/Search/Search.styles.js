@@ -34,14 +34,10 @@ export const SearchInputWrapper = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-
-  img {
-    margin-left: 5px;
-  }
 `;
 
 export const SearchInput = styled.input`
-  width: 180px;
+  width: 100%;
   border: none;
   outline: none;
   font-size: 17px;
@@ -53,9 +49,13 @@ export const InputCancel = styled.button`
   border: none;
   background: none;
   cursor: pointer;
+  width: 16px;
+  height: 16px;
+  padding: 0;
 
   img {
-    margin-right: 5px;
+    width: 16px;
+    height: 16px;
   }
 `;
 
