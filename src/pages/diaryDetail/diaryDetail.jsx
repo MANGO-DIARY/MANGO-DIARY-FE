@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { t } from 'i18next';
 import { Stack } from '@mui/material';
 import Header from '../../components/header/Header';
 import { Images } from '../../styles/images';
@@ -20,14 +21,14 @@ function DiaryDetail() {
     { diaryId },
     {
       onSuccess: () => {
-        alert('일기가 삭제되었습니다.');
+        alert(t('diary-detail.delete-alert'));
         navigate(PATH.HOME);
       },
     }
   );
 
   function handleDeleteClick() {
-    const isDelete = window.confirm('일기를 삭제하시겠습니까?');
+    const isDelete = window.confirm(t('diary-detail.delete-confirm'));
 
     if (!isDelete) return;
 

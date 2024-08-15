@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
+import { t } from 'i18next';
 import { SearchWrapper, SearchBar, SearchInputWrapper, SearchInput, InputCancel, CancelButton, NoneData } from './Search.styles';
 import DiaryItem from '../../components/DiaryItem/DiaryItem';
 import { Images } from '../../styles/images';
@@ -42,30 +43,29 @@ function Search() {
   console.log('Data:', data);
 
   // 데이터가 없는 경우를 판별
-  const isNotData = !isLoading && data && data.pages && data.pages.flatMap((page) => page.content).length === 0;
+  const isNotData = !isLoading && data?.pages?.flatMap((page) => page.content).length === 0;
 
   return (
     <SearchWrapper>
       <SearchBar>
         <SearchInputWrapper>
           <img src={Images.search} alt="icon" />
-          <SearchInput type="text" placeholder="검색어를 입력해주세요." value={keyword} onChange={(e) => setKeyword(e.target.value)} onKeyDown={handleKeyDown} />
+          <SearchInput type="text" placeholder={t('search.search-placeholder')} value={keyword} onChange={(e) => setKeyword(e.target.value)} onKeyDown={handleKeyDown} />
           <InputCancel onClick={() => setKeyword('')}>
-            <img src={Images.cancel} alt="icon" />
+            <img src={Images.cancel} alt="cancel icon" />
           </InputCancel>
         </SearchInputWrapper>
-        <CancelButton onClick={() => nav('/diary-list')}>취소</CancelButton>
+        <CancelButton onClick={() => nav('/diary-list')}>{t('search.cancel')}</CancelButton>
       </SearchBar>
 
-      <NoneData>
-        {isError && <p>검색결과가 없어요...</p>}
-        {isNotData && <p>검색결과가 없어요...</p>}
-      </NoneData>
-
-      {/* 데이터 렌더링 */}
-      {data &&
-        data.pages &&
-        data.pages.map((page) =>
+      {isError || isNotData ? (
+        <NoneData>
+          <p>{t('search.no-result')}</p>
+        </NoneData>
+      ) : (
+        /* 데이터 렌더링 */
+        data &&
+        data.pages?.map((page) =>
           page.content.map((item) => (
             <DiaryItem
               onClick={() => {
@@ -75,7 +75,8 @@ function Search() {
               {...item}
             />
           ))
-        )}
+        )
+      )}
 
       <div ref={ref} style={{ height: 20, visibility: 'hidden' }} />
       {isFetchingNextPage && <Spiner />}

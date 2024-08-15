@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
+import { t } from 'i18next';
+
 import { Alert, Box, CircularProgress, Grid, Typography } from '@mui/material';
 import { Images } from '../../styles/images';
 import Header from '../../components/header/Header';
@@ -109,7 +111,7 @@ function DiaryWrite() {
   return (
     <div className="use-navbar">
       <Header
-        title={selectedDate.format('YYYY년 MM월 DD일')}
+        title={selectedDate.format(t('YYYY년 MM월 DD일'))}
         iconSrc={Images.left}
         onClick={() => nav(-1)}
         showButtonRight
@@ -121,17 +123,17 @@ function DiaryWrite() {
       <DiaryWriteContainer>
         <DiaryWirteDatePicker {...{ selectedDate, setSelectedDate, isOpen, setIsOpen }} />
         <TextAreaContainer>
-          <TextArea value={diary} onChange={(e) => setDiary(e.target.value)} placeholder="오늘 있었던 핵심 사건과 감정에 관한 일기를 150자 이내로 작성해보세요." />
+          <TextArea value={diary} onChange={(e) => setDiary(e.target.value)} placeholder={t('diary-write.textarea-placeholder')} />
         </TextAreaContainer>
-        <CreateButton onClick={onEmotionAnalyz}>일기 분석하기</CreateButton>
+        <CreateButton onClick={onEmotionAnalyz}>{t('diary-write.start-analysis')}</CreateButton>
         {emotion && !otherEmotion && (
           <AiSection>
             <AiRecommendContainer>
               <AiRecommendText1>
                 <img src={Images.ai} alt="icon" />
-                일기를 바탕으로 유사한 감정 3개를 추려봤어요. 현재 기분과 가장 가까운 감정을 선택해주세요.
+                {t('diary-write.select-three')}
               </AiRecommendText1>
-              <AiRecommendText2>(만약 감정이 없다면, 다른 감정 선택을 눌러주세요)</AiRecommendText2>
+              <AiRecommendText2>({t('diary-write.select-another')})</AiRecommendText2>
             </AiRecommendContainer>
             <Grid container spacing={1} sx={{ marginTop: '5px' }}>
               {emotion?.map((item, key) => (
@@ -151,9 +153,9 @@ function DiaryWrite() {
                     setOtherEmotion(true);
                   }}
                 >
-                  다른감정
+                  {t('diary-write.other1')}
                   <br />
-                  선택
+                  {t('diary-write.other2')}
                 </EmotionNone>
               </Grid>
             </Grid>
@@ -165,7 +167,7 @@ function DiaryWrite() {
             <AiRecommendContainer>
               <AiRecommendText1>
                 <img src={Images.ai} alt="icon" />
-                감정을 선택해주세요!
+                {t('diary-write.select-one')}
               </AiRecommendText1>
             </AiRecommendContainer>
             <Grid container spacing={1} sx={{ marginTop: '5px' }}>
@@ -201,7 +203,7 @@ function DiaryWrite() {
             {errorMessage}
           </Alert>
         )}
-        {diaryContent && !isCommentLoading && <CreateButton onClick={onSubmit}>저장하기</CreateButton>}
+        {diaryContent && !isCommentLoading && <CreateButton onClick={onSubmit}>{t('diary-write.save')}</CreateButton>}
         <NavBar />
       </DiaryWriteContainer>
     </div>

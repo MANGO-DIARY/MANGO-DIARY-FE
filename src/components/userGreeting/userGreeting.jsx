@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { UserGreetingWrap } from './styles.js';
 import { t } from 'i18next';
+import { UserGreetingWrap } from './styles.js';
 
 const containerStyle = css`
   align-items: flex-start;

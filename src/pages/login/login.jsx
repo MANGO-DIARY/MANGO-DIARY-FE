@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
+import { t } from 'i18next';
+
 import { Alert } from '@mui/material';
 import { LoginWrap } from './styles';
 import InputForm from '../../components/InputForm/inputForm';
@@ -14,15 +16,6 @@ import Button from '../../components/button/button.jsx';
 import { PATH } from '../../route/path.js';
 import { useLoginIn } from '../../api/queries/auth/log-in.js';
 
-const signupSchema = Yup.object().shape({
-  userEmail: Yup.string()
-    .required('이메일을 입력해주세요.')
-    .matches(/^[a-zA-Z0-9+-_.]+@[a-z]+\.[a-z]{2,3}/i, '이메일 형식이 아닙니다.'),
-  password: Yup.string()
-    .required('비밀번호를 입력해주세요.')
-    .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+]).{8,}$/, '비밀번호는 특수문자, 숫자를 포함하여 8자리 이상이어야 합니다.'),
-});
-
 const defaultValues = {
   userEmail: '',
   password: '',
@@ -32,6 +25,15 @@ function Login() {
   const loginInMutation = useLoginIn();
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
+
+  const signupSchema = Yup.object().shape({
+    userEmail: Yup.string()
+      .required(t('yup.email-required-error'))
+      .matches(/^[a-zA-Z0-9+-_.]+@[a-z]+\.[a-z]{2,3}/i, t('yup.email-format-error')),
+    password: Yup.string()
+      .required(t('yup.password-required-error'))
+      .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+]).{8,}$/, t('yup.password-format-error')),
+  });
 
   const methods = useForm({
     defaultValues,
@@ -73,27 +75,28 @@ function Login() {
 
   return (
     <LoginWrap>
-      <Header title="이메일로 로그인" iconSrc={Images.left} onClick={() => navigate(PATH.root)} />
+      <Header title={t('login.header-title')} iconSrc={Images.left} onClick={() => navigate(PATH.root)} />
       <div className="top">
         <img src={Images.joy} alt="기쁨이 이미지" />
         <div className="comment">
-          오늘 하루를 들려주세요.
+          {t('login.top-typo1')}
           <br />
-          AI 로 감정을 분석해줄게요.
-          <br /> 최근 내 기분이 어땠는지 확인해보세요!
+          {t('login.top-typo2')}
+          <br />
+          {t('login.top-typo3')}
         </div>
       </div>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit, onInvalid)}>
         <div className="input">
-          <InputForm name="userEmail" IconSrc={Images.email} placeholder="이메일을 입력해주세요." />
-          <InputForm type="password" name="password" IconSrc={Images.passward} placeholder="비밀번호를 입력해주세요." />
-          <Button type="button" label="회원가입 하러가기" variant="OutlineBlack" size="small" disabled={!isValid} onClick={() => navigate(PATH.SIGNUP)} />
+          <InputForm name="userEmail" IconSrc={Images.email} placeholder={t('login.email-placeholder')} />
+          <InputForm type="password" name="password" IconSrc={Images.passward} placeholder={t('login.password-placeholder')} />
+          <Button type="button" label={t('login.go-to-signup')} variant="OutlineBlack" size="small" disabled={!isValid} onClick={() => navigate(PATH.SIGNUP)} />
           <a href={PATH.PASSWORD_RESET} className="password-reset">
-            비밀번호 재설정{' '}
+            {t('login.password-reset')}
           </a>
         </div>
         <div className="bottom">
-          <Button type="submit" label="다음" variant="BlackFull" size="medium" disabled={!isValid} />
+          <Button type="submit" label={t('login.next')} variant="BlackFull" size="medium" disabled={!isValid} />
         </div>
       </FormProvider>
       {errorMessage && (

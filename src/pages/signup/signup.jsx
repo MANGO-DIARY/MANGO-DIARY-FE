@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { t } from 'i18next';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
@@ -16,19 +17,6 @@ import useEmailAuthStore from '../../store/auth/emailAuthStore';
 import { useSendEmail } from '../../api/queries/auth/send-email.js';
 import { useVerifyEmail } from '../../api/queries/auth/verify-email.js';
 import { PATH } from '../../route/path.js';
-
-const signUpSchema = Yup.object().shape({
-  userName: Yup.string().required('이름을 입력해주세요.').max(12, '이름은 12자 이하여야 합니다.'),
-  userEmail: Yup.string()
-    .required('이메일을 입력해주세요.')
-    .matches(/^[a-zA-Z0-9+-_.]+@[a-z]+\.[a-z]{2,3}/i, '이메일 형식이 아닙니다.'),
-  password: Yup.string()
-    .required('비밀번호를 입력해주세요.')
-    .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+]).{8,}$/, '비밀번호는 특수문자, 숫자를 포함하여 8자리 이상이어야 합니다.'),
-  passwordConfirm: Yup.string()
-    .required('비밀번호 확인을 입력해주세요.')
-    .oneOf([Yup.ref('password'), ''], '비밀번호가 일치하지 않습니다.'),
-});
 
 const defaultValues = {
   name: '',
@@ -50,6 +38,19 @@ function Signup() {
   const { mutate: signupmutate, isPending: signupPending } = useSignup();
   const { mutate: emailMutate, isPending: emailPending } = useSendEmail();
   const { mutate: verifyMutate, isPending: verifyPending } = useVerifyEmail();
+
+  const signUpSchema = Yup.object().shape({
+    userName: Yup.string().required(t('yup.name-required-error')).max(12, t('yup.name-format-error')),
+    userEmail: Yup.string()
+      .required(t('yup.email-required-error'))
+      .matches(/^[a-zA-Z0-9+-_.]+@[a-z]+\.[a-z]{2,3}/i, t('yup.email-format-error')),
+    password: Yup.string()
+      .required(t('yup.password-required-error'))
+      .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+]).{8,}$/, t('yup.password-format-error')),
+    passwordConfirm: Yup.string()
+      .required(t('yup.password2-required-error'))
+      .oneOf([Yup.ref('password'), ''], t('yup.password2-confirm-error')),
+  });
 
   const methods = useForm({
     defaultValues,
@@ -119,13 +120,13 @@ function Signup() {
         onSuccess: () => {
           setEndAt(null);
           setIsAuthenticated(true);
-          setSuccessMessage('이메일 인증이 완료되었습니다.');
+          setSuccessMessage(t('signup.verify-email-success-message'));
           setErrorMessage('');
           setVerificationDisabled(true);
         },
         onError: (error) => {
           console.log(error.message);
-          setErrorMessage('이메일 인증을 실패하였습니다. 새로고침으로 다시 진행해주세요.');
+          setErrorMessage(t('signup.verify-email-error-message'));
           setSuccessMessage('');
         },
       }
@@ -134,21 +135,21 @@ function Signup() {
 
   return (
     <LoginWrap>
-      <Header title="회원가입" iconSrc={Images.left} onClick={() => navigate(PATH.LOGIN)} />
+      <Header title={t('signup.header-title')} iconSrc={Images.left} onClick={() => navigate(PATH.LOGIN)} />
       <div className="top">
         <img src={Images.joy} alt="기쁨이 이미지" />
       </div>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <div className="input">
-          <InputForm name="userName" IconSrc={Images.person} placeholder="닉네임을 입력해주세요." />
+          <InputForm name="userName" IconSrc={Images.person} placeholder={t('signup.nickname-placeholder')} />
           <InputForm
             name="userEmail"
             IconSrc={Images.email}
-            placeholder="이메일을 입력해주세요."
+            placeholder={t('signup.email-placeholder')}
             disabled={emailDisabled}
             purpose={{
               isUsed: true,
-              label: '인증번호 발송',
+              label: t('signup.send-email-verifying-code'),
               isPending: emailPending,
               onClick: () => sendEmail(),
             }}
@@ -157,20 +158,20 @@ function Signup() {
             <InputForm
               name="verificationCode"
               IconSrc={Images.verify}
-              placeholder="인증번호를 입력해주세요."
+              placeholder={t('signup.email-verifying-code-placeholder')}
               disabled={verificationDisabled}
               purpose={{
                 isUsed: true,
-                label: '확인',
+                label: t('signup.submit-email-verifying-code'),
                 isPending: verifyPending,
                 onClick: () => verifyEmail(),
               }}
             />
           )}
-          <InputForm type="password" name="password" IconSrc={Images.passward} placeholder="비밀번호를 입력해주세요." />
+          <InputForm type="password" name="password" IconSrc={Images.passward} placeholder={t('signup.password-placeholder')} />
         </div>
         <div className="bottom">
-          <Button type="submit" label="다음" variant="BlackFull" size="medium" disabled={!isValid} onClick={onSubmit} />
+          <Button type="submit" label={t('signup.next')} variant="BlackFull" size="medium" disabled={!isValid} onClick={onSubmit} />
         </div>
       </FormProvider>
       {successMessage && (

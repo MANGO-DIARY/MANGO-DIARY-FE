@@ -17,12 +17,12 @@ import Loading from '../loading/Loading';
  * @returns {JSX.Element}
  */
 
-function Button({ className = '', type, customStyle = css``, loading = false, label = '버튼', icon, prevIcon, variant = 'primary', size = 'medium', onClick = () => {} }) {
+function Button({ className = '', type, customStyle = css``, loading = false, label = 'button', icon, prevIcon, variant = 'primary', size = 'medium', onClick = () => {} }) {
   return (
     <ButtonContent className={className} customStyle={customStyle} type={type} variant={variant} size={size} onClick={onClick} icon={icon} prevIcon={prevIcon}>
-      {prevIcon && <img src={prevIcon} alt="아이콘" />}
+      {prevIcon && <img src={prevIcon} alt="icon" />}
       {loading ? <Loading /> : label}
-      {icon && <img src={icon} alt="아이콘" />}
+      {icon && <img src={icon} alt="icon" />}
     </ButtonContent>
   );
 }

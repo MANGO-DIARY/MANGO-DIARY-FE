@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { t } from 'i18next';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
+
 import { Alert } from '@mui/material';
 import { PasswordResetWrap } from './styles';
 import InputForm from '../../components/InputForm/inputForm';
@@ -15,18 +17,6 @@ import { useSendEmail } from '../../api/queries/auth/send-email.js';
 import { useVerifyEmail } from '../../api/queries/auth/verify-email.js';
 import { usePasswordReset } from '../../api/queries/auth/password-reset.js';
 import useEmailAuthStore from '../../store/auth/emailAuthStore.js';
-
-const signUpSchema = Yup.object().shape({
-  userEmail: Yup.string()
-    .required('이메일을 입력해주세요.')
-    .matches(/^[a-zA-Z0-9+-_.]+@[a-z]+\.[a-z]{2,3}/i, '이메일 형식이 아닙니다.'),
-  password: Yup.string()
-    .required('비밀번호를 입력해주세요.')
-    .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+]).{8,}$/, '비밀번호는 특수문자, 숫자를 포함하여 8자리 이상이어야 합니다.'),
-  passwordConfirm: Yup.string()
-    .required('비밀번호 확인을 입력해주세요.')
-    .oneOf([Yup.ref('password'), ''], '비밀번호를 다시 입력해주세요.'),
-});
 
 const defaultValues = {
   userEmail: '',
@@ -46,6 +36,18 @@ function PasswordReset() {
   const { mutate: passwordResetMutate, isPending: passwordResetPending } = usePasswordReset();
   const { mutate: emailMutate, isPending: emailPending } = useSendEmail();
   const { mutate: verifyMutate, isPending: verifyPending } = useVerifyEmail();
+
+  const signUpSchema = Yup.object().shape({
+    userEmail: Yup.string()
+      .required(t('yup.email-required-error'))
+      .matches(/^[a-zA-Z0-9+-_.]+@[a-z]+\.[a-z]{2,3}/i, t('yup.email-format-error')),
+    password: Yup.string()
+      .required(t('yup.password-required-error'))
+      .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+]).{8,}$/, t('yup.password-format-error')),
+    passwordConfirm: Yup.string()
+      .required(t('yup.password2-required-error'))
+      .oneOf([Yup.ref('password'), ''], t('yup.password2-confirm-error')),
+  });
 
   const methods = useForm({
     defaultValues,
@@ -109,13 +111,13 @@ function PasswordReset() {
         onSuccess: () => {
           setEndAt(null);
           setIsAuthenticated(true);
-          setSuccessMessage('이메일 인증이 완료되었습니다.');
+          setSuccessMessage(t('password-reset.verify-email-success-message'));
           setErrorMessage('');
           setVerificationDisabled(true);
         },
         onError: (error) => {
           console.log(error.message);
-          setErrorMessage('이메일 인증을 실패하였습니다. 새로고침으로 다시 진행해주세요.');
+          setErrorMessage(t('password-reset.verify-email-error-message'));
           setSuccessMessage('');
         },
       }
@@ -124,7 +126,7 @@ function PasswordReset() {
 
   return (
     <PasswordResetWrap>
-      <Header title="비밀번호 재설정" iconSrc={Images.left} />
+      <Header title={t('password-reset.header-title')} iconSrc={Images.left} />
       <div className="top">
         <img src={Images.joy} alt="기쁨이 이미지" />
       </div>
@@ -133,11 +135,11 @@ function PasswordReset() {
           <InputForm
             name="userEmail"
             IconSrc={Images.email}
-            placeholder="이메일을 입력해주세요."
+            placeholder={t('password-reset.email-placeholder')}
             disabled={emailDisabled}
             purpose={{
               isUsed: true,
-              label: '인증번호 발송',
+              label: t('password-reset.send-email-verifying-code'),
               isPending: emailPending,
               onClick: () => sendEmail(),
             }}
@@ -146,21 +148,21 @@ function PasswordReset() {
             <InputForm
               name="verificationCode"
               IconSrc={Images.verify}
-              placeholder="인증번호를 입력해주세요."
+              placeholder={t('password-reset.email-verifying-code-placeholder')}
               disabled={verificationDisabled}
               purpose={{
                 isUsed: true,
-                label: '확인',
+                label: t('password-reset.submit-email-verifying-code'),
                 isPending: verifyPending,
                 onClick: () => verifyEmail(),
               }}
             />
           )}
-          <InputForm name="password" IconSrc={Images.passward} placeholder="새 비밀번호를 입력해주세요." />
-          <InputForm name="passwordConfirm" IconSrc={Images.passwardReset} placeholder="비밀번호를 재입력해주세요." />
+          <InputForm name="password" IconSrc={Images.passward} placeholder={t('password-reset.new-password-placeholder')} />
+          <InputForm name="passwordConfirm" IconSrc={Images.passwardReset} placeholder={t('password-reset.new-password2-placeholder')} />
         </div>
         <div className="bottom">
-          <Button type="submit" label="비밀번호 재설정하기" variant="BlackFull" size="medium" disabled={!isValid} />
+          <Button type="submit" label={t('password-reset.submit')} variant="BlackFull" size="medium" disabled={!isValid} />
         </div>
       </FormProvider>
       {successMessage && (

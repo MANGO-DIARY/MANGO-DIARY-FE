@@ -1,12 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
+import dayjs from 'dayjs';
+import { t } from 'i18next';
 import { DiaryItemWrapper, ImgSection, CreatedDate, Content } from './DiaryItem.styles';
 import getEmotionImage from '../../util/get-emotion-img';
 
 function DiaryItem({ emotion, content, date, onClick }) {
-  const DiaryDate = date ? new Date(date) : null;
+  const DiaryDate = date ? dayjs(date) : null;
 
-  const formattedDate = DiaryDate ? `${DiaryDate.getFullYear().toString().slice(2)}년 ${DiaryDate.getMonth() + 1}월 ${DiaryDate.getDate()}일` : null;
+  const formattedDate = DiaryDate ? DiaryDate.format(t('YYYY년 MM월 DD일')) : null;
 
   return (
     <DiaryItemWrapper onClick={onClick}>
