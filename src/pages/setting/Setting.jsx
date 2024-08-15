@@ -21,6 +21,7 @@ function Setting() {
     const lng = i18n.language === 'ko' ? 'en' : 'ko';
     console.log('change language from', i18n.language, 'to', lng);
     i18n.changeLanguage(lng);
+    localStorage.setItem('i18nextLng', lng);
   };
 
   const handleLogout = async () => {
