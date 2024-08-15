@@ -1,5 +1,12 @@
 {
   "language": "한국어",
+  "navbar": {
+    "home": "홈",
+    "list": "일기내역",
+    "new": "일기작성",
+    "chart": "통계",
+    "setting": "설정"
+  },
   "setting": {
     "setting": "설정",
     "userGreeting1": " 님, ",
