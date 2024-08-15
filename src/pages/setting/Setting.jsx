@@ -44,16 +44,19 @@ function Setting() {
         </div>
       </div>
       <div className="moreWrap">
+        <div className="more" onClick={changeLanguage}>
+          <div className="title">
+            {t('setting.change-language')}
+            <img src={Images.language} alt="language" />
+          </div>
+          <img className="img" src={Images.arrowRight} alt="오른쪽 화살표" />
+        </div>
         <div className="more" onClick={() => navigate(PATH.NICKNAME_RESET)}>
           <div className="title">{t('setting.change-nickname')}</div>
           <img className="img" src={Images.arrowRight} alt="오른쪽 화살표" />
         </div>
         <div className="more" onClick={handleLogout}>
           <div className="title">{t('setting.logout')}</div>
-          <img className="img" src={Images.arrowRight} alt="오른쪽 화살표" />
-        </div>
-        <div className="more" onClick={changeLanguage}>
-          <div className="title">{t('setting.change-language')}</div>
           <img className="img" src={Images.arrowRight} alt="오른쪽 화살표" />
         </div>
       </div>
