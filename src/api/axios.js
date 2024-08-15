@@ -1,5 +1,8 @@
 import axios from 'axios';
+import { t } from 'i18next';
+
 import { PATH_API } from './path';
+import { PATH } from '../route/path';
 
 const TIMEOUT_TIME = 10_000;
 
@@ -42,34 +45,35 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
-    // // invalid token
-    // const originalRequest = error.config;
-    // if (error.response.status === 401 && !originalRequest._retry) {
-    //   originalRequest._retry = true;
-    //   const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY!);
+    // invalid token
+    const originalRequest = error.config;
+    if (error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      //   const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY!);
 
-    //   if (refreshToken) {
-    //     try {
-    //       const response = await axiosInstance.post(PATH_API.TOKEN_REISSUE, {
-    //         refreshToken,
-    //       });
-    //       const newAccessToken = response.data.accessToken;
-    //       localStorage.setItem(ACCESS_TOKEN_KEY!, newAccessToken);
+      // if (refreshToken) {
+      //   try {
+      //     const response = await axiosInstance.post(PATH_API.TOKEN_REISSUE, {
+      //       refreshToken,
+      //     });
+      //     const newAccessToken = response.data.accessToken;
+      //     localStorage.setItem(ACCESS_TOKEN_KEY!, newAccessToken);
 
-    //       // axiosInstance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-    //       originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-    //       return await axiosInstance(originalRequest);
-    //     } catch {
-    //       // 리프레시 토큰도 만료된 경우 로그아웃 처리
-    //       alert('로그인이 만료되었습니다.');
-    //       localStorage.removeItem(ACCESS_TOKEN_KEY!);
-    //       localStorage.removeItem(REFRESH_TOKEN_KEY!);
+      //     // axiosInstance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+      //     originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+      //     return await axiosInstance(originalRequest);
+      //   } catch {
+      // 리프레시 토큰도 만료된 경우 로그아웃 처리
+      alert(t('system.axios-401-error'));
+      localStorage.removeItem('accessToken');
+      delete originalRequest.Authorization;
 
-    //       window.location.reload();
-    //       Promise.resolve('Error! failed token refresh');
-    //     }
-    //   }
-    // }
+      // window.location.reload();
+      window.location.href = PATH.root;
+      // Promise.resolve('Error! failed token refresh');
+      // }
+      // }
+    }
     // timeout
     if (axios.isCancel(error)) {
       // 취소된 요청은 에러로 처리하지 않음
