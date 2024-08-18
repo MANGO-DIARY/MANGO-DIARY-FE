@@ -5,14 +5,14 @@ import getEmotionImage from '../../util/get-emotion-img';
 import getEmotionColor from '../../util/getEmotionColor';
 
 const example = {
-  신남: 10,
-  기쁨: 11,
-  행복: 13,
-  평온: 12,
-  분노: 9,
-  슬픔: 10,
-  불안: 2,
-  우울: 8,
+  joy: 0,
+  excitement: 0,
+  happiness: 0,
+  calm: 0,
+  sadness: 0,
+  anger: 0,
+  anxiety: 0,
+  depression: 0,
 };
 
 function CustomAxisLabel(props) {

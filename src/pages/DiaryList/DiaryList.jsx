@@ -51,7 +51,7 @@ function DiaryList() {
       <ScrollableEmotionList>
         <EmotionAll onClick={handleShowAllClick}>{t('diary-list.all')}</EmotionAll>
         {emotionList.map((item) => (
-          <EmotionButton onClick={() => handleEmotionClick(item.emotion)} key={item.emotion} {...item} />
+          <EmotionButton onClick={() => handleEmotionClick(item.num)} key={item.num} {...item} />
         ))}
       </ScrollableEmotionList>
       <DiaryListWrapper>

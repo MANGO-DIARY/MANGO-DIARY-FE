@@ -69,7 +69,7 @@ function DiaryDetail() {
         <Stack>
           <div className="top">
             <img alt="emotion" />
-            <p id="emotion-name">{diaryData?.emotion}</p>
+            <p id="emotion-name">{t(`emotion.${diaryData?.emotion}`)}</p>
           </div>
           <article>{diaryData?.content}</article>
           <div className="ai-wrap">
