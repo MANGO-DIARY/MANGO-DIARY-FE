@@ -52,5 +52,6 @@ module.exports = {
     'react/self-closing-comp': 'off',
     'consistent-return': 'off',
     'no-param-reassign': 'off',
+    'no-underscore-dangle': 'off',
   },
 };
