@@ -1,5 +1,152 @@
 {
   "language": "English",
+
+  "system": {
+    "axios-401-error": "Your login has expired."
+  },
+
+  "navbar": {
+    "home": "Home",
+    "list": "Diary List",
+    "new": "Write Diary",
+    "chart": "Statistics",
+    "setting": "Settings"
+  },
+
+  "YYYY년 MM월 DD일": "MMMM DD, YYYY",
+
+  "yup": {
+    "email-required-error": "Please enter your email.",
+    "email-format-error": "Invalid email format.",
+    "password-required-error": "Please enter your password.",
+    "password-format-error": "Password must be at least 8 characters and include special characters and numbers.",
+    "password2-required-error": "Please confirm your password.",
+    "password2-confirm-error": "Please re-enter your password.",
+    "name-required-error": "Please enter your name.",
+    "name-format-error": "Name must be 12 characters or less."
+  },
+
+  "main": {
+    "no-comment": "No comment for today.",
+    "last-diary": "'s Recent Diary",
+    "no-diary": "No diary entries found. Please write a diary.",
+    "monthly-ranking": "Emotion Ranking of the Month"
+  },
+
+  "diary-list": {
+    "diary-list": "Diary",
+    "all": "All Diaries",
+    "no-diary": "No diaries have been recorded."
+  },
+
+  "diary-write": {
+    "textarea-placeholder": "Write a diary about the key events and emotions of today in less than 150 characters.",
+    "start-analysis": "Start Analyzing",
+    "select-three": "We've picked 3 emotions similar to your diary. Please choose the one that matches your current feeling.",
+    "select-another": "If none of them fit, press 'Choose Another Emotion'.",
+    "select-one": "Please select an emotion!",
+    "other1": "See",
+    "other2": "Others",
+    "save": "Save"
+  },
+
+  "chart": {
+    "monthly-chart": "Monthly Chart",
+    "top-typo": "'s",
+    "top-dateformat": "MM/YYYY Report",
+    "select-date": "Select Date",
+    "asof-format": "[as of] MMMM DD, YYYY",
+    "comments": "Collecting Comments",
+    "no-comment-1": "You haven't written any diaries for this month.",
+    "no-comment-2": "If you write a diary, you can get AI comments and",
+    "no-comment-3": "a full month's statistical analysis!"
+  },
+
+  "diary-detail": {
+    "delete-alert": "The diary has been deleted.",
+    "delete-confirm": "Are you sure you want to delete this diary?"
+  },
+
+  "done": {
+    "go-to-home": "Go to Home",
+    "password": {
+      "typo1": "Your password",
+      "typo2": "has been changed.",
+      "typo3": "Shall we go back to the login page?"
+    },
+    "signup": {
+      "typo1": "Welcome!",
+      "typo2": "Your registration is complete.",
+      "typo3": "Start recording your day,",
+      "typo4": "and check the emotions analyzed by AI!"
+    },
+    "nickname": {
+      "typo1": "Your nickname has been changed.",
+      "typo2": "Now, with your new nickname,",
+      "typo3": "shall we write a diary?"
+    }
+  },
+
+  "login": {
+    "header-title": "Login with Email",
+    "top-typo1": "Tell us about your day.",
+    "top-typo2": "AI will analyze your emotions.",
+    "top-typo3": "Check how you've been feeling lately!",
+    "email-placeholder": "Please enter your email.",
+    "password-placeholder": "Please enter your password.",
+    "go-to-signup": "Go to Sign Up",
+    "password-reset": "Reset Password",
+    "next": "Next"
+  },
+
+  "nickname-reset": {
+    "success-message": "Nickname reset completed.",
+    "error-message": "An unknown error occurred.",
+    "header-title": "Reset Nickname",
+    "nickname-placeholder": "Please enter a new nickname.",
+    "submit": "Reset Nickname"
+  },
+
+  "password-reset": {
+    "verify-email-success-message": "Email verification completed.",
+    "verify-email-error-message": "Failed to verify email. Please refresh and try again.",
+    "header-title": "Reset Password",
+    "email-placeholder": "Please enter your email.",
+    "send-email-verifying-code": "Send Verification Code",
+    "email-verifying-code-placeholder": "Please enter the verification code.",
+    "submit-email-verifying-code": "Confirm",
+    "new-password-placeholder": "Please enter a new password.",
+    "new-password2-placeholder": "Please re-enter your password.",
+    "submit": "Reset Password"
+  },
+
+  "signup": {
+    "verify-email-success-message": "Email verification completed.",
+    "verify-email-error-message": "Failed to verify email. Please refresh and try again.",
+    "header-title": "Sign Up",
+    "nickname-placeholder": "Please enter a nickname.",
+    "email-placeholder": "Please enter your email.",
+    "send-email-verifying-code": "Send Code",
+    "email-verifying-code-placeholder": "Please enter the verification code.",
+    "submit-email-verifying-code": "Confirm",
+    "password-placeholder": "Please enter your password.",
+    "next": "Next"
+  },
+
+  "search": {
+    "search-placeholder": "Please enter a search term.",
+    "cancel": "Cancel",
+    "no-result": "No search results found..."
+  },
+
+  "splash": {
+    "title1": "MANGO",
+    "title2": "DIARY",
+    "subtitle": "Emotion Diary analyzed by AI",
+    "with-kakao": "Continue with Kakao",
+    "with-email": "Login with Email"
+  },
+
   "setting": {
     "setting": "Setting",
     "userGreeting1": ", ",
