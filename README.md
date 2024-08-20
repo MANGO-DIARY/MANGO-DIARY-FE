@@ -12,8 +12,14 @@
 |                                                       [@minjeoong](https://github.com/minjeoong)                                                       |              [@haram8009](https://github.com/haram8009)              |                           [@Sung-young](https://github.com/Sung-young)                           |
 
 ## 📲 Tech
+<div align=center>
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=React&logoColor=white">
+  <img src="https://img.shields.io/badge/react query-FF4154?style=for-the-badge&logo=ReactQuery&logoColor=white">        <img src="https://img.shields.io/badge/emotion-DB7093?style=for-the-badge&logo=emotion&logoColor=white">
+    <img src="https://img.shields.io/badge/zustand-82612C.svg?style=for-the-badge&logo=zustand&logoColor=white">
+  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+  <img src="https://img.shields.io/badge/MUI-007FFF?style=for-the-badge&logo=mui&logoColor=white">
 
-<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=React&logoColor=white"><img src="https://img.shields.io/badge/react query-FF4154?style=for-the-badge&logo=ReactQuery&logoColor=white"><img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+</div>
 
 ## 📲 기능
 
