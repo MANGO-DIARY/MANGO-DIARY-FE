@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { t } from 'i18next';
 import DiaryItem from '../../components/DiaryItem/DiaryItem';
 import { Images } from '../../styles/images';
 import NavBar from '../../components/navBar/navBar';
@@ -45,11 +46,12 @@ function Main() {
         <div>
           <img src={Images.joy} alt="icon" />
         </div>
-        {hasData ? <Comment>{mainData.todayComment}</Comment> : '오늘의 코멘트가 없어요'}
+        {hasData ? <Comment>{mainData.todayComment}</Comment> : t('main.no-comment')}
       </MainTop>
       <MainMiddle>
         <FrameHeader>
-          {userInfo?.userName}님의 최근 일기
+          {userInfo?.userName}
+          {t('main.last-diary')}
           <HeaderButton onClick={() => nav(PATH.DIARYLIST)}>
             <img src={Images.right} alt="icon" />
           </HeaderButton>
@@ -64,12 +66,12 @@ function Main() {
             content={mainData.todayDiary.content}
           />
         ) : (
-          <DiaryItem content="작성하신 일기가 없습니다. 일기를 작성해 주세요" formattedDate={null} emotion="none" />
+          <DiaryItem content={t('main.no-diary')} formattedDate={null} emotion="none" />
         )}
       </MainMiddle>
       <MainBottom>
         <FrameHeader>
-          이번달의 감정순위
+          {t('main.monthly-ranking')}
           <HeaderButton
             onClick={() => {
               nav(PATH.CHART);

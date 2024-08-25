@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { t } from 'i18next';
 import { SplashWrap } from './styles';
 import { Images } from '../../styles/images';
 import Button from '../../components/button/button';
@@ -35,18 +36,19 @@ function Splash() {
         <div className="title">
           <div className="item">
             <div className="highlight"></div>
-            아프지
+            {t('splash.title1')}
           </div>
           <div className="item">
-            <div className="highlight"></div>망고
+            <div className="highlight"></div>
+            {t('splash.title2')}
           </div>
         </div>
-        <div className="subtitle">ai가 분석해주는 감정 일기</div>
+        <div className="subtitle"> {t('splash.subtitle')}</div>
       </div>
       <div className="bottom">
-        <Button label="카카오로 계속하기" variant="kakao" size="kakao" prevIcon={Images.kakao} onClick={handleKakaoLogin} />
+        <Button label={t('splash.with-kakao')} variant="kakao" size="kakao" prevIcon={Images.kakao} onClick={handleKakaoLogin} />
         <a href={PATH.LOGIN} className="email">
-          이메일로 로그인
+          {t('splash.with-email')}
         </a>
       </div>
     </SplashWrap>

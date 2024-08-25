@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { t } from 'i18next';
 import { BottomNavigation, BottomNavigationAction, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Images } from '../../styles/images';
@@ -30,35 +31,35 @@ function NavBar() {
         // }}
       >
         <BottomNavAction
-          label="홈"
+          label={t('navbar.home')}
           icon={<img src={Images.home} alt="plus-icon" />}
           onClick={() => {
             navigate(PATH.HOME);
           }}
         />
         <BottomNavAction
-          label="일기내역"
+          label={t('navbar.list')}
           icon={<img src={Images.calendar} alt="plus-icon" />}
           onClick={() => {
             navigate(PATH.CALENDAR);
           }}
         />
         <BottomNavAction
-          label="일기작성"
+          label={t('navbar.new')}
           icon={<img src={Images.plus} alt="plus-icon" />}
           onClick={() => {
             navigate(PATH.DIARYWRITE);
           }}
         />
         <BottomNavAction
-          label="통계"
+          label={t('navbar.chart')}
           icon={<img src={Images.barchart} alt="plus-icon" />}
           onClick={() => {
             navigate(PATH.CHART);
           }}
         />
         <BottomNavAction
-          label="설정"
+          label={t('navbar.setting')}
           icon={<img src={Images.settings} alt="plus-icon" />}
           onClick={() => {
             navigate(PATH.SETTING);

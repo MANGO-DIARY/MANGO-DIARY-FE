@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { t } from 'i18next';
 import { useInView } from 'react-intersection-observer';
 import { DiaryListWrapper, EmotionListWrapper, EmotionAll, Toggle, ScrollableEmotionList, NoneData } from './DiaryList.styles';
 import Header from '../../components/header/Header';
@@ -8,7 +9,6 @@ import emotionList from '../../util/constants';
 import DiaryItem from '../../components/DiaryItem/DiaryItem';
 import { Images } from '../../styles/images';
 import ToggleButton from '../../components/ToggleButton/ToggleButton';
-import { Button } from '../../components/ToggleButton/ToggleButton.styles';
 import { useDiaryList } from '../../api/queries/diary/diary-list';
 import NavBar from '../../components/navBar/navBar';
 import { PATH } from '../../route/path';
@@ -44,18 +44,18 @@ function DiaryList() {
 
   return (
     <DiaryListWrapper className="use-navbar">
-      <Header title="일기장" iconSrc={Images.left} onClick={() => nav(-1)} showButtonRight onRightClick={() => nav('/search')} rightIconSrc={Images.headerSearch} />
+      <Header title={t('diary-list.diary-list')} iconSrc={Images.left} onClick={() => nav(-1)} showButtonRight onRightClick={() => nav('/search')} rightIconSrc={Images.headerSearch} />
       <Toggle>
         <ToggleButton />
       </Toggle>
       <ScrollableEmotionList>
-        <EmotionAll onClick={handleShowAllClick}> 전체일기</EmotionAll>
+        <EmotionAll onClick={handleShowAllClick}>{t('diary-list.all')}</EmotionAll>
         {emotionList.map((item) => (
-          <EmotionButton onClick={() => handleEmotionClick(item.emotion)} key={item.emotion} {...item} />
+          <EmotionButton onClick={() => handleEmotionClick(item.num)} key={item.num} {...item} />
         ))}
       </ScrollableEmotionList>
       <DiaryListWrapper>
-        {isNotData && <NoneData>등록된 일기가 없습니다.</NoneData>}
+        {isNotData && <NoneData>{t('diary-list.no-diary')}</NoneData>}
         {isFetched &&
           data?.pages.map((group, i) => (
             <React.Fragment key={String(i + 1)}>
@@ -74,7 +74,7 @@ function DiaryList() {
           {isFetchingNextPage && <Spiner />}
         </div>
       </DiaryListWrapper>
-      <NavBar></NavBar>
+      <NavBar />
     </DiaryListWrapper>
   );
 }

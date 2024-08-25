@@ -1,4 +1,5 @@
 import React from 'react';
+import { t } from 'i18next';
 import { DoneContain } from './styles';
 import { Images } from '../../styles/images.js';
 
@@ -11,14 +12,14 @@ function DoneComponent({ type }) {
           <div className="title">
             <div className="item">
               <div className="highlight"> </div>
-              비밀번호가
+              {t('done.password.typo1')}
             </div>
             <div className="item">
               <div className="highlight"> </div>
-              변경되었습니다
+              {t('done.password.typo2')}
             </div>
           </div>
-          <div className="comment">다시 로그인 페이지로 가볼까요?</div>
+          <div className="comment">{t('done.password.typo3')}</div>
         </div>
       );
     }
@@ -29,13 +30,15 @@ function DoneComponent({ type }) {
           <div className="title">
             <div className="item">
               <div className="highlight"></div>
-              반가워요!
+              {t('done.signup.typo1')}
             </div>
           </div>
           <div className="comment">
-            회원가입이 완료되었습니다.
-            <br /> 이제 오늘을 기록하고, <br />
-            ai가 분석해주는 감정을 확인해보세요!
+            {t('done.signup.typo2')}
+            <br />
+            {t('done.signup.typo3')}
+            <br />
+            {t('done.signup.typo4')}
           </div>
         </div>
       );
@@ -47,12 +50,12 @@ function DoneComponent({ type }) {
           <div className="title">
             <div className="item">
               <div className="highlight"></div>
-              닉네임이 변경되었습니다.
+              {t('done.nickname.typo1')}
             </div>
           </div>
           <div className="comment">
-            이제 새로운 닉네임으로 <br />
-            일기를 작성해볼까요?
+            {t('done.nickname.typo2')} <br />
+            {t('done.nickname.typo3')}
           </div>
         </div>
       );

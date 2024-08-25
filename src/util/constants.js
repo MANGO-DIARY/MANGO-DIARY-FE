@@ -1,35 +1,52 @@
+// JOY(0), // 기쁨
+// EXCITEMENT(1), // 신남
+// HAPPINESS(2), // 행복
+// CALM(3), // 평온
+// DEPRESSION(4), // 우울
+// ANXIETY(5), // 불안
+// SADNESS(6), // 슬픔
+// ANGER(7); // 분노
+
 const emotionList = [
   {
-    emotionId: 1,
-    emotion: '신남',
+    num: 0,
+    ko: '기쁨',
+    en: 'Joy',
   },
   {
-    emotionId: 2,
-    emotion: '기쁨',
+    num: 1,
+    ko: '신남',
+    en: 'Excitement',
   },
   {
-    emotionId: 3,
-    emotion: '행복',
+    num: 2,
+    ko: '행복',
+    en: 'Happiness',
   },
   {
-    emotionId: 4,
-    emotion: '평온',
+    num: 3,
+    ko: '평온',
+    en: 'Calm',
   },
   {
-    emotionId: 5,
-    emotion: '분노',
+    num: 4,
+    ko: '우울',
+    en: 'Depression',
   },
   {
-    emotionId: 6,
-    emotion: '슬픔',
+    num: 5,
+    ko: '불안',
+    en: 'Anxiety',
   },
   {
-    emotionId: 7,
-    emotion: '불안',
+    num: 6,
+    ko: '슬픔',
+    en: 'Sadness',
   },
   {
-    emotionId: 8,
-    emotion: '우울',
+    num: 7,
+    ko: '분노',
+    en: 'Anger',
   },
 ];
 

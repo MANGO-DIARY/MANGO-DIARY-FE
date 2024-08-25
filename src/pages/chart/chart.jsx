@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { t } from 'i18next';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -29,20 +30,22 @@ export default function ChartPage() {
     }
   }, [refetch, selectedDate]);
 
-  if (isChartLoading || isUserLoading) {
+  if (isUserLoading) {
     return <Spiner />;
   }
 
   return (
     <div className="use-navbar">
-      <Header title="월간통계" iconSrc={Images.left} onClick={() => navigate(-1)} />
+      <Header title={t('chart.monthly-chart')} iconSrc={Images.left} onClick={() => navigate(-1)} />
 
       <Stack className="top" sx={{ paddingX: '30px' }}>
         <ChartDatePicker {...{ selectedDate, setSelectedDate, isOpen, setIsOpen }} />
         <Box display="flex" justifyContent="space-between">
           <Typography variant="h3">
-            {userInfo?.userName}님의 <br />
-            {selectedDate.year()}년 {selectedDate.month() + 1}월 리포트
+            {userInfo?.userName}
+            {t('chart.top-typo')}
+            <br />
+            {selectedDate.format(t('chart.top-dateformat'))}
           </Typography>
           <Button
             variant="text"
@@ -51,11 +54,11 @@ export default function ChartPage() {
               setIsOpen(true);
             }}
           >
-            날짜 선택
+            {t('chart.select-date')}
           </Button>
         </Box>
         <Typography variant="body" color={Colors.Gray06}>
-          {today.year()}년 {today.month() + 1}월 {today.date()}일 기준
+          {today.format(t('chart.asof-format'))}
         </Typography>
       </Stack>
 
@@ -65,17 +68,20 @@ export default function ChartPage() {
           <Typography sx={{ mt: 5, mx: '30px' }} textAlign="center" color={Colors.Gray02}>
             {chartData.statisticsComment}
           </Typography>
-          <Chart chartData={chartData.emotionCounts} />
+          <Chart chartData={chartData.emotionCounts} isChartLoading={isChartLoading} />
           <Stack sx={{ paddingX: '30px', paddingY: 5 }} spacing={2}>
-            <Typography variant="h6">코멘트 모아보기</Typography>
+            <Typography variant="h6">{t('chart.comments')}</Typography>
             {chartData.aiComments && chartData.aiComments.length && chartData.aiComments.map((item) => <AiComment aiComment={item} />)}
           </Stack>
         </>
       ) : (
         // 차트데이터 없을 때
         <Typography textAlign="center" color={Colors.Gray05} sx={{ mt: '5rem' }}>
-          아직 해당 달에 일기를 작성하지 않았어요. <br />
-          일기를 작성하면 ai의 코멘트와 <br /> 한 달치 통계 분석 서비스를 받을 수 있어요!
+          {t('chart.no-comment-1')}
+          <br />
+          {t('chart.no-comment-2')}
+          <br />
+          {t('chart.no-comment-3')}
         </Typography>
       )}
 

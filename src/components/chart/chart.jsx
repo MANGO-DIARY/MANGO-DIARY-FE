@@ -3,17 +3,16 @@ import { BarChart } from '@mui/x-charts';
 import { ChartContainer } from './style';
 import getEmotionImage from '../../util/get-emotion-img';
 import getEmotionColor from '../../util/getEmotionColor';
-import Spiner from '../Spiner/Spiner.jsx';
 
 const example = {
-  신남: 10,
-  기쁨: 11,
-  행복: 13,
-  평온: 12,
-  분노: 9,
-  슬픔: 10,
-  불안: 2,
-  우울: 8,
+  joy: 0,
+  excitement: 0,
+  happiness: 0,
+  calm: 0,
+  sadness: 0,
+  anger: 0,
+  anxiety: 0,
+  depression: 0,
 };
 
 function CustomAxisLabel(props) {
@@ -36,9 +35,7 @@ function CustomAxisLabel(props) {
     </>
   );
 }
-export default function Chart({ chartData = example, chartProps }) {
-  const [isLoading, setisLoading] = useState(true);
-
+export default function Chart({ chartData, isChartLoading, chartProps }) {
   const namesArray = Object.keys(chartData);
   const valuesArray = Object.values(chartData);
 
@@ -50,15 +47,13 @@ export default function Chart({ chartData = example, chartProps }) {
     rects.forEach((rect) => {
       rect.setAttribute('rx', '10'); // 원하는 rx 값을 설정
     });
-
-    setisLoading(false);
   }, []);
 
   return (
     <ChartContainer>
       <BarChart
         sx={{ pb: 2 }}
-        height={330}
+        height={300}
         xAxis={[
           {
             data: namesArray,
@@ -71,7 +66,7 @@ export default function Chart({ chartData = example, chartProps }) {
           },
         ]}
         series={[{ data: valuesArray, type: 'bar' }]}
-        loading={isLoading}
+        loading={isChartLoading}
         slots={{
           axisTickLabel: (props) => CustomAxisLabel({ ...props, chartData }),
         }}

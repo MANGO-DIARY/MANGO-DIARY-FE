@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import styled from '@emotion/styled';
+import { Colors } from '../../styles/colors';
 
 export const DiaryItemWrapper = styled.div`
   height: 200px;
@@ -24,28 +25,28 @@ export const ImgSection = styled.div`
   font-size: 20px;
 
   &.img_section_신남 {
-    color: #ed9c24;
+    color: ${Colors.excited};
   }
   &.img_section_기쁨 {
-    color: #f5c829;
+    color: ${Colors.joy};
   }
   &.img_section_행복 {
-    color: #fa57f4;
+    color: ${Colors.happy};
   }
   &.img_section_평온 {
-    color: #0eb6ec;
+    color: ${Colors.peace};
   }
   &.img_section_분노 {
-    color: #f21717;
+    color: ${Colors.angry};
   }
   &.img_section_슬픔 {
-    color: #1b89c6;
+    color: ${Colors.sad};
   }
   &.img_section_불안 {
-    color: #c525fe;
+    color: ${Colors.anxiety};
   }
   &.img_section_우울 {
-    color: #918e92;
+    color: ${Colors.depression};
   }
   &.img_section_none {
     width: 35%;
